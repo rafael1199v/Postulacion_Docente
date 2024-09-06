@@ -1,6 +1,6 @@
 public class Documento
 {
-    string? rutaArchivo {get;set;}
+    public string? rutaArchivo {get;set;}
 
-    bool Obligatorio {get; set;}
+    public bool Obligatorio {get; set;}
 }

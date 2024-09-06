@@ -1,3 +1,4 @@
 public class Materia{
-    string nombre = string.Empty;
+    public string? nombre {get; set;}
+    public string? sigla {get; set;}
 }

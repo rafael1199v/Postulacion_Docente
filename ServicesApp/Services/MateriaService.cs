@@ -16,9 +16,9 @@ public class MateriaService : IMateriaService
     public List<Materia> conseguirMaterias(){
 
         var materias = new List<Materia>(){
-            new Materia(),
-            new Materia(),
-            new Materia()
+            new Materia{nombre = "Materia1", sigla = "M1"},
+            new Materia{nombre = "Materia2", sigla = "M2"},
+            new Materia{nombre = "Materia3", sigla = "M3"}
         };
 
         return materias;
