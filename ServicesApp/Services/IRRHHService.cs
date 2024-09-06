@@ -1,6 +1,7 @@
-public interface IRRHHService{
-    public void horario();
-    public void crearReunion(DateTime fecha);
-    public void verSolicitudes();
-    public void aceptarSolicitud(Formulario ganador);
+public interface IRRHHService
+{
+    void Horario();
+    void CrearReunion(DateTime fecha);
+    void VerSolicitudes();
+    void AceptarSolicitud(string nombreSolicitud);
 }
