@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 [Route("[controller]")]
 public class FormularioController : ControllerBase
 {
-   [HttpPost("guardar")]
-    public IActionResult GuardarDatos([FromBody] Formulario formulario){
+   [HttpPost("guardar/docente")]
+    public IActionResult GuardarDatosFormularioDocente([FromBody] Formulario formulario){
 
         IFormularioService IformularioService = new FormularioService();
-        IformularioService.GuardarDatos(formulario.postulante, formulario.documentosObligatorios, formulario.documentosOpcionales);
+        IformularioService.GuardarDatosFormularioDocente(formulario.postulante, formulario.documentosObligatorios, formulario.documentosOpcionales);
 
         return Ok();
     }
