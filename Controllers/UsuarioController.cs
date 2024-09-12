@@ -1,39 +1,47 @@
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
-[Route("[aaaaaaaaaaaaaaaaaa]")]
-public class UsuarioController: ControllerBase{
+[Route("[controller]")]
+public class UsuarioController : ControllerBase
+{
+    private readonly IUsuarioService _usuarioService;
+
+    public UsuarioController(IUsuarioService usuarioService)
+    {
+        _usuarioService = usuarioService;
+    }
+
     [HttpPost]
-    public IActionResult registroUsuario([FromBody] Usuario nuevoUsuario){
-
-        IUsuarioService _usuarioService = new UsuarioService();
+    public IActionResult registroUsuario([FromBody] Usuario nuevoUsuario)
+    {
         _usuarioService.registrarUsuario(nuevoUsuario);
-
         return Ok();
     }
+
     [HttpGet]
-    public IActionResult busquedaUsuario(Usuario buscado){
-
-        IUsuarioService _usuarioService = new UsuarioService();
-
+    public IActionResult busquedaUsuario([FromQuery] Usuario buscado)
+    {
         return _usuarioService.encontrarUsuario(buscado) ? Ok() : BadRequest();
     }
-    [HttpPut]
-    public IActionResult editarDatos(Usuario antiguo, Usuario renovado){
-        IUsuarioService _usuarioService = new UsuarioService();
 
-        if(_usuarioService.encontrarUsuario(antiguo)){
+    [HttpPut]
+    public IActionResult editarDatos([FromBody] Usuario renovado, [FromQuery] Usuario antiguo)
+    {
+        if (_usuarioService.encontrarUsuario(antiguo))
+        {
             _usuarioService.eliminarUsuario(antiguo);
             _usuarioService.registrarUsuario(renovado);
             return Ok();
         }
-        else{
+        else
+        {
             return BadRequest();
         }
     }
+
     [HttpDelete]
-    public IActionResult destruirUsuario(Usuario objetivo){
-        IUsuarioService _usuarioService = new UsuarioService();
+    public IActionResult destruirUsuario([FromQuery] Usuario objetivo)
+    {
         _usuarioService.eliminarUsuario(objetivo);
         return Ok();
     }
