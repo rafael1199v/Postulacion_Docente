@@ -12,7 +12,7 @@ public class FormularioService : IFormularioService{
         return true;
     }
 
-    public void GuardarDatos(Docente? nuevoDocente, List<Documento>? documentosObligatorios, List<Documento>? documentosOpcionales){
+    public void GuardarDatosFormularioDocente(Docente? nuevoDocente, List<Documento>? documentosObligatorios, List<Documento>? documentosOpcionales){
         IDocumentoService IdocumentoService = new DocumentoService();
         IDocenteService IdocenteService = new DocenteService();
 
