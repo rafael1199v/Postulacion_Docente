@@ -5,17 +5,11 @@ using System;
 [Route("[controller]")]
 public class RRHHController : ControllerBase
 {
-    private readonly IRRHHService _rrhhService;
-
-    public RRHHController(IRRHHService rrhhService)
-    {
-        _rrhhService = rrhhService;
-    }
-
-    // GET
     [HttpGet("Horario")]
     public IActionResult ObtenerHorario()
     {
+        IRRHHService _rrhhService = new RRHHService();
+
         try
         {
             _rrhhService.Horario();
@@ -27,10 +21,11 @@ public class RRHHController : ControllerBase
         }
     }
 
-    // POST
     [HttpPost("CrearReunion")]
     public IActionResult CrearReunion([FromBody] DateTime fecha)
     {
+        IRRHHService _rrhhService = new RRHHService();
+
         try
         {
             _rrhhService.CrearReunion(fecha);
@@ -42,10 +37,11 @@ public class RRHHController : ControllerBase
         }
     }
 
-    // GET
     [HttpGet("VerSolicitudes")]
     public IActionResult VerSolicitudes()
     {
+        IRRHHService _rrhhService = new RRHHService();
+
         try
         {
             _rrhhService.VerSolicitudes();
@@ -57,10 +53,11 @@ public class RRHHController : ControllerBase
         }
     }
 
-    // PUT
     [HttpPut("AceptarSolicitud/{nombreSolicitud}")]
     public IActionResult AceptarSolicitud(string nombreSolicitud)
     {
+        IRRHHService _rrhhService = new RRHHService();
+
         try
         {
             _rrhhService.AceptarSolicitud(nombreSolicitud);
