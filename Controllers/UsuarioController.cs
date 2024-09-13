@@ -24,7 +24,11 @@ public class UsuarioController: ControllerBase{
 
         if(_usuarioService.encontrarUsuario(antiguo)){
             _usuarioService.eliminarUsuario(antiguo);
+<<<<<<< Updated upstream
 //            _usuarioService.registrarUsuario(renovado);
+=======
+            // _usuarioService.registrarUsuario(renovado);
+>>>>>>> Stashed changes
             return Ok();
         }
         else{

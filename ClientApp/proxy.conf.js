@@ -7,7 +7,13 @@ const PROXY_CONFIG = [
   {
     context: [
       "/weatherforecast",
+<<<<<<< Updated upstream
       "/usuario",
+=======
+      "/materia",
+      "/formulario",
+      "docente",
+>>>>>>> Stashed changes
    ],
     target: target,
     secure: false,
