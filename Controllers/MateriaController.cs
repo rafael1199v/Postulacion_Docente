@@ -4,7 +4,7 @@ namespace PostulacionDocente.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class Materia : ControllerBase
+public class MateriaController : ControllerBase
 {
    [HttpGet("conseguirMaterias")]
     public IActionResult GetMateria(){
