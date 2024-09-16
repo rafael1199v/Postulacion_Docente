@@ -6,6 +6,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IFormularioService, FormularioService>();
 builder.Services.AddScoped<IDocenteService, DocenteService>();
 builder.Services.AddScoped<IDocumentoService, DocumentoService>();
+builder.Services.AddScoped<IVacanteService, VacanteService>();
+builder.Services.AddScoped<IPostulanteService, PostulanteService>();
 
 var app = builder.Build();
 
