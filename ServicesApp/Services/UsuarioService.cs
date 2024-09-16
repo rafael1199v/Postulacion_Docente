@@ -3,27 +3,84 @@ public class UsuarioService : IUsuarioService
 
     public void registrarUsuario(Usuario usuario)
     {
-        System.Console.WriteLine("Registro de usuario");
+        if(credencialesSinUso(new List<string>{usuario.CI, usuario.correo, usuario.numero})){
+            Usuario newUsuario = new Usuario{
+                nombre = usuario.nombre,
+                CI = usuario.CI,
+                contrasenha = usuario.contrasenha,
+                correo = usuario.correo,
+                numero = usuario.numero,
+                fechaNacimiento = usuario.fechaNacimiento
+            };
+            //enviar "newUsuario a la base de datos"
+            System.Console.WriteLine($"Nuevo usuario creado: {newUsuario.nombre}!");
+        }
+        else{
+            //debería haber una forma de conservar el formulario de datos para evitar escribir todo de nuevo
+            System.Console.WriteLine("No se pudo crear el nuevo usuario... Credenciales ya en uso");
+        }
     }
 
     public void eliminarUsuario(Usuario usuario)
     {
+        //eliminar al usuario de la base de datos
         System.Console.WriteLine("Usuario eliminado");
     }
 
-    public void modificarUsuario(Usuario antiguoUsuario, Usuario datosRenovados)
+    public bool modificarUsuario(Usuario antiguo, Usuario renovado)
     {
-        System.Console.WriteLine("Usuario modificado");
+        if(credencialesSinUso(new List<string>{renovado.CI, renovado.correo, renovado.numero})){
+            antiguo.nombre = renovado.nombre;
+            antiguo.CI = renovado.CI;
+            antiguo.contrasenha = renovado.contrasenha;
+            antiguo.correo = renovado.correo;
+            antiguo.fechaNacimiento = renovado.fechaNacimiento;
+            antiguo.numero = renovado.numero;
+            System.Console.WriteLine("Usuario modificado");
+            //enviar antiguo a la base de datos
+            return true;
+        }
+        return false;
     }
 
-    public bool encontrarUsuario(string objetivo){
+    public bool encontrarUsuario(string objetivo, int tipo){
+        //identifier funcionará como el tipo de campo que se está buscando
+        //0: nombre
+        //1: CI
+        //2: correo
+        //3: numero
 
         List<Usuario> lista = new List<Usuario>{
             new Usuario{nombre = "Daniel"}
         };
+
         for(int i = 0; i < lista.Count; i++){
-            if(objetivo == lista[i].nombre){
-                return true;
+            switch (tipo)
+            {
+                case 0:
+                    if(objetivo == lista[i].nombre){
+                        return true;
+                    }
+                    break;
+                case 1:
+                    if(objetivo == lista[i].CI){
+                        return true;
+                    }
+                    break;
+                case 2:
+                    if(objetivo == lista[i].correo){
+                        return true;
+                    }
+                    break;
+                case 3:
+                    if(objetivo == lista[i].numero){
+                        return true;
+                    }
+                    break;
+
+                default:
+                    System.Console.WriteLine("XD");
+                    break;
             }
         }
         return false;

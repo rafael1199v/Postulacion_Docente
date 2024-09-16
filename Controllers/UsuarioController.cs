@@ -17,31 +17,33 @@ public class UsuarioController: ControllerBase{
     }
 
     [HttpGet("buscar/{name}")]
-    public IActionResult busquedaUsuario(string name){
+    public IActionResult busquedaUsuario(string field, int identifier){
+        //identifier funcionará como el tipo de campo que se está buscando
+        //0: nombre
+        //1: CI
+        //2: correo
+        //3: numero
 
-        return service.encontrarUsuario(name)? Ok() : BadRequest();
+        return service.encontrarUsuario(field, identifier)? Ok() : BadRequest();
     }
 
-    [HttpGet("buscar/{name}")]
-    public IActionResult busquedaCredenciales(string CI, string correo, string numero){
-        List<string> datos = new List<string>{
-            CI,correo,numero
-        };
-        return service.credencialesSinUso(datos)? Ok("Las credenciales están sin uso, puedes utilizarlos") : BadRequest("Credenciales ya en uso");
-    }
+    // [HttpGet]
+    // public IActionResult busquedaCredenciales(string CI, string correo, string numero){
+    //     List<string> datos = new List<string>{
+    //         CI,correo,numero
+    //     };
+    //     return service.credencialesSinUso(datos)? Ok("Las credenciales están sin uso, puedes utilizarlos") : BadRequest("Credenciales ya en uso");
+    // }
 
     [HttpPut("editar")]
-    public IActionResult editarDatos(Usuario antiguo){
+    public IActionResult editarDatos((Usuario, Usuario) datos){
+        //item 1: Datos antiguos del usuario
+        //item 2: Datos actualizados del usuario
 
-        // if(service.encontrarUsuario(antiguo)){
-        //     service.eliminarUsuario(antiguo);
-
-        //     return Ok();
-        // }
-        // else{
-        //     return BadRequest();
-        // }
-        return Ok();
+        if(service.modificarUsuario(datos.Item1, datos.Item2)){
+            return Ok("Usuario actualizado");
+        }
+        return BadRequest("Hubo un error actualizando los datos");
     }
 
     [HttpDelete("borrar")]
