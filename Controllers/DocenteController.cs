@@ -5,11 +5,16 @@ using Microsoft.AspNetCore.Mvc;
 [Route("[controller]")]
 public class DocenteController : ControllerBase
 {
-   [HttpGet("conseguirDocente")]
-    public IActionResult conseguirDocente(int usuarioId){
+    private readonly IDocenteService _docenteService;
+    public DocenteController(IDocenteService docenteService)
+    {
+        _docenteService = docenteService;
+    }
 
-        IDocenteService IdocenteService = new DocenteService();
-        return Ok(IdocenteService.conseguirDocente(usuarioId));
+
+   [HttpGet("conseguirDocente/{carnetIdentidad}")]
+    public IActionResult conseguirDocente(string carnetIdentidad){
+        return Ok(_docenteService.conseguirDocente(carnetIdentidad));
     }
 
 }

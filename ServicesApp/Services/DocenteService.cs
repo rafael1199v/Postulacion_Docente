@@ -11,10 +11,24 @@ public class DocenteService : IDocenteService{
 
     }
 
-    public Docente conseguirDocente(int usuarioId){
+    public Docente? conseguirDocente(string CarnetIdentidad){
 
-        var docente = new Docente{datosPersonales = new Usuario(), materia = "Programacion", experiencia = 2, grado = "Ingeniero"};
+        List<Docente> docentes = new List<Docente>(){
+            new Docente{datosPersonales = new Usuario{CI = "13774782"}, materia = "Programacion", experiencia = 2, grado = "Ingeniero"},
+            new Docente{datosPersonales = new Usuario{CI = "10990989"}, materia = "Medicina", experiencia = 10, grado = "Medico"},
+            new Docente{datosPersonales = new Usuario{CI = "6340865"}, materia = "Derechos Penales", experiencia = 2, grado = "Licenciado"}
+        };
 
+       Docente? docente = null;
+
+        foreach(Docente doc in docentes)
+        {
+            if(doc?.datosPersonales?.CI == CarnetIdentidad)
+            {
+                docente = doc;
+                break;
+            }
+        }
         return docente;
     }
 

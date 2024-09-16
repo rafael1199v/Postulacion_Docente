@@ -1,5 +1,15 @@
 public class FormularioService : IFormularioService{
    
+    private readonly IDocumentoService _documentoService;
+    private readonly IDocenteService _docenteService;
+
+
+    public FormularioService(IDocenteService docenteService, IDocumentoService documentoService)
+    {
+        _docenteService = docenteService;
+        _documentoService = documentoService;
+    }
+
     public void enviarDocumento(){
     
         System.Console.WriteLine("Funciona");
@@ -13,11 +23,7 @@ public class FormularioService : IFormularioService{
     }
 
     public void GuardarDatosFormularioDocente(Docente? nuevoDocente, List<Documento>? documentosObligatorios, List<Documento>? documentosOpcionales){
-        IDocumentoService IdocumentoService = new DocumentoService();
-        IDocenteService IdocenteService = new DocenteService();
-
-        IdocenteService.guardarDatosDocente(nuevoDocente);
-        IdocumentoService.guardarDocumentos(documentosObligatorios, documentosOpcionales);
-
+        _docenteService.guardarDatosDocente(nuevoDocente);
+        _documentoService.guardarDocumentos(documentosObligatorios, documentosOpcionales);
     }
 }
