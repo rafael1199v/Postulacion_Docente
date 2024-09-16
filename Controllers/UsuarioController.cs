@@ -27,14 +27,6 @@ public class UsuarioController: ControllerBase{
         return service.encontrarUsuario(field, identifier)? Ok() : BadRequest();
     }
 
-    // [HttpGet]
-    // public IActionResult busquedaCredenciales(string CI, string correo, string numero){
-    //     List<string> datos = new List<string>{
-    //         CI,correo,numero
-    //     };
-    //     return service.credencialesSinUso(datos)? Ok("Las credenciales están sin uso, puedes utilizarlos") : BadRequest("Credenciales ya en uso");
-    // }
-
     [HttpPut("editar")]
     public IActionResult editarDatos((Usuario, Usuario) datos){
         //item 1: Datos antiguos del usuario
