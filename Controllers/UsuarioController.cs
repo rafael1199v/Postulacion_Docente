@@ -3,38 +3,50 @@ using Microsoft.AspNetCore.Mvc;
 [ApiController]
 [Route("[controller]")]
 public class UsuarioController: ControllerBase{
-    [HttpPost]
+    private IUsuarioService service;
+    public UsuarioController(IUsuarioService s){
+        service = s;
+    }
+
+    [HttpPost("registrar")]
     public IActionResult registroUsuario([FromBody] Usuario nuevoUsuario){
 
-        IUsuarioService _usuarioService = new UsuarioService();
-        _usuarioService.registrarUsuario(nuevoUsuario);
+        service.registrarUsuario(nuevoUsuario);
 
         return Ok();
     }
-    [HttpGet("Buscar")]
-    public IActionResult busquedaUsuario(Usuario buscado){
 
-        IUsuarioService _usuarioService = new UsuarioService();
+    [HttpGet("buscar/{name}")]
+    public IActionResult busquedaUsuario(string name){
 
-        return _usuarioService.encontrarUsuario(buscado) ? Ok() : BadRequest();
+        return service.encontrarUsuario(name)? Ok() : BadRequest();
     }
-    [HttpPut]
+
+    [HttpGet("buscar/{name}")]
+    public IActionResult busquedaCredenciales(string CI, string correo, string numero){
+        List<string> datos = new List<string>{
+            CI,correo,numero
+        };
+        return service.credencialesSinUso(datos)? Ok("Las credenciales están sin uso, puedes utilizarlos") : BadRequest("Credenciales ya en uso");
+    }
+
+    [HttpPut("editar")]
     public IActionResult editarDatos(Usuario antiguo){
-        IUsuarioService _usuarioService = new UsuarioService();
 
-        if(_usuarioService.encontrarUsuario(antiguo)){
-            _usuarioService.eliminarUsuario(antiguo);
+        // if(service.encontrarUsuario(antiguo)){
+        //     service.eliminarUsuario(antiguo);
 
-            return Ok();
-        }
-        else{
-            return BadRequest();
-        }
+        //     return Ok();
+        // }
+        // else{
+        //     return BadRequest();
+        // }
+        return Ok();
     }
-    [HttpDelete]
+
+    [HttpDelete("borrar")]
     public IActionResult destruirUsuario(Usuario objetivo){
-        IUsuarioService _usuarioService = new UsuarioService();
-        _usuarioService.eliminarUsuario(objetivo);
+        service.eliminarUsuario(objetivo);
         return Ok();
     }
 }
