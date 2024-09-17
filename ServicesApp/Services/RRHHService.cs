@@ -6,6 +6,13 @@ public class RRHHService : IRRHHService
     private List<(string Nombre, string Curso)> solicitudes = new List<(string Nombre, string Curso)>();
     private List<DateTime> reuniones = new List<DateTime>();
 
+    private RRHH rrhh;
+
+    public RRHHService()
+    {
+        rrhh = new RRHH();
+    }
+
     public void Horario()
     {
         var horarios = new List<string>
@@ -16,6 +23,8 @@ public class RRHHService : IRRHHService
             "Jueves: 09:00 - 17:00",
             "Viernes: 09:00 - 15:00"
         };
+
+        rrhh.horario = horarios;
 
         Console.WriteLine("Horarios del personal:");
         foreach (var horario in horarios)
@@ -62,5 +71,16 @@ public class RRHHService : IRRHHService
 
         solicitudes.Remove(solicitud);
         Console.WriteLine($"Solicitud aceptada para {nombreSolicitud}");
+    }
+
+    // Nuevos métodos implementados para obtener listas
+    public List<(string Nombre, string Curso)> ObtenerSolicitudes()
+    {
+        return solicitudes;
+    }
+
+    public List<DateTime> ObtenerReuniones()
+    {
+        return reuniones;
     }
 }

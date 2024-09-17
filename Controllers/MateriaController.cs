@@ -6,6 +6,13 @@ namespace PostulacionDocente.Controllers;
 [Route("[controller]")]
 public class MateriaController : ControllerBase
 {
+    private readonly IMateriaService _materiaService;
+
+    public MateriaController(IMateriaService materiaService)
+    {
+        _materiaService = materiaService;
+    }
+
    [HttpGet("conseguirMaterias")]
     public IActionResult GetMateria(){
 

@@ -1,12 +1,15 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
+// Agregar servicios al contenedor.
 builder.Services.AddControllersWithViews();
+
+// Agregar RRHHService e IMateriaService como servicios inyectables
+builder.Services.AddScoped<IMateriaService, MateriaService>();
+builder.Services.AddScoped<IRRHHService, RRHHService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configuración del pipeline de solicitudes HTTP
 if (!app.Environment.IsDevelopment())
 {
 }
@@ -14,11 +17,10 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 app.UseRouting();
 
-
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller}/{action=Index}/{id?}");
 
-app.MapFallbackToFile("index.html");;
+app.MapFallbackToFile("index.html");
 
 app.Run();
