@@ -3,38 +3,44 @@ using Microsoft.AspNetCore.Mvc;
 [ApiController]
 [Route("[controller]")]
 public class UsuarioController: ControllerBase{
-    [HttpPost]
+    private IUsuarioService service;
+    public UsuarioController(IUsuarioService s){
+        service = s;
+    }
+
+    [HttpPost("registrar")]
     public IActionResult registroUsuario([FromBody] Usuario nuevoUsuario){
 
-        IUsuarioService _usuarioService = new UsuarioService();
-        _usuarioService.registrarUsuario(nuevoUsuario);
+        service.registrarUsuario(nuevoUsuario);
 
         return Ok();
     }
-    [HttpGet("Buscar")]
-    public IActionResult busquedaUsuario(Usuario buscado){
 
-        IUsuarioService _usuarioService = new UsuarioService();
+    [HttpGet("buscar/{name}")]
+    public IActionResult busquedaUsuario(string field, int identifier){
+        //identifier funcionará como el tipo de campo que se está buscando
+        //0: nombre
+        //1: CI
+        //2: correo
+        //3: numero
 
-        return _usuarioService.encontrarUsuario(buscado) ? Ok() : BadRequest();
+        return service.encontrarUsuario(field, identifier)? Ok() : BadRequest();
     }
-    [HttpPut]
-    public IActionResult editarDatos(Usuario antiguo){
-        IUsuarioService _usuarioService = new UsuarioService();
 
-        if(_usuarioService.encontrarUsuario(antiguo)){
-            _usuarioService.eliminarUsuario(antiguo);
+    [HttpPut("editar")]
+    public IActionResult editarDatos((Usuario, Usuario) datos){
+        //item 1: Datos antiguos del usuario
+        //item 2: Datos actualizados del usuario
 
-            return Ok();
+        if(service.modificarUsuario(datos.Item1, datos.Item2)){
+            return Ok("Usuario actualizado");
         }
-        else{
-            return BadRequest();
-        }
+        return BadRequest("Hubo un error actualizando los datos");
     }
-    [HttpDelete]
+
+    [HttpDelete("borrar")]
     public IActionResult destruirUsuario(Usuario objetivo){
-        IUsuarioService _usuarioService = new UsuarioService();
-        _usuarioService.eliminarUsuario(objetivo);
+        service.eliminarUsuario(objetivo);
         return Ok();
     }
 }
