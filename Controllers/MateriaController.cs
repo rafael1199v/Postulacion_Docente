@@ -13,8 +13,9 @@ public class MateriaController : ControllerBase
         _materiaService = materiaService;
     }
 
-   [HttpGet("conseguirMaterias")]
-    public IActionResult GetMateria(){
+    [HttpGet("conseguirMaterias")]
+    public IActionResult GetMateria()
+    {
 
         IMateriaService service = new MateriaService();
 
