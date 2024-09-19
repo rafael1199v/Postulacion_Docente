@@ -7,6 +7,8 @@ builder.Services.AddScoped<IDocenteService, DocenteService>();
 builder.Services.AddScoped<IDocumentoService, DocumentoService>();
 builder.Services.AddScoped<INotificacionService, NotificacionService>();
 
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
