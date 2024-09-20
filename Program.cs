@@ -8,7 +8,7 @@ builder.Services.AddScoped<IDocumentoService, DocumentoService>();
 builder.Services.AddScoped<IVacanteService, VacanteService>();
 builder.Services.AddScoped<IPostulanteService, PostulanteService>();
 builder.Services.AddScoped<INotificacionService, NotificacionService>();
-
+builder.Services.AddScoped<IRRHHService, RRHHService>();
 
 var app = builder.Build();
 
