@@ -1,7 +1,6 @@
-public class RRHH{
-    Usuario? datosPersonales {get;set;}
-    string? identificacion {get;set;}
-    object? horario{get;set;}
-    
-    
+public class RRHH
+{
+    public Usuario? datosPersonales { get; set; }
+    public string? identificacion { get; set; }
+    public object? horario { get; set; }
 }

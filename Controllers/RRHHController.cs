@@ -5,11 +5,17 @@ using System;
 [Route("[controller]")]
 public class RRHHController : ControllerBase
 {
+    private readonly IRRHHService _rrhhService;
+
+    // Inyección de dependencias a través del constructor
+    public RRHHController(IRRHHService rrhhService)
+    {
+        _rrhhService = rrhhService;
+    }
+
     [HttpGet("Horario")]
     public IActionResult ObtenerHorario()
     {
-        IRRHHService _rrhhService = new RRHHService();
-
         try
         {
             _rrhhService.Horario();
@@ -24,8 +30,6 @@ public class RRHHController : ControllerBase
     [HttpPost("CrearReunion")]
     public IActionResult CrearReunion([FromBody] DateTime fecha)
     {
-        IRRHHService _rrhhService = new RRHHService();
-
         try
         {
             _rrhhService.CrearReunion(fecha);
@@ -40,12 +44,13 @@ public class RRHHController : ControllerBase
     [HttpGet("VerSolicitudes")]
     public IActionResult VerSolicitudes()
     {
-        IRRHHService _rrhhService = new RRHHService();
-
         try
         {
-            _rrhhService.VerSolicitudes();
-            return Ok("Solicitudes mostradas correctamente.");
+            var solicitudes = _rrhhService.ObtenerSolicitudes();
+            if (solicitudes.Count == 0)
+                return Ok("No hay solicitudes disponibles.");
+
+            return Ok(solicitudes);
         }
         catch (Exception ex)
         {
@@ -56,8 +61,6 @@ public class RRHHController : ControllerBase
     [HttpPut("AceptarSolicitud/{nombreSolicitud}")]
     public IActionResult AceptarSolicitud(string nombreSolicitud)
     {
-        IRRHHService _rrhhService = new RRHHService();
-
         try
         {
             _rrhhService.AceptarSolicitud(nombreSolicitud);
@@ -66,6 +69,24 @@ public class RRHHController : ControllerBase
         catch (Exception ex)
         {
             return BadRequest($"Error al aceptar la solicitud: {ex.Message}");
+        }
+    }
+
+    // Acción adicional para obtener las reuniones
+    [HttpGet("VerReuniones")]
+    public IActionResult VerReuniones()
+    {
+        try
+        {
+            var reuniones = _rrhhService.ObtenerReuniones();
+            if (reuniones.Count == 0)
+                return Ok("No hay reuniones programadas.");
+
+            return Ok(reuniones);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest($"Error al mostrar las reuniones: {ex.Message}");
         }
     }
 }
