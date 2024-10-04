@@ -9,29 +9,12 @@ public class UsuarioController: ControllerBase{
     }
 
     [HttpPost("registrar")]
-    public IActionResult registroUsuario(string newUsuario,
-                                         string newCI,
-                                         string newNumero,
-                                         string newCorreo,
-                                         string newContrasenha,
-                                         DateTime newFecha = new DateTime()){
-
-        Usuario usuario = new Usuario{
-            nombre = newUsuario,
-            CI = newCI,
-            fechaNacimiento = newFecha,
-            numero = newNumero,
-            correo = newCorreo,
-            contrasenha = newContrasenha
-            };
+    public IActionResult registroUsuario([FromBody] Usuario usuario){
 
         bool correct;
         string statusMessage = service.registrarUsuario(usuario, out correct);
 
-        if(correct){
-            return Ok(statusMessage);
-        }
-        return BadRequest(statusMessage);
+        return correct? Ok(statusMessage): BadRequest(statusMessage);
     }
 
     [HttpGet("buscar/{name}")]
