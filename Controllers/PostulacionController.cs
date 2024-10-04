@@ -8,10 +8,12 @@ using Microsoft.AspNetCore.Mvc;
 public class PostulacionController : ControllerBase
 {
     public readonly IPostulanteService _postulanteService;
+    public readonly IPostulacionService _postulacionService;
 
-    public PostulacionController(IPostulanteService postulanteService)
+    public PostulacionController(IPostulanteService postulanteService, IPostulacionService postulacionService)
     {
         _postulanteService = postulanteService;
+        _postulacionService = postulacionService;
     }
 
 
@@ -25,4 +27,12 @@ public class PostulacionController : ControllerBase
     {
         return _postulanteService.EliminarPostulacion(postulanteId, vacanteId) ? Ok() : BadRequest();
     }
+
+    [HttpGet("conseguirMejoresNotas/{postulacionId}")]
+    public IActionResult ConseguirMejoresTresDocentes(int postulacionId)
+    {
+        return Ok(_postulacionService.ConseguirMejoresTresNotas(postulacionId));
+    }
+
 }
+        
