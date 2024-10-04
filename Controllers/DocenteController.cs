@@ -17,4 +17,19 @@ public class DocenteController : ControllerBase
         return Ok(_docenteService.conseguirDocente(carnetIdentidad));
     }
 
+    [HttpGet("VerEstado")]
+    public IActionResult VerEstado(int DocenteID, [FromBody] Notificacion notificacion)
+    {
+        if (notificacion == null)
+        {
+            return BadRequest("Notifiacion no valida");
+        }
+
+        string estado = _docenteService.VerEstado(int DocenteID,int  VacanteID);
+        {
+            var estado = _docenteService.VerEstado(DocenteID, VacanteID )
+        }
+        return Ok(estado);
+    }
+
 }

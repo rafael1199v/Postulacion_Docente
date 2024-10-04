@@ -26,4 +26,14 @@ app.MapControllerRoute(
 
 app.MapFallbackToFile("index.html");
 
+app.MapControllerRoute(
+    name: "notificacion",
+    pattern: "notificacion/{action=Index}/{id}",
+    defaults: new {controller = "Notificacion"});
+
+    app.MapControllerRoute(
+    name: "docente",
+    pattern: "docente/{action=Index}/{id}",
+    defaults: new {controller = "Docente"});
+
 app.Run();

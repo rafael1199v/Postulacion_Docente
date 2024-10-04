@@ -7,8 +7,9 @@ public class DocenteService : IDocenteService{
         Console.WriteLine(nuevoDocente?.experiencia);
         Console.WriteLine("Se ha guardado los datos del docente");
     }
-    public void verEstado(){
-
+    public string VerEstado(int DocenteID, int VacanteID)
+    {
+        return $"Estado de la solicitud del Docente con ID: {DocenteID} para la vacante: {VacanteID} es:'En revision'";
     }
 
     public Docente? conseguirDocente(string CarnetIdentidad){
