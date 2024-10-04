@@ -1,23 +1,18 @@
 public class UsuarioService : IUsuarioService
 {
 
-    public void registrarUsuario(Usuario usuario)
+    public string registrarUsuario(Usuario usuario, out bool ok)
     {
         if(credencialesSinUso(new List<string>{usuario.CI, usuario.correo, usuario.numero})){
-            Usuario newUsuario = new Usuario{
-                nombre = usuario.nombre,
-                CI = usuario.CI,
-                contrasenha = usuario.contrasenha,
-                correo = usuario.correo,
-                numero = usuario.numero,
-                fechaNacimiento = usuario.fechaNacimiento
-            };
+            Usuario newUsuario = usuario;
             //enviar "newUsuario a la base de datos"
-            System.Console.WriteLine($"Nuevo usuario creado: {newUsuario.nombre}!");
+            ok = true;
+            return $"Nuevo usuario creado: {newUsuario.nombre}!";
         }
         else{
             //debería haber una forma de conservar el formulario de datos para evitar escribir todo de nuevo
-            System.Console.WriteLine("No se pudo crear el nuevo usuario... Credenciales ya en uso");
+            ok = false;
+            return "No se pudo crear el nuevo usuario... Credenciales ya en uso";
         }
     }
 
