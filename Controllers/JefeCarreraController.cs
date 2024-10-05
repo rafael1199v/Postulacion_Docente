@@ -3,12 +3,12 @@ using System;
 
 [ApiController]
 [Route("[controller]")]
-public class RRHHController : ControllerBase
+public class JefeCarreraController : ControllerBase
 {
-    private readonly IRRHHService _rrhhService;
+    private readonly IJefeCarreraService _rrhhService;
 
     // Inyección de dependencias a través del constructor
-    public RRHHController(IRRHHService rrhhService)
+    public JefeCarreraController(IJefeCarreraService rrhhService)
     {
         _rrhhService = rrhhService;
     }
