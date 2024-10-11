@@ -13,21 +13,7 @@ public class JefeCarreraController : ControllerBase
         _rrhhService = rrhhService;
     }
 
-    [HttpGet("Horario")]
-    public IActionResult ObtenerHorario()
-    {
-        try
-        {
-            _rrhhService.Horario();
-            return Ok("Horario mostrado correctamente.");
-        }
-        catch (Exception ex)
-        {
-            return BadRequest($"Error al mostrar el horario: {ex.Message}");
-        }
-    }
-
-    [HttpPost("CrearReunion")]
+    [HttpPost("CrearNotificacion")]
     public IActionResult CrearReunion([FromBody] DateTime fecha)
     {
         try
@@ -72,21 +58,4 @@ public class JefeCarreraController : ControllerBase
         }
     }
 
-    // Acción adicional para obtener las reuniones
-    [HttpGet("VerReuniones")]
-    public IActionResult VerReuniones()
-    {
-        try
-        {
-            var reuniones = _rrhhService.ObtenerReuniones();
-            if (reuniones.Count == 0)
-                return Ok("No hay reuniones programadas.");
-
-            return Ok(reuniones);
-        }
-        catch (Exception ex)
-        {
-            return BadRequest($"Error al mostrar las reuniones: {ex.Message}");
-        }
-    }
 }

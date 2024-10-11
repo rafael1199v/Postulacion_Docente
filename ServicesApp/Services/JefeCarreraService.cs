@@ -6,32 +6,13 @@ public class JefeCarreraService : IJefeCarreraService
     private List<(string Nombre, string Curso)> solicitudes = new List<(string Nombre, string Curso)>();
     private List<DateTime> reuniones = new List<DateTime>();
 
-    private RRHH rrhh;
+    private Jefe rrhh;
 
     public JefeCarreraService()
     {
-        rrhh = new RRHH();
+        rrhh = new Jefe();
     }
 
-    public void Horario()
-    {
-        var horarios = new List<string>
-        {
-            "Lunes: 09:00 - 17:00",
-            "Martes: 09:00 - 17:00",
-            "Miércoles: 09:00 - 17:00",
-            "Jueves: 09:00 - 17:00",
-            "Viernes: 09:00 - 15:00"
-        };
-
-        rrhh.horario = horarios;
-
-        Console.WriteLine("Horarios del personal:");
-        foreach (var horario in horarios)
-        {
-            Console.WriteLine(horario);
-        }
-    }
 
     public void CrearReunion(DateTime fecha)
     {
@@ -76,11 +57,18 @@ public class JefeCarreraService : IJefeCarreraService
     // Nuevos métodos implementados para obtener listas
     public List<(string Nombre, string Curso)> ObtenerSolicitudes()
     {
+                Console.WriteLine("Solicitudes recibidas:");
+        if (solicitudes.Count == 0)
+        {
+            Console.WriteLine("No hay solicitudes disponibles.");
+            return solicitudes;
+        }
+
+        foreach (var solicitud in solicitudes)
+        {
+            Console.WriteLine($"Nombre: {solicitud.Nombre}, Curso: {solicitud.Curso}");
+        }
         return solicitudes;
     }
 
-    public List<DateTime> ObtenerReuniones()
-    {
-        return reuniones;
-    }
 }
