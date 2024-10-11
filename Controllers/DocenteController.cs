@@ -16,5 +16,4 @@ public class DocenteController : ControllerBase
     public IActionResult conseguirDocente(string carnetIdentidad){
         return Ok(_docenteService.conseguirDocente(carnetIdentidad));
     }
-
 }

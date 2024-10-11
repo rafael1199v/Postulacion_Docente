@@ -1,14 +1,14 @@
 using System;
 using System.Collections.Generic;
 
-public class RRHHService : IRRHHService
+public class JefeCarreraService : IJefeCarreraService
 {
     private List<(string Nombre, string Curso)> solicitudes = new List<(string Nombre, string Curso)>();
     private List<DateTime> reuniones = new List<DateTime>();
 
     private RRHH rrhh;
 
-    public RRHHService()
+    public JefeCarreraService()
     {
         rrhh = new RRHH();
     }

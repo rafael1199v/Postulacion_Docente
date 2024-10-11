@@ -1,4 +1,4 @@
-public interface IRRHHService
+public interface IJefeCarreraService
 {
     void Horario();
     void CrearReunion(DateTime fecha);
