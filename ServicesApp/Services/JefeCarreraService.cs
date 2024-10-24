@@ -55,6 +55,19 @@ public class JefeCarreraService : IJefeCarreraService
         Console.WriteLine($"Solicitud aceptada para {nombreSolicitud}");
     }
 
+    public void RechazarSolicitud(string nombreSolicitud)
+    {
+        var solicitud = solicitudes.Find(s => s.Nombre == nombreSolicitud);
+        if (solicitud.Equals(default((string Nombre, string Curso))))
+        {
+            Console.WriteLine("La solicitud no se encontró.");
+            return;
+        }
+
+        solicitudes.Remove(solicitud);
+        Console.WriteLine($"Solicitud rechazada para {nombreSolicitud}");
+    }
+
     // Nuevos métodos implementados para obtener listas
     public List<(string Nombre, string Curso)> ObtenerSolicitudes()
     {

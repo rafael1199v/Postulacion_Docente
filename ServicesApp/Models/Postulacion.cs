@@ -4,5 +4,5 @@ public class Postulacion
     public List<(Formulario, int)> notasDocente { get; set; } = null!;
     public int MateriaId { get; set; }
     public int JefeCarreraId { get; set; }
-
+    public string? Estado { get; set; }
 }
