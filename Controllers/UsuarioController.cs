@@ -18,7 +18,7 @@ public class UsuarioController: ControllerBase{
     }
 
     [HttpGet("buscar/{name}")]
-    public IActionResult busquedaUsuario(string field, int identifier){
+    public IActionResult busquedaUsuario(string field, int identifier = 1){
         //identifier funcionará como el tipo de campo que se está buscando
         //0: nombre
         //1: CI
