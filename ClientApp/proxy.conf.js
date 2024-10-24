@@ -12,6 +12,7 @@ const PROXY_CONFIG = [
       "/formulario",
       "/docente",
       "/postulacion",
+      "/vacante",
       "/jefecarrera"
    ],
     target: target,
