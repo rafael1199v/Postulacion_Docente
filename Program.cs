@@ -1,7 +1,12 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 builder.Services.AddControllers();
+
+
 builder.Services.AddSingleton<IPostulacionService, PostulacionService>();
 builder.Services.AddScoped<IFormularioService, FormularioService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
@@ -11,7 +16,7 @@ builder.Services.AddScoped<IVacanteService, VacanteService>();
 builder.Services.AddScoped<IPostulanteService, PostulanteService>();
 builder.Services.AddScoped<INotificacionService, NotificacionService>();
 builder.Services.AddScoped<IJefeCarreraService, JefeCarreraService>();
-
+builder.Services.AddScoped<IReunionService, ReunionService>();
 
 var app = builder.Build();
 
@@ -33,9 +38,7 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 app.UseRouting();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller}/{action=Index}/{id?}");
+app.MapControllers();
 
 app.MapFallbackToFile("index.html");
 
