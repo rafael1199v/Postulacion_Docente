@@ -44,4 +44,12 @@ public class UsuarioController: ControllerBase{
         service.eliminarUsuario(objetivo);
         return Ok();
     }
+
+    [HttpPost("login")]
+    public IActionResult login([FromBody] LoginUsuario loginUsuario)
+    {
+        Console.WriteLine(loginUsuario.Email);
+        System.Console.WriteLine(loginUsuario.Password);
+        return Ok();
+    }
 }

@@ -11,6 +11,7 @@ builder.Services.AddScoped<IPostulanteService, PostulanteService>();
 builder.Services.AddScoped<INotificacionService, NotificacionService>();
 builder.Services.AddScoped<IJefeCarreraService, JefeCarreraService>();
 builder.Services.AddScoped<IPostulacionService, PostulacionService>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
 var app = builder.Build();
 

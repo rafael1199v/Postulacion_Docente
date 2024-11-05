@@ -1,0 +1,16 @@
+<h1>Login</h1>
+
+<form action="" [formGroup]="loginForm">
+    <div class="login">
+        <input type="email" formControlName="email">
+    </div>
+    <div>
+        <input type="text" formControlName="password">
+    </div>
+
+    <div class="loginButton">
+        <button id="loginB" (click)="login()">
+            Login
+        </button>
+    </div>
+</form>
