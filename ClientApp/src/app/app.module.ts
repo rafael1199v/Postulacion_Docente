@@ -11,9 +11,10 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { LoginComponent } from './login/login.component';
-import { loginService } from './services/loginService';
+
 import { VacanteComponent } from './vacante/vacante.component';
 import { vacanteService } from './services/vacanteService';
+import { LoginService } from './services/loginService';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { vacanteService } from './services/vacanteService';
       { path: 'vacante', component : VacanteComponent}
     ])
   ],
-  providers: [loginService, vacanteService],
+  providers: [vacanteService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
