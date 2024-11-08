@@ -15,9 +15,9 @@ public class FormularioController : ControllerBase
     }
 
    [HttpPost("guardar/docente")]
-    public IActionResult GuardarDatosFormularioDocente([FromBody] Formulario formulario){
+    public IActionResult GuardarDatosFormularioDocente([FromBody] Curriculum formulario){
 
-        _formularioService.GuardarDatosFormularioDocente(formulario.postulante, formulario.documentosObligatorios, formulario.documentosOpcionales);
+        _formularioService.GuardarDatosFormularioDocente(formulario.postulante, formulario.documentos);
 
         return Ok();
     }

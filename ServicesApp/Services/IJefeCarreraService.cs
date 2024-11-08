@@ -7,5 +7,5 @@ public interface IJefeCarreraService
 
     // Nuevos métodos para obtener listas
     List<(string Nombre, string Curso)> ObtenerSolicitudes();
-    public string VerDatosPostulante(Formulario formulario);
+    public string VerDatosPostulante(Curriculum formulario);
 }

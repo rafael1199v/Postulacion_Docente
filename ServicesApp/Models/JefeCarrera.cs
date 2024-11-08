@@ -1,5 +1,5 @@
-public class Jefe{
+public class Jefe : Usuario{
     public int JefeCarreraId {get; set;}
-    public Usuario? credenciales {get; set;}
+    public int CarreraId { get; set; }
 
 }

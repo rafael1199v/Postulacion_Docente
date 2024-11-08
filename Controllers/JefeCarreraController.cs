@@ -59,7 +59,7 @@ public class JefeCarreraController : ControllerBase
     }
 
     [HttpGet("DatosPostulante")]
-    public IActionResult DatosPostulante([FromBody] Formulario formulario){
+    public IActionResult DatosPostulante([FromBody] Curriculum formulario){
         // try
         // {
         //     string result = service.VerDatosPostulante(formulario);

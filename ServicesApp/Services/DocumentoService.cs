@@ -1,24 +1,17 @@
 public class DocumentoService: IDocumentoService
 {
-    public void guardarDocumentos(List<Documento>? documentosObligatorios, List<Documento>? documentosOpcionales)
+    public void guardarDocumentos(List<Documento>? documentos)
     {
 
         //appDbContext.Documento.Add(documentosObligatorios);
         //appDbContext.Documento.Add(documentosOpcionales);
         //appDbContext.SaveChanges();
         System.Console.WriteLine("Ruta de documentos obligatorios");
-        if(documentosObligatorios != null)
-            foreach(Documento documento in  documentosObligatorios){
+        if(documentos != null)
+            foreach(Documento documento in  documentos){
                 Console.WriteLine(documento.rutaArchivo);
             }
 
-        System.Console.WriteLine("Ruta de documentos opcionales");
-        if(documentosOpcionales != null)
-            foreach(Documento documento in documentosOpcionales){
-                Console.WriteLine(documento.rutaArchivo);
-            }
-
-        System.Console.WriteLine("El documento ser guardo correctamente");
         
     }
 

@@ -3,7 +3,8 @@ public class Postulacion
     public int PostulacionId { get; set; }
     public int MateriaId { get; set; }
     public int JefeCarreraId { get; set; }
-    public int estado {get;set;}
+    public string Estado {get;set;}
+
     /*
     Los estados son:
     -1: Rechazado

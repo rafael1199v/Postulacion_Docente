@@ -22,8 +22,8 @@ public class FormularioService : IFormularioService{
         return true;
     }
 
-    public void GuardarDatosFormularioDocente(Docente? nuevoDocente, List<Documento>? documentosObligatorios, List<Documento>? documentosOpcionales){
+    public void GuardarDatosFormularioDocente(Docente? nuevoDocente, List<Documento>? documentos){
         _docenteService.guardarDatosDocente(nuevoDocente);
-        _documentoService.guardarDocumentos(documentosObligatorios, documentosOpcionales);
+        _documentoService.guardarDocumentos(documentos);
     }
 }
