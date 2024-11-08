@@ -17,7 +17,6 @@ public class PostulacionService : IPostulacionService
         {
             if (_postulaciones.TryGetValue(id, out var postulacion))
             {
-                postulacion.Estado = "Rechazada";
                 return $"Postulación rechazada: {razon}";
             }
             return "Postulación no encontrada";
@@ -27,7 +26,6 @@ public class PostulacionService : IPostulacionService
         {
             if (_postulaciones.TryGetValue(id, out var postulacion))
             {
-                postulacion.Estado = "Aceptada";
                 return "Postulación aceptada.";
             }
             return "Postulación no encontrada";

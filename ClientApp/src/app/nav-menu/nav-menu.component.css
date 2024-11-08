@@ -4,6 +4,23 @@ a.navbar-brand {
   word-break: break-all;
 }
 
+.header1-text{
+  font-size: 11px;
+}
+
+.header1-text-fix {
+  padding-top: 13px;
+  font-size: 11px;
+}
+
+.header1{
+  background-color: #FFCB08;
+  height: 32px;
+}
+.header2{
+  height:68px;
+}
+
 html {
   font-size: 14px;
 }
@@ -15,4 +32,9 @@ html {
 
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+.header2-logo{
+  background-image:linear-gradient(aquamarine, darkblue);
+  background-size: 25px;
 }
