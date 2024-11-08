@@ -10,7 +10,7 @@ public class UsuarioService : IUsuarioService
             return $"Nuevo usuario creado: {newUsuario.nombre}!";
         }
         else{
-            //debería haber una forma de conservar el formulario de datos para evitar escribir todo de nuevo
+            //debería haber una forma de conservar la hoja de vida de datos para evitar escribir todo de nuevo
             ok = false;
             return "No se pudo crear el nuevo usuario... Credenciales ya en uso";
         }

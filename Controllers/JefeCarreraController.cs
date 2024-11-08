@@ -59,10 +59,10 @@ public class JefeCarreraController : ControllerBase
     }
 
     [HttpGet("DatosPostulante")]
-    public IActionResult DatosPostulante([FromBody] Curriculum formulario){
+    public IActionResult DatosPostulante([FromBody] Curriculum hoja){
         // try
         // {
-        //     string result = service.VerDatosPostulante(formulario);
+        //     string result = service.VerDatosPostulante(hoja);
         //     return Ok(result);
         // }
         // catch (System.Exception ex)
@@ -70,7 +70,7 @@ public class JefeCarreraController : ControllerBase
             
         //     return BadRequest($"Error: {ex.Message}");
         // }
-        string result = service.VerDatosPostulante(formulario);
+        string result = service.VerDatosPostulante(hoja);
         return Ok(result);
     }
 

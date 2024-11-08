@@ -1,10 +1,10 @@
-public class FormularioService : IFormularioService{
+public class CurriculumService : ICurriculumService{
    
     private readonly IDocumentoService _documentoService;
     private readonly IDocenteService _docenteService;
 
 
-    public FormularioService(IDocenteService docenteService, IDocumentoService documentoService)
+    public CurriculumService(IDocenteService docenteService, IDocumentoService documentoService)
     {
         _docenteService = docenteService;
         _documentoService = documentoService;
@@ -22,7 +22,7 @@ public class FormularioService : IFormularioService{
         return true;
     }
 
-    public void GuardarDatosFormularioDocente(Docente? nuevoDocente, List<Documento>? documentos){
+    public void GuardarCurriculumDocente(Docente? nuevoDocente, List<Documento>? documentos){
         _docenteService.guardarDatosDocente(nuevoDocente);
         _documentoService.guardarDocumentos(documentos);
     }

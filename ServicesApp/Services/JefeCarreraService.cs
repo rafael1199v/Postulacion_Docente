@@ -85,14 +85,14 @@ public class JefeCarreraService : IJefeCarreraService
         return solicitudes;
     }
 
-    public string VerDatosPostulante(Curriculum formulario){
+    public string VerDatosPostulante(Curriculum hoja){
 
-        string result = $"Datos del docente \"{formulario?.postulante?.nombre}\":\n";
-        result += $"Materia: {formulario?.postulante?.materia}\n";
-        result += $"Años de experiencia: {formulario?.postulante?.experiencia}\n";
-        result += $"Grado de especialidad: {formulario?.postulante?.grado}\n";
-        result += $"Correo: {formulario?.postulante?.correo}\n";
-        result += $"Numero de teléfono: {formulario?.postulante?.numero}\n";
+        string result = $"Datos del docente \"{hoja?.postulante?.nombre}\":\n";
+        result += $"Materia: {hoja?.postulante?.materia}\n";
+        result += $"Años de experiencia: {hoja?.postulante?.experiencia}\n";
+        result += $"Grado de especialidad: {hoja?.postulante?.grado}\n";
+        result += $"Correo: {hoja?.postulante?.correo}\n";
+        result += $"Numero de teléfono: {hoja?.postulante?.numero}\n";
 
         return result;
     }
