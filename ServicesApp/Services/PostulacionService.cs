@@ -1,33 +1,33 @@
 public class PostulacionService : IPostulacionService
-{
-
-    public List<NotaDocente> ConseguirDocentesPonderacionPostulacion(int PostulacionId)
     {
-        List<NotaDocente> notasDocente = new List<NotaDocente>(){
-            new NotaDocente{Docente = new Docente(), Nota = 50},
-            new NotaDocente{Docente = new Docente(), Nota = 100},
-            new NotaDocente{Docente = new Docente(), Nota = 20},
-            new NotaDocente{Docente = new Docente(), Nota = 90},
-            new NotaDocente{Docente = new Docente(), Nota = 75},
+        private readonly Dictionary<int, Postulacion> _postulaciones = new Dictionary<int, Postulacion>();
 
-        };
-
-      
-
-        return notasDocente;
-    }
-    public List<NotaDocente> ConseguirMejoresTresNotas(int PostulacionId)
-    {
-        var docente = ConseguirDocentesPonderacionPostulacion(PostulacionId);
-        docente.Sort((x, y) => -x.Nota.CompareTo(y.Nota));
-
-        List<NotaDocente> mejoresDocentes = new List<NotaDocente>();
-
-        for(int i = 0; i < 3; i++)
+        public void AddPostulacion(Postulacion postulacion)
         {
-            mejoresDocentes.Add(docente[i]);
+            _postulaciones[postulacion.PostulacionId] = postulacion;
         }
-        return mejoresDocentes;
-    }
 
-}
+        public Postulacion? GetPostulacionById(int id)
+        {
+            _postulaciones.TryGetValue(id, out var postulacion);
+            return postulacion;
+        }
+
+        public string RechazarPostulacion(int id, string razon)
+        {
+            if (_postulaciones.TryGetValue(id, out var postulacion))
+            {
+                return $"Postulación rechazada: {razon}";
+            }
+            return "Postulación no encontrada";
+        }
+
+        public string AceptarPostulacion(int id)
+        {
+            if (_postulaciones.TryGetValue(id, out var postulacion))
+            {
+                return "Postulación aceptada.";
+            }
+            return "Postulación no encontrada";
+        }
+    }

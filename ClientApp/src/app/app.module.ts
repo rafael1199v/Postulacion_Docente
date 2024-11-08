@@ -15,6 +15,8 @@ import { LoginComponent } from './login/login.component';
 import { VacanteComponent } from './vacante/vacante.component';
 import { vacanteService } from './services/vacanteService';
 import { LoginService } from './services/loginService';
+import { FooterComponent } from './footer/footer.component';
+
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { LoginService } from './services/loginService';
     FetchDataComponent,
     LoginComponent,
     VacanteComponent
+    FooterComponent
+
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -37,6 +41,7 @@ import { LoginService } from './services/loginService';
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'login', component : LoginComponent},
       { path: 'vacante', component : VacanteComponent}
+      { path: 'footer', component: FooterComponent },
     ])
   ],
   providers: [vacanteService, LoginService],

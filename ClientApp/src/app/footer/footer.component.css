@@ -1,0 +1,17 @@
+.footer{
+background-color: #00427A;
+color:white;
+height: 322px;
+}
+.in-columns{
+    display:flex;
+    flex-direction: row;
+    text-align: center;
+}
+
+.row{
+    width:26.25%;
+    padding-left:10%;
+    padding-right: 10%;
+    padding-top: 4%;
+}

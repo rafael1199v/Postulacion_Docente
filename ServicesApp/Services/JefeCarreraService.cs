@@ -7,6 +7,7 @@ public class JefeCarreraService : IJefeCarreraService
     private List<DateTime> reuniones = new List<DateTime>();
 
     private Jefe rrhh;
+    private List<Postulacion> postulacionesPendientes = new List<Postulacion>{}; 
 
     public JefeCarreraService()
     {
@@ -54,6 +55,19 @@ public class JefeCarreraService : IJefeCarreraService
         Console.WriteLine($"Solicitud aceptada para {nombreSolicitud}");
     }
 
+    public void RechazarSolicitud(string nombreSolicitud)
+    {
+        var solicitud = solicitudes.Find(s => s.Nombre == nombreSolicitud);
+        if (solicitud.Equals(default((string Nombre, string Curso))))
+        {
+            Console.WriteLine("La solicitud no se encontró.");
+            return;
+        }
+
+        solicitudes.Remove(solicitud);
+        Console.WriteLine($"Solicitud rechazada para {nombreSolicitud}");
+    }
+
     // Nuevos métodos implementados para obtener listas
     public List<(string Nombre, string Curso)> ObtenerSolicitudes()
     {
@@ -69,6 +83,18 @@ public class JefeCarreraService : IJefeCarreraService
             Console.WriteLine($"Nombre: {solicitud.Nombre}, Curso: {solicitud.Curso}");
         }
         return solicitudes;
+    }
+
+    public string VerDatosPostulante(Formulario formulario){
+
+        string result = $"Datos del docente \"{formulario.postulante.datosPersonales.nombre}\":\n";
+        result += $"Materia: {formulario.postulante.materia}\n";
+        result += $"Años de experiencia: {formulario.postulante.experiencia}\n";
+        result += $"Grado de especialidad: {formulario.postulante.grado}\n";
+        result += $"Correo: {formulario.postulante.datosPersonales.correo}\n";
+        result += $"Numero de teléfono: {formulario.postulante.datosPersonales.numero}\n";
+
+        return result;
     }
 
 }

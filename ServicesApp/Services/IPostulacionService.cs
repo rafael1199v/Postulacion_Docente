@@ -1,6 +1,9 @@
 public interface IPostulacionService
-{
-    public List<NotaDocente> ConseguirDocentesPonderacionPostulacion(int PostulacionId);
-    public List<NotaDocente> ConseguirMejoresTresNotas(int PostulacionId);
+    {
+        void AddPostulacion(Postulacion postulacion);
 
-}
+        Postulacion? GetPostulacionById(int id);
+        string RechazarPostulacion(int id, string razon);
+
+        string AceptarPostulacion(int id);
+    }

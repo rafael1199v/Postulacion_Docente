@@ -32,4 +32,11 @@ public class VacanteController : ControllerBase
     {
         return _vacanteService.ModificarVacante(vacanteId, new Vacante()) ? Ok() : BadRequest();
     }
+
+    //"0001-01-01T00:00:00"
+    [HttpPost("crearVacante")]
+    public IActionResult CrearVacante([FromBody] Vacante nuevaVacante)
+    {
+        return _vacanteService.CrearVacante(nuevaVacante) ? Ok("Vacante creada correctamente") : BadRequest("La vacante no se creo correctamente");
+    }
 }
