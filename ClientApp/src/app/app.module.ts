@@ -26,7 +26,7 @@ import { FooterComponent } from './footer/footer.component';
     CounterComponent,
     FetchDataComponent,
     LoginComponent,
-    VacanteComponent
+    VacanteComponent,
     FooterComponent
 
   ],
@@ -39,8 +39,8 @@ import { FooterComponent } from './footer/footer.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'login', component : LoginComponent},
-      { path: 'vacante', component : VacanteComponent}
+      { path: 'login', component: LoginComponent },
+      { path: 'vacante', component: VacanteComponent },
       { path: 'footer', component: FooterComponent },
     ])
   ],

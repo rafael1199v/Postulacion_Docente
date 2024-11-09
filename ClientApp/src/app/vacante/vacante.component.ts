@@ -10,17 +10,17 @@ import { vacanteService } from '../services/vacanteService';
 })
 export class VacanteComponent {
 
-  docente! : Docente;
+  docente!: Docente;
 
-  constructor(private vancateService: vacanteService){}
+  constructor(private vancateService: vacanteService) { }
 
 
-  ConseguirDocente(){
-    this.vancateService.GetDocentesPostulacion().subscribe( result => {
+  ConseguirDocente() {
+    this.vancateService.GetDocentesPostulacion().subscribe(result => {
       this.docente = result;
       console.log(result);
     }, error => console.log(error));
   }
 
-  
+
 }
