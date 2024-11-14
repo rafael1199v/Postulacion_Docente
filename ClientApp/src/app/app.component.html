@@ -3,6 +3,6 @@
   <div class="container" [ngStyle]=" tokenRouter == 0 && {'background-image': 'url(../assets/images/Santa-Cruz-min.jpg)'} || null">
     <router-outlet></router-outlet>
   </div>
-  <app-footer></app-footer>
+  <app-footer *ngIf="tokenRouter != 0"></app-footer>
 </body>
 
