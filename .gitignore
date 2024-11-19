@@ -230,3 +230,9 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+
+# Other stuff xddddddd
+/obj/*
+/.angular/*
+/bin/*
+/Debug/*
