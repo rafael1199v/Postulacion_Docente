@@ -58,20 +58,5 @@ public class JefeCarreraController : ControllerBase
         }
     }
 
-    [HttpGet("DatosPostulante")]
-    public IActionResult DatosPostulante([FromBody] Curriculum hoja){
-        // try
-        // {
-        //     string result = service.VerDatosPostulante(hoja);
-        //     return Ok(result);
-        // }
-        // catch (System.Exception ex)
-        // {
-            
-        //     return BadRequest($"Error: {ex.Message}");
-        // }
-        string result = service.VerDatosPostulante(hoja);
-        return Ok(result);
-    }
 
 }
