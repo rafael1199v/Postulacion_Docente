@@ -1,7 +1,7 @@
 public class Postulacion
 {
     public int PostulacionId { get; set; }
-    public int CurriculumId { get; set; }
+    public int DocenteId { get; set; }
     public int Estado {get;set;}
 
     /*

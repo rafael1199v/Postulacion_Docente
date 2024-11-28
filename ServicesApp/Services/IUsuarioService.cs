@@ -1,6 +1,6 @@
 public interface IUsuarioService
 {
-    public string registrarUsuario(Usuario usuario, out bool ok);
+    public string registrarUsuario(Usuario usuario);
     public void eliminarUsuario(Usuario usuario);
     public bool modificarUsuario(Usuario antiguo, Usuario renovado);
     public bool encontrarUsuario(string objetivo, int tipo);
