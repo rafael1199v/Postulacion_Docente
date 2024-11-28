@@ -1,17 +1,16 @@
 public class UsuarioService : IUsuarioService
 {
-
-    public string registrarUsuario(Usuario usuario, out bool ok)
+    public string registrarUsuario(Usuario usuario)
     {
         if(credencialesSinUso(new List<string>{usuario.CI, usuario.correo, usuario.numero})){
             Usuario newUsuario = usuario;
             //enviar "newUsuario a la base de datos"
-            ok = true;
+
             return $"Nuevo usuario creado: {newUsuario.nombre}!";
         }
         else{
             //debería haber una forma de conservar la hoja de vida de datos para evitar escribir todo de nuevo
-            ok = false;
+
             return "No se pudo crear el nuevo usuario... Credenciales ya en uso";
         }
     }
@@ -29,7 +28,7 @@ public class UsuarioService : IUsuarioService
             antiguo.CI = renovado.CI;
             antiguo.contrasenha = renovado.contrasenha;
             antiguo.correo = renovado.correo;
-            antiguo.fechaNacimiento = renovado.fechaNacimiento;
+            //antiguo.fechaNacimiento = renovado.fechaNacimiento;
             antiguo.numero = renovado.numero;
             System.Console.WriteLine("Usuario modificado");
             //enviar antiguo a la base de datos

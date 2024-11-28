@@ -12,9 +12,9 @@ public class UsuarioController: ControllerBase{
     public IActionResult registroUsuario([FromBody] Usuario usuario){
 
         bool correct;
-        string statusMessage = service.registrarUsuario(usuario, out correct);
+        string statusMessage = service.registrarUsuario(usuario);
 
-        return correct? Ok(statusMessage): BadRequest(statusMessage);
+        return Ok(statusMessage);
     }
 
     [HttpGet("buscar/{name}")]
