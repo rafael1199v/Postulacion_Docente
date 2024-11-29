@@ -8,8 +8,9 @@ builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<IDocenteService, DocenteService>();
 builder.Services.AddScoped<IVacanteService, VacanteService>();
 builder.Services.AddScoped<IJefeCarreraService, JefeCarreraService>();
+builder.Services.AddScoped<IPdfService, PdfService>();
 
-
+QuestPDF.Settings.License = QuestPDF.Infrastructure.LicenseType.Community;
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())

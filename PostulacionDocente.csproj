@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="6.0.16" />
+    <PackageReference Include="QuestPDF" Version="2023.10" />
   </ItemGroup>
 
   <ItemGroup>
