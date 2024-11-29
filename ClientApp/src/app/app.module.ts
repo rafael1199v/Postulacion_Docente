@@ -16,6 +16,9 @@ import { VacanteComponent } from './vacante/vacante.component';
 import { vacanteService } from './services/vacanteService';
 import { LoginService } from './services/loginService';
 import { FooterComponent } from './footer/footer.component';
+import { ComunidadComponent } from './comunidad/comunidad.component';
+import { AyudaComponent } from './ayuda/ayuda.component';
+import { ReglamentoComponent } from './reglamento/reglamento.component';
 
 
 @NgModule({
@@ -27,8 +30,10 @@ import { FooterComponent } from './footer/footer.component';
     FetchDataComponent,
     LoginComponent,
     VacanteComponent,
-    FooterComponent
-
+    FooterComponent,
+    ComunidadComponent,
+    AyudaComponent,
+    ReglamentoComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -42,6 +47,9 @@ import { FooterComponent } from './footer/footer.component';
       { path: 'login', component: LoginComponent },
       { path: 'vacante', component: VacanteComponent },
       { path: 'footer', component: FooterComponent },
+      { path: 'comunidad', component: ComunidadComponent },
+      { path: 'ayuda', component: AyudaComponent },
+      { path: 'reglamento', component: ReglamentoComponent }
     ])
   ],
   providers: [vacanteService, LoginService],
