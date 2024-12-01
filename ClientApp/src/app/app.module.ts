@@ -16,6 +16,7 @@ import { VacanteComponent } from './vacante/vacante.component';
 import { vacanteService } from './services/vacanteService';
 import { LoginService } from './services/loginService';
 import { FooterComponent } from './footer/footer.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { FooterComponent } from './footer/footer.component';
     FetchDataComponent,
     LoginComponent,
     VacanteComponent,
-    FooterComponent
+    FooterComponent,
+    ProfileComponent
 
   ],
   imports: [
@@ -42,6 +44,7 @@ import { FooterComponent } from './footer/footer.component';
       { path: 'login', component: LoginComponent },
       { path: 'vacante', component: VacanteComponent },
       { path: 'footer', component: FooterComponent },
+      { path: 'profile', component: ProfileComponent},
     ])
   ],
   providers: [vacanteService, LoginService],

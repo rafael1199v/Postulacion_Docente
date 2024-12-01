@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using PostulacionDocente.ServicesApp.Models;
+using QuestPDF.Infrastructure;
 
 
 
@@ -13,6 +14,12 @@ builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<IDocenteService, DocenteService>();
 builder.Services.AddScoped<IVacanteService, VacanteService>();
 builder.Services.AddScoped<IJefeCarreraService, JefeCarreraService>();
+builder.Services.AddScoped<IPdfService, PdfService>();
+builder.Services.AddDbContext<PostulacionDocenteContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Default"))
+);
+
+QuestPDF.Settings.License = LicenseType.Community;
 
 
 var app = builder.Build();
