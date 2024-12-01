@@ -1,5 +1,5 @@
 public interface IDocenteService{
-    public void guardarDatosDocente(Docente? nuevoDocente);
+    public void guardarDatosDocente(DocenteDTO? nuevoDocente);
     public void verEstado();
-    public Docente? conseguirDocente(string CarnetIdentidad);
+    public DocenteDTO? conseguirDocente(string CarnetIdentidad);
 }

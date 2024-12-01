@@ -1,5 +1,19 @@
-public class Docente : Usuario{
-    public string? materia /*especialidad*/ {get;set;} //qué campo de la docencia enseña
-    public int experiencia {get;set;} //años de experiencia
-    public string? grado {get;set;} //licenciado? Ingeniero? Doctorado?
+﻿using System;
+using System.Collections.Generic;
+
+namespace PostulacionDocente.ServicesApp.Models;
+
+public partial class Docente
+{
+    public int DocenteId { get; set; }
+
+    public string Especialidad { get; set; } = null!;
+
+    public int? Experiencia { get; set; }
+
+    public string? DescripcionPersonal { get; set; }
+
+    public string? Grado { get; set; }
+
+    public int UsuarioId { get; set; }
 }

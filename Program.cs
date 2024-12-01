@@ -1,3 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using PostulacionDocente.ServicesApp.Models;
+
+
+
 //using PostulacionDocente.Services;
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,6 +1,13 @@
-public class Carrera
+﻿using System;
+using System.Collections.Generic;
+
+namespace PostulacionDocente.ServicesApp.Models;
+
+public partial class Carrera
 {
-    public string Nombre { get; set; } = string.Empty;
-    List<Materia>? Materias { get; set ;}
-    public string Sigla { get; set; } = string.Empty;
+    public int CarreraId { get; set; }
+
+    public string NombreCarrera { get; set; } = null!;
+
+    public string Sigla { get; set; } = null!;
 }

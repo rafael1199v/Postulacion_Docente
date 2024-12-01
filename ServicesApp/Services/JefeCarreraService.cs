@@ -6,12 +6,12 @@ public class JefeCarreraService : IJefeCarreraService
     private List<(string Nombre, string Curso)> solicitudes = new List<(string Nombre, string Curso)>();
     private List<DateTime> reuniones = new List<DateTime>();
 
-    private Jefe rrhh;
-    private List<Postulacion> postulacionesPendientes = new List<Postulacion>{}; 
+    private JefeDTO rrhh;
+    private List<PostulacionDTO> postulacionesPendientes = new List<PostulacionDTO>{}; 
 
     public JefeCarreraService()
     {
-        rrhh = new Jefe();
+        rrhh = new JefeDTO();
     }
 
 
