@@ -22,7 +22,7 @@ El siguiente proyecto busca facilitar el proceso de postulacion docente de las u
   }
   ```
 ### FrontEnd
-* Añadir los siguientes paquetes para el guardado de PDFs
+* Añadir los siguientes paquetes para el guardado de PDFs desde la carpeta **/Postulacion_Docente/ClientApp**
   ```
   npm install file-saver --save
   npm install @types/file-saver --save-dev
