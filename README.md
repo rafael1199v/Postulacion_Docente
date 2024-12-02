@@ -2,6 +2,7 @@
 El siguiente proyecto busca facilitar el proceso de postulacion docente de las universidades interesadas
 ## Requistos
 
+### BackEnd
 * Añadir los siguientes paquetes para la base de datos
   ```
   dotnet add package Microsoft.EntityFrameworkCore --version 7.0
@@ -9,7 +10,6 @@ El siguiente proyecto busca facilitar el proceso de postulacion docente de las u
   dotnet dotnet add package Microsoft.EntityFrameworkCore.Tools --version 7.0
   dotnet dotnet add package Microsoft.EntityFrameworkCore.Design --version 7.0
   ```
-
 * Añadir los siguientes paquetes para la creacion de PDFs
   ```
   dotnet add package QuestPDF --version 2023.10.1
@@ -20,5 +20,11 @@ El siguiente proyecto busca facilitar el proceso de postulacion docente de las u
   "ConnectionStrings": {
     "Default": "Data Source={Aqui tiene que ir tu conexion}"
   }
+  ```
+### FrontEnd
+* Añadir los siguientes paquetes para el guardado de PDFs
+  ```
+  npm install file-saver --save
+  npm install @types/file-saver --save-dev
   ```
 
