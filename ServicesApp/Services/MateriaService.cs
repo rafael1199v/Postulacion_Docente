@@ -13,12 +13,12 @@ public class MateriaService : IMateriaService
         System.Console.WriteLine("Conseguir materia");
     }
 
-    public List<Materia> conseguirMaterias(){
+    public List<MateriaDTO> conseguirMaterias(){
 
-        var materias = new List<Materia>(){
-            new Materia{nombre = "Materia1", sigla = "M1"},
-            new Materia{nombre = "Materia2", sigla = "M2"},
-            new Materia{nombre = "Materia3", sigla = "M3"}
+        var materias = new List<MateriaDTO>(){
+            new MateriaDTO{nombre = "Materia1", sigla = "M1"},
+            new MateriaDTO{nombre = "Materia2", sigla = "M2"},
+            new MateriaDTO{nombre = "Materia3", sigla = "M3"}
         };
 
         return materias;

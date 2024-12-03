@@ -1,9 +1,19 @@
-public class Vacante
+﻿using System;
+using System.Collections.Generic;
+
+namespace PostulacionDocente.ServicesApp.Models;
+
+public partial class Vacante
 {
-    public string? NombreVacante { get; set; } = string.Empty;
-    public string? Materia { get; set; }
-    public string? DescripcionVacante { get; set; } = string.Empty;
-    public List<Postulacion> Postulaciones {get;set;}
-    public DateTime FechaInicion {get; set;}
-    public DateTime FechaFinalizacion {get; set;}
+    public int VacanteId { get; set; }
+
+    public string NombreVacante { get; set; } = null!;
+
+    public string? Descripcion { get; set; }
+
+    public DateTime FechaInicio { get; set; }
+
+    public DateTime FechaFin { get; set; }
+
+    public int MateriaId { get; set; }
 }

@@ -30,12 +30,12 @@ public class VacanteController : ControllerBase
     [HttpPut("modificarVacante/{vacanteId}")]
     public IActionResult ModificarVacante(int vacanteId)
     {
-        return _vacanteService.ModificarVacante(vacanteId, new Vacante()) ? Ok() : BadRequest();
+        return _vacanteService.ModificarVacante(vacanteId, new VacanteDTO()) ? Ok() : BadRequest();
     }
 
     //"0001-01-01T00:00:00"
     [HttpPost("crearVacante")]
-    public IActionResult CrearVacante([FromBody] Vacante nuevaVacante)
+    public IActionResult CrearVacante([FromBody] VacanteDTO nuevaVacante)
     {
         return _vacanteService.CrearVacante(nuevaVacante) ? Ok("Vacante creada correctamente") : BadRequest("La vacante no se creo correctamente");
     }

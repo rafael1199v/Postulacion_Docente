@@ -1,17 +1,21 @@
 using Microsoft.AspNetCore.Mvc;
+using PostulacionDocente.ServicesApp.Models;
+using Microsoft.EntityFrameworkCore;
 
 [ApiController]
 [Route("[controller]")]
 public class UsuarioController: ControllerBase{
-    private IUsuarioService service;
-    public UsuarioController(IUsuarioService s){
+    private readonly IUsuarioService service;
+    private readonly PostulacionDocenteContext _context;
+    public UsuarioController(IUsuarioService s, PostulacionDocenteContext context){
         service = s;
+        _context = context;
     }
 
     [HttpPost("registrar")]
-    public IActionResult registroUsuario([FromBody] Usuario usuario){
+    public IActionResult registroUsuario([FromBody] UsuarioDTO usuario){
 
-        bool correct;
+        //bool correct;
         string statusMessage = service.registrarUsuario(usuario);
 
         return Ok(statusMessage);
@@ -29,7 +33,7 @@ public class UsuarioController: ControllerBase{
     }
 
     [HttpPut("editar")]
-    public IActionResult editarDatos((Usuario, Usuario) datos){
+    public IActionResult editarDatos((UsuarioDTO, UsuarioDTO) datos){
         //item 1: Datos antiguos del usuario
         //item 2: Datos actualizados del usuario
 
@@ -40,16 +44,31 @@ public class UsuarioController: ControllerBase{
     }
 
     [HttpDelete("borrar")]
-    public IActionResult destruirUsuario(Usuario objetivo){
+    public IActionResult destruirUsuario(UsuarioDTO objetivo){
         service.eliminarUsuario(objetivo);
         return Ok();
     }
 
     [HttpPost("login")]
-    public IActionResult login([FromBody] LoginUsuario loginUsuario)
+    public IActionResult login([FromBody] LoginUsuarioDTO loginUsuario)
     {
         Console.WriteLine(loginUsuario.Email);
         System.Console.WriteLine(loginUsuario.Password);
+
+
         return Ok();
     }
+
+
+    [HttpGet("getAll")]
+    public IActionResult GetAllUsers()
+    {
+        var usuarios = from usuario in _context.Usuario
+                        select usuario;
+        
+        
+        return Ok(usuarios);
+    }
+
+    
 }

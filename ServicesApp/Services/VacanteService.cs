@@ -5,25 +5,25 @@ public class VacanteService : IVacanteService
         System.Console.WriteLine($"La vacante con Id {vacanteId} ha sido eliminada");
         return true;
     }
-    public bool ModificarVacante(int vacanteId, Vacante datosNuevosVacante)
+    public bool ModificarVacante(int vacanteId, VacanteDTO datosNuevosVacante)
     {
         System.Console.WriteLine($"La vacante con el id {vacanteId} ha sido modificada");
         return true;
     }
 
-    public List<Vacante> ConseguirVacantesDisponibles()
+    public List<VacanteDTO> ConseguirVacantesDisponibles()
     {
-        List<Vacante> vacantesDisponibles = new List<Vacante>()
+        List<VacanteDTO> vacantesDisponibles = new List<VacanteDTO>()
         {
-            new Vacante{NombreVacante = "Docente Programacion I"},
-            new Vacante{NombreVacante = "Medico, Trabajo medio tiempo"},
-            new Vacante{NombreVacante = "Docente diseño grafico, tiempo completo"}
+            new VacanteDTO{NombreVacante = "Docente Programacion I"},
+            new VacanteDTO{NombreVacante = "Medico, Trabajo medio tiempo"},
+            new VacanteDTO{NombreVacante = "Docente diseño grafico, tiempo completo"}
         };
 
         return vacantesDisponibles;
     }
 
-    public bool CrearVacante(Vacante nuevaVacante)
+    public bool CrearVacante(VacanteDTO nuevaVacante)
     {
        
         if(!this.VacanteValida(nuevaVacante))
@@ -42,7 +42,7 @@ public class VacanteService : IVacanteService
     }
 
 
-    public bool VacanteValida(Vacante nuevaVacante)
+    public bool VacanteValida(VacanteDTO nuevaVacante)
     {
          if(nuevaVacante == null)
         {

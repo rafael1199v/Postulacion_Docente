@@ -1,13 +1,13 @@
 public class PostulacionService : IPostulacionService
     {
-        private readonly Dictionary<int, Postulacion> _postulaciones = new Dictionary<int, Postulacion>();
+        private readonly Dictionary<int, PostulacionDTO> _postulaciones = new Dictionary<int, PostulacionDTO>();
 
-        public void AddPostulacion(Postulacion postulacion)
+        public void AddPostulacion(PostulacionDTO postulacion)
         {
             _postulaciones[postulacion.PostulacionId] = postulacion;
         }
 
-        public Postulacion? GetPostulacionById(int id)
+        public PostulacionDTO? GetPostulacionById(int id)
         {
             _postulaciones.TryGetValue(id, out var postulacion);
             return postulacion;

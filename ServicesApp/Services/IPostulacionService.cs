@@ -1,8 +1,8 @@
 public interface IPostulacionService
     {
-        void AddPostulacion(Postulacion postulacion);
+        void AddPostulacion(PostulacionDTO postulacion);
 
-        Postulacion? GetPostulacionById(int id);
+        PostulacionDTO? GetPostulacionById(int id);
         string RechazarPostulacion(int id, string razon);
 
         string AceptarPostulacion(int id);

@@ -1,10 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
 
-public class Usuario
+namespace PostulacionDocente.ServicesApp.Models;
+
+public partial class Usuario
 {
-    public string? nombre {get;set;}
-    public string? CI {get;set;}
-    //public DateTime fechaNacimiento {get;set;}
-    public string? numero {get;set;} //número de teléfono/celular
-    public string? correo {get;set;}
-    public string? contrasenha {get;set;}
+    public int UsuarioId { get; set; }
+
+    public string Nombre { get; set; } = null!;
+
+    public string Ci { get; set; } = null!;
+
+    public DateTime? FechaNacimiento { get; set; }
+
+    public string NumeroTelefono { get; set; } = null!;
+
+    public string Correo { get; set; } = null!;
+
+    public string Contrasenha { get; set; } = null!;
 }

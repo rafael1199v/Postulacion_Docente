@@ -1,9 +1,9 @@
 public class UsuarioService : IUsuarioService
 {
-    public string registrarUsuario(Usuario usuario)
+    public string registrarUsuario(UsuarioDTO usuario)
     {
         if(credencialesSinUso(new List<string>{usuario.CI, usuario.correo, usuario.numero})){
-            Usuario newUsuario = usuario;
+            UsuarioDTO newUsuario = usuario;
             //enviar "newUsuario a la base de datos"
 
             return $"Nuevo usuario creado: {newUsuario.nombre}!";
@@ -15,13 +15,13 @@ public class UsuarioService : IUsuarioService
         }
     }
 
-    public void eliminarUsuario(Usuario usuario)
+    public void eliminarUsuario(UsuarioDTO usuario)
     {
         //eliminar al usuario de la base de datos
         System.Console.WriteLine("Usuario eliminado");
     }
 
-    public bool modificarUsuario(Usuario antiguo, Usuario renovado)
+    public bool modificarUsuario(UsuarioDTO antiguo, UsuarioDTO renovado)
     {
         if(credencialesSinUso(new List<string>{renovado.CI, renovado.correo, renovado.numero})){
             antiguo.nombre = renovado.nombre;
@@ -44,8 +44,8 @@ public class UsuarioService : IUsuarioService
         //2: correo
         //3: numero
 
-        List<Usuario> lista = new List<Usuario>{
-            new Usuario{nombre = "Daniel"}
+        List<UsuarioDTO> lista = new List<UsuarioDTO>{
+            new UsuarioDTO{nombre = "Daniel"}
         };
 
         for(int i = 0; i < lista.Count; i++){
@@ -82,8 +82,8 @@ public class UsuarioService : IUsuarioService
     }
     
     public bool credencialesSinUso(List<string> datos){
-        List<Usuario> lista = new List<Usuario>{
-            new Usuario{nombre = "Daniel", CI = "10990989", correo = "eldanielitu@gmail.com", numero = "68829531"}
+        List<UsuarioDTO> lista = new List<UsuarioDTO>{
+            new UsuarioDTO{nombre = "Daniel", CI = "10990989", correo = "eldanielitu@gmail.com", numero = "68829531"}
         };
         /*
         lista[0] == CI
