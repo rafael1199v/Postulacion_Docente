@@ -51,7 +51,7 @@ import { ProfileComponent } from './profile/profile.component';
       { path: 'footer', component: FooterComponent },
       { path: 'comunidad', component: ComunidadComponent },
       { path: 'ayuda', component: AyudaComponent },
-      { path: 'reglamento', component: ReglamentoComponent }
+      { path: 'reglamento', component: ReglamentoComponent },
       { path: 'profile', component: ProfileComponent},
     ])
   ],

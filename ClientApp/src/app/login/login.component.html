@@ -1,20 +1,30 @@
-
 <div class="loginBlock">
-    <h1>Login</h1>
-    <form action="" [formGroup]="loginForm">
-        <div class="login">
-            <input type="email" formControlName="email">
-        </div>
-        <div>
-            <input type="text" formControlName="password">
-        </div>
-    
-        <div class="loginButton">
-            <button id="loginB" (click)="login()">
-                Login
-            </button>
-        </div>
-    </form>
+    <div class="loginFormStyle">
+        <h1>Inicio de sesión</h1>
+        <form action="" [formGroup]="loginForm">
+            <div class="login">
+                <p>Email</p>
+                <input type="email" formControlName="email">
+            </div>
+            <div>
+                <p>Contraseña</p>
+                <input type="text" formControlName="password">
+            </div>
+            <div style="padding-top: 20px;"></div>
+            <div>
+                <button id="loginB" (click)="login()" class="loginButtonA">
+                    Iniciar sesión
+                </button>
+            </div>
+            <p>o</p>
+            <div class="loginButton">
+                <button id="loginB" (click)="login()" class="loginButtonA">
+                    Iniciar sesión como Jefe de Carrera
+                </button>
+            </div>
+        </form>
+        <p>No tienes cuenta? <a [routerLink]="['/']">Regístrate</a></p>
+    </div>
 </div>
 
 
