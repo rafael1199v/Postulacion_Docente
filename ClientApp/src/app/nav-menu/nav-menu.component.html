@@ -2,27 +2,27 @@
   <!-- header 1 -->
   <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom header1">
     <div class="container">
-      <a class="navbar-brand header1-text" [routerLink]="['/']">Reglamento</a>
+      <a class="navbar-brand header1-text" [routerLink]="['/reglamento']">Reglamento</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
         aria-label="Toggle navigation" [attr.aria-expanded]="isExpanded" (click)="toggle()">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end" [ngClass]="{ show: isExpanded }">
-        <ul class="navbar-nav flex-grow">
+        <ul class="navbar-nav flex-grow" style="padding-top: 2%;">
           <li class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }">
-            <a class="nav-link header1-text-fix" [routerLink]="['/']">Reglamento</a>
+            <a class="nav-link header1-text-fix" [routerLink]="['/']">Perfil</a>
+          </li>
+          <li class="nav-item">
+            <p class="nav-link text-dark" style="cursor: default;">|</p>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/counter']">|</a>
+            <a class="nav-link header1-text-fix" [routerLink]="['/ayuda']">Ayuda</a>
+          </li>
+          <li class="nav-item">
+            <p class="nav-link text-dark" style="cursor: default;">|</p>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link header1-text-fix" [routerLink]="['/counter']">Ayuda</a>
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/counter']">|</a>
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link header1-text-fix" [routerLink]="['/fetch-data']">Cerrar sesión</a>
+            <a class="nav-link header1-text-fix" [routerLink]="['/']">Cerrar sesión</a>
           </li>
         </ul>
       </div>
@@ -43,13 +43,13 @@
             <a class="nav-link text-dark" [routerLink]="['/']">Inicio</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/counter']">Vacantes</a>
+            <a class="nav-link text-dark" [routerLink]="['/']">Vacantes</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/fetch-data']">Postulaciones</a>
+            <a class="nav-link text-dark" [routerLink]="['/']">Postulaciones</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/fetch-data']">Perfil</a>
+            <a class="nav-link text-dark" [routerLink]="['/']">Perfil</a>
           </li>
         </ul>
       </div>
