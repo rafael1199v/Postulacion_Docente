@@ -1,8 +1,9 @@
+using PostulacionDocente.ServicesApp.Models;
+
 public interface IUsuarioService
 {
-    public string registrarUsuario(UsuarioDTO usuario);
-    public void eliminarUsuario(UsuarioDTO usuario);
-    public bool modificarUsuario(UsuarioDTO antiguo, UsuarioDTO renovado);
-    public bool encontrarUsuario(string objetivo, int tipo);
-    public bool credencialesSinUso(List<string> datos);
+    public string RegistrarUsuario(UsuarioDTO usuario);
+    public bool ModificarUsuario(UsuarioDTO antiguo, UsuarioDTO renovado);
+    public bool CredencialesSinUso(List<string> datos);
+    public bool Autenticacion(LoginUsuarioDTO credenciales, PostulacionDocenteContext context);
 }

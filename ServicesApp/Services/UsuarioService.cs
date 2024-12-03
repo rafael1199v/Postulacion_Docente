@@ -1,8 +1,10 @@
+using PostulacionDocente.ServicesApp.Models;
+
 public class UsuarioService : IUsuarioService
 {
-    public string registrarUsuario(UsuarioDTO usuario)
+    public string RegistrarUsuario(UsuarioDTO usuario)
     {
-        if(credencialesSinUso(new List<string>{usuario.CI, usuario.correo, usuario.numero})){
+        if(CredencialesSinUso(new List<string>{usuario.CI, usuario.correo, usuario.numero})){
             UsuarioDTO newUsuario = usuario;
             //enviar "newUsuario a la base de datos"
 
@@ -15,15 +17,9 @@ public class UsuarioService : IUsuarioService
         }
     }
 
-    public void eliminarUsuario(UsuarioDTO usuario)
+    public bool ModificarUsuario(UsuarioDTO antiguo, UsuarioDTO renovado)
     {
-        //eliminar al usuario de la base de datos
-        System.Console.WriteLine("Usuario eliminado");
-    }
-
-    public bool modificarUsuario(UsuarioDTO antiguo, UsuarioDTO renovado)
-    {
-        if(credencialesSinUso(new List<string>{renovado.CI, renovado.correo, renovado.numero})){
+        if(CredencialesSinUso(new List<string>{renovado.CI, renovado.correo, renovado.numero})){
             antiguo.nombre = renovado.nombre;
             antiguo.CI = renovado.CI;
             antiguo.contrasenha = renovado.contrasenha;
@@ -37,51 +33,51 @@ public class UsuarioService : IUsuarioService
         return false;
     }
 
-    public bool encontrarUsuario(string objetivo, int tipo){
+    // public bool EncontrarUsuario(string objetivo, int tipo){
         //identifier funcionará como el tipo de campo que se está buscando
         //0: nombre
         //1: CI
         //2: correo
         //3: numero
 
-        List<UsuarioDTO> lista = new List<UsuarioDTO>{
-            new UsuarioDTO{nombre = "Daniel"}
-        };
+    //     List<UsuarioDTO> lista = new List<UsuarioDTO>{
+    //         new UsuarioDTO{nombre = "Daniel"}
+    //     };
 
-        for(int i = 0; i < lista.Count; i++){
-            switch (tipo)
-            {
-                case 0:
-                    if(objetivo == lista[i].nombre){
-                        return true;
-                    }
-                    break;
-                case 1:
-                    if(objetivo == lista[i].CI){
-                        return true;
-                    }
-                    break;
-                case 2:
-                    if(objetivo == lista[i].correo){
-                        return true;
-                    }
-                    break;
-                case 3:
-                    if(objetivo == lista[i].numero){
-                        return true;
-                    }
-                    break;
+    //     for(int i = 0; i < lista.Count; i++){
+    //         switch (tipo)
+    //         {
+    //             case 0:
+    //                 if(objetivo == lista[i].nombre){
+    //                     return true;
+    //                 }
+    //                 break;
+    //             case 1:
+    //                 if(objetivo == lista[i].CI){
+    //                     return true;
+    //                 }
+    //                 break;
+    //             case 2:
+    //                 if(objetivo == lista[i].correo){
+    //                     return true;
+    //                 }
+    //                 break;
+    //             case 3:
+    //                 if(objetivo == lista[i].numero){
+    //                     return true;
+    //                 }
+    //                 break;
 
-                default:
-                    System.Console.WriteLine("XD");
-                    break;
-            }
-        }
-        return false;
-        //TODO: Rehacer esta búsqueda toda fea
-    }
+    //             default:
+    //                 System.Console.WriteLine("XD");
+    //                 break;
+    //         }
+    //     }
+    //     return false;
+    //     //TODO: Rehacer esta búsqueda toda fea
+    // }
     
-    public bool credencialesSinUso(List<string> datos){
+    public bool CredencialesSinUso(List<string> datos){
         List<UsuarioDTO> lista = new List<UsuarioDTO>{
             new UsuarioDTO{nombre = "Daniel", CI = "10990989", correo = "eldanielitu@gmail.com", numero = "68829531"}
         };
@@ -95,6 +91,23 @@ public class UsuarioService : IUsuarioService
                 return false;
             } //si encuentra similitud, retorna falso, diciendo que las credenciales NO están "sin usar" xd
         } //TODO: Rehacer esta cosa también xd
+        return true;
+    }
+
+
+    public bool Autenticacion(LoginUsuarioDTO credenciales, PostulacionDocenteContext context)
+    {
+
+        if(credenciales == null) return false;
+        
+        var usuario = (from _usuario in context.Usuario
+                        where _usuario.Correo == credenciales.Email && _usuario.Contrasenha == credenciales.Password
+                        select _usuario).FirstOrDefault<Usuario>();
+
+
+        if(usuario == null) return false;
+
+       
         return true;
     }
 }
