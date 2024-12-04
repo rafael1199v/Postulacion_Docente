@@ -20,6 +20,7 @@ import { ComunidadComponent } from './comunidad/comunidad.component';
 import { AyudaComponent } from './ayuda/ayuda.component';
 import { ReglamentoComponent } from './reglamento/reglamento.component';
 import { ProfileComponent } from './profile/profile.component';
+import { RegistroComponent } from './formulario-registro/registro.component'
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ProfileComponent } from './profile/profile.component';
     ComunidadComponent,
     AyudaComponent,
     ReglamentoComponent,
-    ProfileComponent
+    ProfileComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -52,7 +54,8 @@ import { ProfileComponent } from './profile/profile.component';
       { path: 'comunidad', component: ComunidadComponent },
       { path: 'ayuda', component: AyudaComponent },
       { path: 'reglamento', component: ReglamentoComponent },
-      { path: 'profile', component: ProfileComponent},
+      { path: 'profile', component: ProfileComponent },
+      { path: 'register', component: RegistroComponent },
     ])
   ],
   providers: [vacanteService, LoginService],

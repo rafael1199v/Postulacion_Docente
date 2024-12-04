@@ -1,0 +1,58 @@
+<div class="registro-container">
+    <h2>Registro</h2>
+    <form>
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+        </div>
+
+        <div class="form-group">
+            <label for="telefono">Teléfono:</label>
+            <input type="text" id="telefono" name="telefono" required>
+        </div>
+
+        <div class="form-group">
+            <label for="ci">CI:</label>
+            <input type="text" id="ci" name="ci" required>
+        </div>
+
+        <div class="form-group">
+            <label for="fechaNacimiento">Fecha Nacimiento:</label>
+            <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
+        </div>
+
+        <div class="form-group">
+            <label for="materia">Materia:</label>
+            <input type="text" id="materia" name="materia" required>
+        </div>
+
+        <div class="form-group">
+            <label for="grado">Grado:</label>
+            <input type="text" id="grado" name="grado" required>
+        </div>
+
+        <div class="form-group">
+            <label for="anosExperiencia">Años de experiencia:</label>
+            <input type="number" id="anosExperiencia" name="anosExperiencia" required>
+        </div>
+
+        <div class="form-group">
+            <label for="correo">Correo:</label>
+            <input type="email" id="correo" name="correo" required>
+        </div>
+
+        <div class="form-group">
+            <label for="contrasena">Contraseña:</label>
+            <input type="password" id="contrasena" name="contrasena" required>
+        </div>
+
+        <div class="form-group">
+            <label for="confirmarContrasena">Confirmar Contraseña:</label>
+            <input type="password" id="confirmarContrasena" name="confirmarContrasena" required>
+        </div>
+
+        <button type="submit">Registrarse</button>
+    </form>
+
+    <p>¿Ya tienes una cuenta? <a [routerLink]="['/login']">Inicia sesión</a></p>
+</div>

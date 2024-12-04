@@ -1,6 +1,8 @@
 {
   "devDependencies": {
-    "@types/file-saver": "^2.0.7"
+    "@types/chai": "^5.0.1",
+    "@types/file-saver": "^2.0.7",
+    "chai": "^5.1.2"
   },
   "dependencies": {
     "file-saver": "^2.0.5"
