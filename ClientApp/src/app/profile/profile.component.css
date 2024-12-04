@@ -160,3 +160,12 @@ h3 {
     padding-top: 3%;
 }
 
+.loginButtonA {
+    background-color: #2D5784;
+    color: white;
+    border-radius: 10px;
+    border-color: #00000000;
+    height: 35px;
+    width: 200px;
+
+}

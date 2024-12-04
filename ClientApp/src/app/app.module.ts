@@ -20,7 +20,7 @@ import { ComunidadComponent } from './comunidad/comunidad.component';
 import { AyudaComponent } from './ayuda/ayuda.component';
 import { ReglamentoComponent } from './reglamento/reglamento.component';
 import { ProfileComponent } from './profile/profile.component';
-import { RegistroComponent } from './formulario-registro/registro.component'
+import { RegistroComponent } from './formulario-registro/registro.component';
 
 
 @NgModule({
