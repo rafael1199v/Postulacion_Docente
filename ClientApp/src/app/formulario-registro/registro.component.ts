@@ -28,4 +28,6 @@ export class RegistroComponent {
         console.log('Datos registrados:', this.registro);
         alert('Registro exitoso');
     }
+
+    
 }

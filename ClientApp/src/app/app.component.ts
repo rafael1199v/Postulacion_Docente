@@ -26,9 +26,11 @@ export class AppComponent {
           case '/register':
             this.tokenRouter = RouteToken.Register;
             break;
-          default:
+          case '/':
             this.tokenRouter = RouteToken.Home;
             break;
+          default:
+            this.tokenRouter = RouteToken.Other;
            
         }
         

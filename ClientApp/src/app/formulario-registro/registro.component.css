@@ -1,6 +1,5 @@
 .registro-container {
-    width: 85%;
-    margin: 150px auto;
+    width: 100%;
     background: rgba(255, 255, 255, 0.7);
     padding: 20px;
     border-radius: 30px;
@@ -66,5 +65,5 @@ p {
 
 .registerBackground{
     background-image: url("../../assets/images/image.jpg");
-    background-size: cover;
+    background-size:cover;
 }
