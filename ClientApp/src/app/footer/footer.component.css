@@ -1,8 +1,10 @@
 .footer{
-background-color: #00427A;
-color:white;
-height: 322px;
+    background-color: #00427A;
+    color:white;
+    height: 322px;
+    bottom: 0;
 }
+
 .in-columns{
     display:flex;
     flex-direction: row;

@@ -43,7 +43,7 @@ h3 {
 .ucb-section {
     position: relative;
     width: 100%;
-    max-width: 1063px;
+    max-width: 65%;
     height: 400px;
     background-image: url('./cartel.png');
     /* Cambia esto por la ruta de tu imagen */
@@ -148,4 +148,8 @@ h3 {
     text-align: left;
     padding-left: 5%;
     padding-right: 5%;
+}
+
+#content-wrap {
+    padding-bottom: 322px;    /* Footer height */
 }
