@@ -64,7 +64,20 @@ p {
     margin-top: 10px;
 }
 
-.registerBackground{
+.registerBackground {
     background-image: url("../../assets/images/image.jpg");
     background-size: cover;
+}
+
+select[multiple] {
+    width: 55%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    height: 90px;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
 }
