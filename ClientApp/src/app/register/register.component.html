@@ -1,0 +1,59 @@
+<body>
+    <div class="registerBackground">
+        <div class="registro-container">
+            <h2>Registro</h2>
+            <form [formGroup]="registerForm">
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo:</label>
+                    <input type="text" id="nombre" name="nombre" formControlName="nombre" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="direccion">Dirección:</label>
+                    <input type="text" id="direccion" name="direccion" formControlName="direccion" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="fechaNacimiento">Fecha Nacimiento:</label>
+                    <input type="date" id="fechaNacimiento" name="fechaNacimiento" formControlName="fechaNacimiento"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="correo">Correo:</label>
+                    <input type="email" id="correo" name="correo" formControlName="correo" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefono">Teléfono:</label>
+                    <input type="text" id="telefono" name="telefono" formControlName="telefono" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="organizacion">Organización:</label>
+                    <input type="text" id="organizacion" name="organizacion" formControlName="organizacion" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="cargo">Cargo:</label>
+                    <input type="text" id="cargo" name="cargo" formControlName="cargo" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contrasenha">Contraseña:</label>
+                    <input type="password" id="contrasenha" name="contrasenha" formControlName="contrasenha" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contrasenhaRep">Confirmar Contraseña:</label>
+                    <input type="password" id="contrasenhaRep" name="contrasenhaRep" formControlName="contrasenhaRep"
+                        required>
+                </div>
+
+                <button type="submit" (click)="registrarUsuario()">Registrarse</button>
+            </form>
+
+            <p>¿Ya tienes una cuenta? <a [routerLink]="['/login']">Inicia sesión</a></p>
+        </div>
+    </div>
+</body>
