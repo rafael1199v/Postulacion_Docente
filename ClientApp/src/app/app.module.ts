@@ -20,8 +20,8 @@ import { ComunidadComponent } from './comunidad/comunidad.component';
 import { AyudaComponent } from './ayuda/ayuda.component';
 import { ReglamentoComponent } from './reglamento/reglamento.component';
 import { ProfileComponent } from './profile/profile.component';
-import { RegistroComponent } from './formulario-registro/registro.component';
-
+import { RegisterComponent } from './register/register.component';
+import { UsuarioService } from './services/UsuarioService';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,7 @@ import { RegistroComponent } from './formulario-registro/registro.component';
     AyudaComponent,
     ReglamentoComponent,
     ProfileComponent,
-    RegistroComponent
+    RegisterComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -55,7 +55,7 @@ import { RegistroComponent } from './formulario-registro/registro.component';
       { path: 'ayuda', component: AyudaComponent },
       { path: 'reglamento', component: ReglamentoComponent },
       { path: 'profile', component: ProfileComponent },
-      { path: 'register', component: RegistroComponent },
+      { path: 'register', component: RegisterComponent }
     ])
   ],
   providers: [vacanteService, LoginService],
