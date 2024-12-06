@@ -22,6 +22,7 @@ import { ReglamentoComponent } from './reglamento/reglamento.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { UsuarioService } from './services/UsuarioService';
+import { VacantesDisponiblesComponent } from './vacantes-disponibles/vacantes-disponibles.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { UsuarioService } from './services/UsuarioService';
     AyudaComponent,
     ReglamentoComponent,
     ProfileComponent,
-    RegisterComponent
+    RegisterComponent,
+    VacantesDisponiblesComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -55,7 +57,8 @@ import { UsuarioService } from './services/UsuarioService';
       { path: 'ayuda', component: AyudaComponent },
       { path: 'reglamento', component: ReglamentoComponent },
       { path: 'profile', component: ProfileComponent },
-      { path: 'register', component: RegisterComponent }
+      { path: 'register', component: RegisterComponent },
+      { path: 'VacantesDisponibles', component: VacantesDisponiblesComponent}
     ])
   ],
   providers: [vacanteService, LoginService],
