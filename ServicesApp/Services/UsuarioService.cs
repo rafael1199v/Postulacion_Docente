@@ -101,17 +101,54 @@ public class UsuarioService : IUsuarioService
     // }
 
 
-    public bool Autenticacion(LoginUsuarioDTO credenciales, PostulacionDocenteContext context)
+    public bool LoginDocente(LoginUsuarioDTO credenciales, PostulacionDocenteContext context, out string mensaje)
     {
+        mensaje = "Usuario autenticado";
 
-        if (credenciales == null) return false;
+        if (credenciales == null)
+        {
+            mensaje = "Hubo un error, las credenciales son nulas";
+            return false;
+        }
 
         var usuario = (from _usuario in context.Usuarios
+                       join _docente in context.Docentes on _usuario.UsuarioId equals _docente.UsuarioId
                        where _usuario.Correo == credenciales.Email && _usuario.Contrasenha == credenciales.Password
                        select _usuario).FirstOrDefault<Usuario>();
 
 
-        if (usuario == null) return false;
+        if (usuario == null)
+        {
+            mensaje = "Credenciales invalidas o el usuario no se encuentra registrado como docente.";
+            return false;
+        }
+
+        return true;
+    }
+
+
+
+    public bool LoginJefeCarrera(LoginUsuarioDTO credenciales, PostulacionDocenteContext context, out string mensaje)
+    {
+        mensaje = "Usuario autenticado";
+
+        if (credenciales == null)
+        {
+            mensaje = "Hubo un error, las credenciales son nulas";
+            return false;
+        }
+
+        var usuario = (from _usuario in context.Usuarios
+                        join _jefeCarrera in context.JefeCarreras on _usuario.UsuarioId equals _jefeCarrera.UsuarioId
+                        where _usuario.Correo == credenciales.Email && _usuario.Contrasenha == credenciales.Password
+                        select _usuario).FirstOrDefault<Usuario>();
+
+
+        if(usuario == null)
+        {
+            mensaje = "Credenciales invalidas o el usuario no se encuentra registrado como jefe de carrera.";
+            return false;
+        }
 
 
         return true;

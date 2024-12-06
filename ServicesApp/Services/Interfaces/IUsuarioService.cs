@@ -4,5 +4,6 @@ public interface IUsuarioService
 {
     //public bool ModificarUsuario(UsuarioDTO antiguo, UsuarioDTO renovado);
     //public bool CredencialesSinUso(List<string> datos);
-    public bool Autenticacion(LoginUsuarioDTO credenciales, PostulacionDocenteContext context);
+    public bool LoginDocente(LoginUsuarioDTO credenciales, PostulacionDocenteContext context, out string mensaje);
+    public bool LoginJefeCarrera(LoginUsuarioDTO credenciales, PostulacionDocenteContext context, out string mensaje);
 }

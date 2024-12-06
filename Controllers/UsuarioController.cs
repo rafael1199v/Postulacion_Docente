@@ -14,15 +14,6 @@ public class UsuarioController: ControllerBase{
         _registroService = registroService;
     }
 
-    // [HttpPost("registrar")]
-    // public IActionResult registroUsuario([FromBody] UsuarioDTO usuario){
-
-    //     //bool correct;
-    //     string statusMessage = _usuarioService.RegistrarUsuario(usuario);
-
-    //     return Ok(statusMessage);
-    // }
-
     // [HttpGet("buscar/{name}")]
     // public IActionResult busquedaUsuario(string field, int identifier = 1){
     //     //identifier funcionará como el tipo de campo que se está buscando
@@ -55,12 +46,16 @@ public class UsuarioController: ControllerBase{
         return Ok(usuarios);
     }
 
-
-
-    [HttpPost("login")]
-    public IActionResult Login([FromBody] LoginUsuarioDTO credenciales)
+    [HttpPost("loginDocente")]
+    public IActionResult LoginDocente([FromBody] LoginUsuarioDTO credenciales)
     {
-        return _usuarioService.Autenticacion(credenciales, _context) ? Ok("Usuario autenticado") : BadRequest("Hubo un error. Intentalo otra vez");
+        return _usuarioService.LoginDocente(credenciales, _context, out string mensaje) ? Ok(mensaje) : BadRequest(mensaje);
+    }
+
+    [HttpPost("loginJefeCarrera")]
+    public IActionResult LoginJefeCarrera([FromBody] LoginUsuarioDTO credenciales)
+    {
+        return _usuarioService.LoginJefeCarrera(credenciales, _context, out string mensaje) ? Ok(mensaje) : BadRequest(mensaje);
     }
 
     [HttpPost("registrarDocente")]
