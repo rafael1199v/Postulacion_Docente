@@ -236,3 +236,4 @@ _Pvt_Extensions
 /.angular/*
 /bin/*
 /Debug/*
+/appsettings.json

@@ -15,6 +15,7 @@ builder.Services.AddScoped<IDocenteService, DocenteService>();
 builder.Services.AddScoped<IVacanteService, VacanteService>();
 builder.Services.AddScoped<IJefeCarreraService, JefeCarreraService>();
 builder.Services.AddScoped<IPdfService, PdfService>();
+builder.Services.AddScoped<IRegistroService, RegistroService>();
 builder.Services.AddDbContext<PostulacionDocenteContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default"))
 );

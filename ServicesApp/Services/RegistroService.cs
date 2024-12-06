@@ -1,81 +1,89 @@
+using System.Reflection;
 using PostulacionDocente.ServicesApp.Models;
 
 public class RegistroService : IRegistroService
 {
-    public bool CredencialesEnUsoDocente(DocenteRegistroDTO docente, PostulacionDocenteContext context)
+    public bool CredencialesUsoUsuario(string correo, string CI, string numeroTelefono, PostulacionDocenteContext context)
     {
-       
-       var usuario = (from _usuario in context.Usuarios
-                        where _usuario.Correo == docente.Correo || _usuario.Ci == docente.CI
+        var usuario = (from _usuario in context.Usuarios
+                        where _usuario.Correo == correo || _usuario.Ci == CI || _usuario.NumeroTelefono == numeroTelefono
                         select _usuario).FirstOrDefault<Usuario>();
 
-
-        if(usuario == null)
+        if(usuario != null)
         {
-            return false;
+            return true;
         }
 
-        return true;
+        return false;
+    }
+    public bool CredencialesEnUsoDocente(DocenteRegistroDTO docente, PostulacionDocenteContext context)
+    {
+       //Verficamos que tambien no exista un numero de celular ya existente
+       return CredencialesUsoUsuario(docente.Correo, docente.CI, docente.Telefono, context);
     }
 
     public bool CredencialesEnUsoJefeCarrera(JefeCarreraRegistroDTO jefeCarrera, PostulacionDocenteContext context)
     {
-        
-        var usuario = (from _usuario in context.Usuarios
-                        where _usuario.Correo == jefeCarrera.Correo || _usuario.Ci == jefeCarrera.CI
-                        select 
-                        _usuario).FirstOrDefault<Usuario>();
-        
-
+        if(CredencialesUsoUsuario(jefeCarrera.Correo, jefeCarrera.CI, jefeCarrera.Telefono, context))
+        {
+            return true;
+        }
 
        var carreraEnUso = (from _carrera in context.Carreras
                             where _carrera.CarreraId == jefeCarrera.CarreraId
-                            select _carrera).FirstOrDefault<Carrera>();
+                            select _carrera.JefeCarreraId).FirstOrDefault();
 
 
-        if(usuario != null || carreraEnUso != null)
+        if(carreraEnUso != null)
         {
-            return false;
+            return true;
         }
 
 
-        return true;
+        return false;
     }
 
-    public bool RegistrarDocente(DocenteRegistroDTO docente, PostulacionDocenteContext context)
+    public bool RegistrarDocente(DocenteRegistroDTO nuevoDocente, PostulacionDocenteContext context, out string mensaje)
     {
-        if(CredencialesEnUsoDocente(docente, context))
+        mensaje = "Docente registrado correctamente";
+        if(CredencialesEnUsoDocente(nuevoDocente, context))
         {
+            mensaje = "El email, el numero de telefono o el carnet de identidad ya esta en uso. Intentalo otra vez";
             return false;
         }
         
 
         var usuario = new Usuario{
-            Nombre = docente.Nombre,
-            Ci = docente.CI,
-            FechaNacimiento = docente.FechaNacimiento,
-            NumeroTelefono = docente.Telefono,
-            Correo = docente.Correo,
-            Contrasenha = docente.Contrasenha
+            Nombre = nuevoDocente.Nombre,
+            Ci = nuevoDocente.CI,
+            FechaNacimiento = nuevoDocente.FechaNacimiento,
+            NumeroTelefono = nuevoDocente.Telefono,
+            Correo = nuevoDocente.Correo,
+            Contrasenha = nuevoDocente.Contrasenha
         };
 
-        var docenteDB  = new Docente
+        var docente  = new Docente
         {
-            Especialidad = docente.Materia,
-            Experiencia = docente.AnhosExperiencia,
-            DescripcionPersonal = $"Hola soy {docente.Nombre}",
-            Grado = docente.Grado,
+            Especialidad = nuevoDocente.Materia,
+            Experiencia = nuevoDocente.AnhosExperiencia,
+            DescripcionPersonal = nuevoDocente.DescripcionPersonal,
+            Grado = nuevoDocente.Grado,
             Usuario = usuario
         };
 
 
+        context.Docentes.Add(docente);
+        context.SaveChanges();
+
         return true;
     }
 
-    public bool RegistrarJefeCarrera(JefeCarreraRegistroDTO jefeCarrera, PostulacionDocenteContext context)
+    public bool RegistrarJefeCarrera(JefeCarreraRegistroDTO jefeCarrera, PostulacionDocenteContext context, out string mensaje)
     {
+        mensaje = "Jefe registrado correctamente";
         if(CredencialesEnUsoJefeCarrera(jefeCarrera, context))
         {
+            mensaje = "El email, el numero de telefono o el carnet de identidad ya esta en uso. Intentalo otra vez";
             return false;
         }
 
@@ -89,12 +97,23 @@ public class RegistroService : IRegistroService
             Contrasenha = jefeCarrera.Contrasenha
         };
 
+        Carrera? carrera = context.Carreras.FirstOrDefault(c => c.CarreraId == jefeCarrera.CarreraId);
+
+        if(carrera == null)
+        {
+            mensaje = "La carrera seleccionada no existe en la base de datos";
+            return false;
+        }
+
         var jefeCarreraDB = new JefeCarrera
         {
             Usuario = usuario
         };
 
+        jefeCarreraDB.Carreras.Add(carrera);
 
+        context.JefeCarreras.Add(jefeCarreraDB);
+        context.SaveChanges();
 
         return true;
     }

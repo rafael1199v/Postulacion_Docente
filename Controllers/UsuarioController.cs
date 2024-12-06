@@ -6,10 +6,12 @@ using Microsoft.EntityFrameworkCore;
 [Route("[controller]")]
 public class UsuarioController: ControllerBase{
     private readonly IUsuarioService _usuarioService;
+    private readonly IRegistroService _registroService;
     private readonly PostulacionDocenteContext _context;
-    public UsuarioController(IUsuarioService usuarioService, PostulacionDocenteContext context){
+    public UsuarioController(IUsuarioService usuarioService, PostulacionDocenteContext context, IRegistroService registroService){
         _usuarioService = usuarioService;
         _context = context;
+        _registroService = registroService;
     }
 
     // [HttpPost("registrar")]
@@ -59,6 +61,18 @@ public class UsuarioController: ControllerBase{
     public IActionResult Login([FromBody] LoginUsuarioDTO credenciales)
     {
         return _usuarioService.Autenticacion(credenciales, _context) ? Ok("Usuario autenticado") : BadRequest("Hubo un error. Intentalo otra vez");
+    }
+
+    [HttpPost("registrarDocente")]
+    public IActionResult RegistroDocente([FromBody] DocenteRegistroDTO nuevoDocente)
+    {
+        return _registroService.RegistrarDocente(nuevoDocente, _context, out string mensaje) ? Ok(mensaje) : BadRequest(mensaje);
+    }
+
+    [HttpPost("registrarJefeCarrera")]
+    public IActionResult RegistroJefeCarrera([FromBody] JefeCarreraRegistroDTO nuevoJefe)
+    {
+        return _registroService.RegistrarJefeCarrera(nuevoJefe, _context, out string mensaje) ? Ok(mensaje) : BadRequest(mensaje);
     }
 
     
