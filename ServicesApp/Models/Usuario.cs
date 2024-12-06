@@ -18,4 +18,8 @@ public partial class Usuario
     public string Correo { get; set; } = null!;
 
     public string Contrasenha { get; set; } = null!;
+
+    public virtual ICollection<Docente> Docentes { get; } = new List<Docente>();
+
+    public virtual ICollection<JefeCarrera> JefeCarreras { get; } = new List<JefeCarrera>();
 }

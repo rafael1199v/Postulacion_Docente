@@ -16,4 +16,8 @@ public partial class Vacante
     public DateTime FechaFin { get; set; }
 
     public int MateriaId { get; set; }
+
+    public virtual Materium Materia { get; set; } = null!;
+
+    public virtual ICollection<Postulacion> Postulacions { get; } = new List<Postulacion>();
 }

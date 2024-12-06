@@ -16,4 +16,8 @@ public partial class Docente
     public string? Grado { get; set; }
 
     public int UsuarioId { get; set; }
+
+    public virtual ICollection<Postulacion> Postulacions { get; } = new List<Postulacion>();
+
+    public virtual Usuario Usuario { get; set; } = null!;
 }

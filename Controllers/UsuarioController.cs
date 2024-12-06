@@ -12,14 +12,14 @@ public class UsuarioController: ControllerBase{
         _context = context;
     }
 
-    [HttpPost("registrar")]
-    public IActionResult registroUsuario([FromBody] UsuarioDTO usuario){
+    // [HttpPost("registrar")]
+    // public IActionResult registroUsuario([FromBody] UsuarioDTO usuario){
 
-        //bool correct;
-        string statusMessage = _usuarioService.RegistrarUsuario(usuario);
+    //     //bool correct;
+    //     string statusMessage = _usuarioService.RegistrarUsuario(usuario);
 
-        return Ok(statusMessage);
-    }
+    //     return Ok(statusMessage);
+    // }
 
     // [HttpGet("buscar/{name}")]
     // public IActionResult busquedaUsuario(string field, int identifier = 1){
@@ -32,21 +32,21 @@ public class UsuarioController: ControllerBase{
     //     return service.EncontrarUsuario(field, identifier)? Ok() : BadRequest();
     // }
 
-    [HttpPut("editar")]
-    public IActionResult editarDatos((UsuarioDTO, UsuarioDTO) datos){
-        //item 1: Datos antiguos del usuario
-        //item 2: Datos actualizados del usuario
+    // [HttpPut("editar")]
+    // public IActionResult editarDatos((UsuarioDTO, UsuarioDTO) datos){
+    //     //item 1: Datos antiguos del usuario
+    //     //item 2: Datos actualizados del usuario
 
-        if(_usuarioService.ModificarUsuario(datos.Item1, datos.Item2)){
-            return Ok("Usuario actualizado");
-        }
-        return BadRequest("Hubo un error actualizando los datos");
-    }
+    //     if(_usuarioService.ModificarUsuario(datos.Item1, datos.Item2)){
+    //         return Ok("Usuario actualizado");
+    //     }
+    //     return BadRequest("Hubo un error actualizando los datos");
+    // }
 
     [HttpGet("getAll")]
     public IActionResult GetAllUsers()
     {
-        var usuarios = from usuario in _context.Usuario
+        var usuarios = from usuario in _context.Usuarios
                         select usuario;
         
         

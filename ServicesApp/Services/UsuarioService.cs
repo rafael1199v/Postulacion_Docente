@@ -2,39 +2,39 @@ using PostulacionDocente.ServicesApp.Models;
 
 public class UsuarioService : IUsuarioService
 {
-    public string RegistrarUsuario(UsuarioDTO usuario)
-    {
-        if (CredencialesSinUso(new List<string> { usuario.CI, usuario.correo, usuario.numero }))
-        {
-            UsuarioDTO newUsuario = usuario;
-            //enviar "newUsuario a la base de datos"
+    // public string RegistrarUsuario(UsuarioDTO usuario)
+    // {
+    //     if (CredencialesSinUso(new List<string> { usuario.CI, usuario.correo, usuario.numero }))
+    //     {
+    //         UsuarioDTO newUsuario = usuario;
+    //         //enviar "newUsuario a la base de datos"
 
-            return $"Nuevo usuario creado: {newUsuario.nombre}!";
-        }
-        else
-        {
-            //debería haber una forma de conservar la hoja de vida de datos para evitar escribir todo de nuevo
+    //         return $"Nuevo usuario creado: {newUsuario.nombre}!";
+    //     }
+    //     else
+    //     {
+    //         //debería haber una forma de conservar la hoja de vida de datos para evitar escribir todo de nuevo
 
-            return "No se pudo crear el nuevo usuario... Credenciales ya en uso";
-        }
-    }
+    //         return "No se pudo crear el nuevo usuario... Credenciales ya en uso";
+    //     }
+    // }
 
-    public bool ModificarUsuario(UsuarioDTO antiguo, UsuarioDTO renovado)
-    {
-        if (CredencialesSinUso(new List<string> { renovado.CI, renovado.correo, renovado.numero }))
-        {
-            antiguo.nombre = renovado.nombre;
-            antiguo.CI = renovado.CI;
-            antiguo.contrasenha = renovado.contrasenha;
-            antiguo.correo = renovado.correo;
-            //antiguo.fechaNacimiento = renovado.fechaNacimiento;
-            antiguo.numero = renovado.numero;
-            System.Console.WriteLine("Usuario modificado");
-            //enviar antiguo a la base de datos
-            return true;
-        }
-        return false;
-    }
+    // public bool ModificarUsuario(UsuarioDTO antiguo, UsuarioDTO renovado)
+    // {
+    //     if (CredencialesSinUso(new List<string> { renovado.CI, renovado.correo, renovado.numero }))
+    //     {
+    //         antiguo.nombre = renovado.nombre;
+    //         antiguo.CI = renovado.CI;
+    //         antiguo.contrasenha = renovado.contrasenha;
+    //         antiguo.correo = renovado.correo;
+    //         //antiguo.fechaNacimiento = renovado.fechaNacimiento;
+    //         antiguo.numero = renovado.numero;
+    //         System.Console.WriteLine("Usuario modificado");
+    //         //enviar antiguo a la base de datos
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
     // public bool EncontrarUsuario(string objetivo, int tipo){
     //identifier funcionará como el tipo de campo que se está buscando
@@ -80,25 +80,25 @@ public class UsuarioService : IUsuarioService
     //     //TODO: Rehacer esta búsqueda toda fea
     // }
 
-    public bool CredencialesSinUso(List<string> datos)
-    {
-        List<UsuarioDTO> lista = new List<UsuarioDTO>{
-            new UsuarioDTO{nombre = "Daniel", CI = "10990989", correo = "eldanielitu@gmail.com", numero = "68829531"}
-        };
-        /*
-        lista[0] == CI
-        lista[1] == correo
-        lista[2] == numero (o sea, telefono)
-        */
-        for (int i = 0; i < lista.Count; i++)
-        {
-            if (lista[i].CI == datos[0] || lista[i].correo == datos[1] || lista[i].numero == datos[2])
-            {
-                return false;
-            } //si encuentra similitud, retorna falso, diciendo que las credenciales NO están "sin usar" xd
-        } //TODO: Rehacer esta cosa también xd
-        return true;
-    }
+    // public bool CredencialesSinUso(List<string> datos)
+    // {
+    //     List<UsuarioDTO> lista = new List<UsuarioDTO>{
+    //         new UsuarioDTO{nombre = "Daniel", CI = "10990989", correo = "eldanielitu@gmail.com", numero = "68829531"}
+    //     };
+    //     /*
+    //     lista[0] == CI
+    //     lista[1] == correo
+    //     lista[2] == numero (o sea, telefono)
+    //     */
+    //     for (int i = 0; i < lista.Count; i++)
+    //     {
+    //         if (lista[i].CI == datos[0] || lista[i].correo == datos[1] || lista[i].numero == datos[2])
+    //         {
+    //             return false;
+    //         } //si encuentra similitud, retorna falso, diciendo que las credenciales NO están "sin usar" xd
+    //     } //TODO: Rehacer esta cosa también xd
+    //     return true;
+    // }
 
 
     public bool Autenticacion(LoginUsuarioDTO credenciales, PostulacionDocenteContext context)
@@ -106,7 +106,7 @@ public class UsuarioService : IUsuarioService
 
         if (credenciales == null) return false;
 
-        var usuario = (from _usuario in context.Usuario
+        var usuario = (from _usuario in context.Usuarios
                        where _usuario.Correo == credenciales.Email && _usuario.Contrasenha == credenciales.Password
                        select _usuario).FirstOrDefault<Usuario>();
 

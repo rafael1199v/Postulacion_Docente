@@ -9,5 +9,7 @@ public partial class JefeCarrera
 
     public int UsuarioId { get; set; }
 
-    public int CarreraId { get; set; }
+    public virtual ICollection<Carrera> Carreras { get; } = new List<Carrera>();
+
+    public virtual Usuario Usuario { get; set; } = null!;
 }

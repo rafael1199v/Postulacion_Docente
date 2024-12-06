@@ -23,7 +23,8 @@ CREATE TABLE Docente (
 CREATE TABLE Carrera(
     CarreraId INT NOT NULL PRIMARY KEY IDENTITY(1, 1),
     NombreCarrera VARCHAR(50) NOT NULL,
-    Sigla VARCHAR(10) NOT NULL UNIQUE
+    Sigla VARCHAR(10) NOT NULL UNIQUE,
+	JefeCarreraId INT
 );
 
 CREATE TABLE Materia(
@@ -33,25 +34,22 @@ CREATE TABLE Materia(
 );
 
 CREATE TABLE MateriaCarrera(
-    MateriaCarreraId INT PRIMARY KEY NOT NULL IDENTITY(1, 1),
-    MateriadId INT NOT NULL, --FOREIGN KEY REFERENCES Materia(MateriaId),
+    MateriaId INT NOT NULL, --FOREIGN KEY REFERENCES Materia(MateriaId),
     CarreraId INT NOT NULL --FOREIGN KEY REFERENCES Carrera(CaerreraId)
 );
 
 CREATE TABLE JefeCarrera(
     JefeCarreraId INT PRIMARY KEY NOT NULL IDENTITY(1, 1),
     UsuarioId INT NOT NULL, --FOREIGN KEY REFERENCES Usuario(UsuarioId)
-    CarreraId INT NOT NULL, --FOREIGN KEY REFERENCES Carrera(CarreraId)
 );
 
 CREATE TABLE Postulacion(
     PostulacionId INT NOT NULL PRIMARY KEY IDENTITY(1, 1),
-    Estado INT NOT NULL, -- FOREIGN KEY REFERENCES Estado(EstadoId)
+    EstadoId INT NOT NULL, -- FOREIGN KEY REFERENCES Estado(EstadoId)
     DocenteId INT NOT NULL -- FOREIGN KEY REFERENCES Docente(DocenteId)
 );
 
 CREATE TABLE PostulacionVacante(
-    PostulacionVacanteId INT NOT NULL PRIMARY KEY IDENTITY(1, 1),
     VacanteId INT NOT NULL, -- FOREIGN KEY REFERENCES Vacante(VacanteId)
     PostulacionId INT NOT NULL -- FOREIGN KEY REFERENCES Postulacion(PostulacionId)
 );
@@ -72,13 +70,62 @@ CREATE TABLE Estado(
 );
 
 
-DROP TABLE Estado;
-DROP TABLE Vacante;
+ALTER TABLE Docente
+ADD CONSTRAINT FK_Usuario_Docente 
+FOREIGN KEY (UsuarioId) REFERENCES Usuario(UsuarioId);
+
+ALTER TABLE MateriaCarrera
+ADD CONSTRAINT FK_Materia_MateriaCarrera
+FOREIGN KEY (MateriaId) REFERENCES Materia(MateriaId);
+
+ALTER TABLE MateriaCarrera
+ADD CONSTRAINT FK_Carrera_MateriaCarrera
+FOREIGN KEY (CarreraId) REFERENCES Carrera(CarreraId);
+
+ALTER TABLE MateriaCarrera
+ADD CONSTRAINT PK_MateriaCarrera 
+PRIMARY KEY (MateriaId, CarreraId);
+
+ALTER TABLE JefeCarrera
+ADD CONSTRAINT FK_Usuario_JefeCarrera
+FOREIGN KEY (UsuarioId) REFERENCES Usuario(UsuarioId);
+
+ALTER TABLE Carrera
+ADD CONSTRAINT FK_JefeCarrera_Carrera
+FOREIGN KEY (JefeCarreraId) REFERENCES JefeCarrera(JefeCarreraId);
+
+ALTER TABLE Postulacion
+ADD CONSTRAINT FK_Estado_Postulacion
+FOREIGN KEY (EstadoId) REFERENCES Estado(EstadoId);
+
+ALTER TABLE Postulacion
+ADD CONSTRAINT FK_Docente_Postulacion
+FOREIGN KEY (DocenteId) REFERENCES Docente(DocenteId);
+
+ALTER TABLE PostulacionVacante
+ADD CONSTRAINT FK_Vacante_PostulacionVacante
+FOREIGN KEY (VacanteId) REFERENCES Vacante(VacanteId);
+
+ALTER TABLE PostulacionVacante
+ADD CONSTRAINT FK_Postulacion_PostulacionVacante
+FOREIGN KEY (PostulacionId) REFERENCES Postulacion(PostulacionId);
+
+ALTER TABLE PostulacionVacante
+ADD CONSTRAINT  PK_PostulacionVacante
+PRIMARY KEY (VacanteId, PostulacionId);
+
+ALTER TABLE Vacante
+ADD CONSTRAINT FK_Materia_Vacante
+FOREIGN KEY (MateriaId) REFERENCES Materia(MateriaId);
+
+
 DROP TABLE PostulacionVacante;
 DROP TABLE Postulacion;
+DROP TABLE Vacante;
+DROP TABLE Estado;
 DROP TABLE JefeCarrera;
 DROP TABLE MateriaCarrera;
-DROP TABLE Materia;
 DROP TABLE Carrera;
+DROP TABLE Materia;
 DROP TABLE Docente;
 DROP TABLE Usuario;
