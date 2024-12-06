@@ -1,14 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
+using PostulacionDocente.ServicesApp.Models;
 
 [ApiController]
-[Route("postulaciones")]
+[Route("[controller]")]
 public class PostulacionController : ControllerBase
 {
     private readonly IPostulacionService _postulacionService;
+    private readonly PostulacionDocenteContext _context;
 
-    public PostulacionController(IPostulacionService postulacionService)
+    public PostulacionController(IPostulacionService postulacionService, PostulacionDocenteContext context)
     {
         _postulacionService = postulacionService;
+        _context = context;
     }
 
     [HttpPost("{id}/rechazar")]
@@ -32,5 +35,12 @@ public class PostulacionController : ControllerBase
         }
         return Ok(new { Notificacion = resultado });
     }
+
+    [HttpGet("ConseguirDetallesPostulacion/{postulacionId}")]
+    public IActionResult ConseguirDetallesPostulacion(int postulacionId)
+    {
+        return Ok(_postulacionService.ConseguirDetallesPostulacion(_context, postulacionId));
+    }
+    
 
 }
