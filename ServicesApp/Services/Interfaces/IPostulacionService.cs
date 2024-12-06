@@ -6,4 +6,5 @@ public interface IPostulacionService
         string RechazarPostulacion(int id, string razon);
 
         string AceptarPostulacion(int id);
+
     }

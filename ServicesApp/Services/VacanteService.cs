@@ -14,18 +14,18 @@ public class VacanteService : IVacanteService
         return true;
     }
 
-    public List<VacanteDTO> ConseguirVacantesDisponibles(PostulacionDocenteContext context)
+    public List<VacanteDTO> ConseguirVacantesDisponibles(PostulacionDocenteContext context, string CI)
     {
-        // List<VacanteDTO> vacantesDisponibles = new List<VacanteDTO>()
-        // {
-        //     new VacanteDTO{NombreVacante = "Docente Programacion I"},
-        //     new VacanteDTO{NombreVacante = "Medico, Trabajo medio tiempo"},
-        //     new VacanteDTO{NombreVacante = "Docente diseño grafico, tiempo completo"}
-        // };
+      
         DateTime now = DateTime.Now;
 
+        var docenteId = (from _usuario in context.Usuarios
+                        join _docente in context.Docentes on _usuario.UsuarioId equals _docente.UsuarioId
+                        where _usuario.Ci == CI
+                        select _docente.DocenteId).FirstOrDefault<int>();
+
         var vacantesDisponibles = (from _vacante in context.Vacantes
-                                  where now < _vacante.FechaFin && now >= _vacante.FechaInicio && (_vacante.Postulacions.Count == 0 || _vacante.Postulacions.Any(p => p.EstadoId != 4))
+                                  where now < _vacante.FechaFin && now >= _vacante.FechaInicio && (_vacante.Postulacions.Count == 0 || _vacante.Postulacions.Any(p => p.EstadoId != 4 && p.DocenteId != docenteId))
                                   select new VacanteDTO{
                                     VacanteId = _vacante.VacanteId,
                                     NombreVacante = _vacante.NombreVacante,

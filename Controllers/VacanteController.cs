@@ -17,10 +17,10 @@ public class VacanteController : ControllerBase
         _context = context;
     }
 
-    [HttpGet("conseguirVacantesDisponibles")]
-    public IActionResult ConseguirVacantesDisponibles()
+    [HttpGet("conseguirVacantesDisponibles/{CI}")]
+    public IActionResult ConseguirVacantesDisponibles(string CI)
     {
-        return Ok(_vacanteService.ConseguirVacantesDisponibles(_context));
+        return Ok(_vacanteService.ConseguirVacantesDisponibles(_context, CI));
     }
 
     [HttpDelete("eliminarVacante/{vacanteId}")]
