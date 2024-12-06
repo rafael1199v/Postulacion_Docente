@@ -23,6 +23,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { UsuarioService } from './services/UsuarioService';
 import { VacantesDisponiblesComponent } from './vacantes-disponibles/vacantes-disponibles.component';
+import { PostulacionesPostulanteComponent } from './postulaciones-postulante/postulaciones-postulante.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { VacantesDisponiblesComponent } from './vacantes-disponibles/vacantes-di
     ReglamentoComponent,
     ProfileComponent,
     RegisterComponent,
-    VacantesDisponiblesComponent
+    VacantesDisponiblesComponent,
+    PostulacionesPostulanteComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -58,7 +60,8 @@ import { VacantesDisponiblesComponent } from './vacantes-disponibles/vacantes-di
       { path: 'reglamento', component: ReglamentoComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'VacantesDisponibles', component: VacantesDisponiblesComponent}
+      { path: 'VacantesDisponibles', component: VacantesDisponiblesComponent},
+      { path: 'postulaciones', component: PostulacionesPostulanteComponent}
     ])
   ],
   providers: [vacanteService, LoginService],
