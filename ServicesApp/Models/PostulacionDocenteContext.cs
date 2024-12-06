@@ -30,16 +30,15 @@ public partial class PostulacionDocenteContext : DbContext
     public virtual DbSet<Usuario> Usuarios { get; set; }
 
     public virtual DbSet<Vacante> Vacantes { get; set; }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Carrera>(entity =>
         {
-            entity.HasKey(e => e.CarreraId).HasName("PK__Carrera__3E43B1A132BE7DDB");
+            entity.HasKey(e => e.CarreraId).HasName("PK__Carrera__3E43B1A17E357453");
 
             entity.ToTable("Carrera");
 
-            entity.HasIndex(e => e.Sigla, "UQ__Carrera__3199C5EDB7DEF867").IsUnique();
+            entity.HasIndex(e => e.Sigla, "UQ__Carrera__3199C5EDEEF98CC0").IsUnique();
 
             entity.Property(e => e.NombreCarrera)
                 .HasMaxLength(50)
@@ -55,7 +54,7 @@ public partial class PostulacionDocenteContext : DbContext
 
         modelBuilder.Entity<Docente>(entity =>
         {
-            entity.HasKey(e => e.DocenteId).HasName("PK__Docente__9CB7A961BE7B20A5");
+            entity.HasKey(e => e.DocenteId).HasName("PK__Docente__9CB7A961C77E1997");
 
             entity.ToTable("Docente");
 
@@ -77,7 +76,7 @@ public partial class PostulacionDocenteContext : DbContext
 
         modelBuilder.Entity<Estado>(entity =>
         {
-            entity.HasKey(e => e.EstadoId).HasName("PK__Estado__FEF86B00032FE955");
+            entity.HasKey(e => e.EstadoId).HasName("PK__Estado__FEF86B00519CFB24");
 
             entity.ToTable("Estado");
 
@@ -88,7 +87,7 @@ public partial class PostulacionDocenteContext : DbContext
 
         modelBuilder.Entity<JefeCarrera>(entity =>
         {
-            entity.HasKey(e => e.JefeCarreraId).HasName("PK__JefeCarr__3D87A0166D6D2996");
+            entity.HasKey(e => e.JefeCarreraId).HasName("PK__JefeCarr__3D87A01624424C56");
 
             entity.ToTable("JefeCarrera");
 
@@ -100,9 +99,9 @@ public partial class PostulacionDocenteContext : DbContext
 
         modelBuilder.Entity<Materium>(entity =>
         {
-            entity.HasKey(e => e.MateriaId).HasName("PK__Materia__0D019DE1DC16A541");
+            entity.HasKey(e => e.MateriaId).HasName("PK__Materia__0D019DE153D9DBAD");
 
-            entity.HasIndex(e => e.Sigla, "UQ__Materia__3199C5ED98297A51").IsUnique();
+            entity.HasIndex(e => e.Sigla, "UQ__Materia__3199C5EDBA1DB25A").IsUnique();
 
             entity.Property(e => e.NombreMateria)
                 .HasMaxLength(50)
@@ -131,7 +130,7 @@ public partial class PostulacionDocenteContext : DbContext
 
         modelBuilder.Entity<Postulacion>(entity =>
         {
-            entity.HasKey(e => e.PostulacionId).HasName("PK__Postulac__5F6D89A99839CCC3");
+            entity.HasKey(e => e.PostulacionId).HasName("PK__Postulac__5F6D89A98496DCF3");
 
             entity.ToTable("Postulacion");
 
@@ -144,19 +143,24 @@ public partial class PostulacionDocenteContext : DbContext
                 .HasForeignKey(d => d.EstadoId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Estado_Postulacion");
+
+            entity.HasOne(d => d.Vacante).WithMany(p => p.Postulacions)
+                .HasForeignKey(d => d.VacanteId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Vacante_Postulacion");
         });
 
         modelBuilder.Entity<Usuario>(entity =>
         {
-            entity.HasKey(e => e.UsuarioId).HasName("PK__Usuario__2B3DE7B89D9A9288");
+            entity.HasKey(e => e.UsuarioId).HasName("PK__Usuario__2B3DE7B837ABE025");
 
             entity.ToTable("Usuario");
 
-            entity.HasIndex(e => e.NumeroTelefono, "UQ__Usuario__0DC3DBF5C975F673").IsUnique();
+            entity.HasIndex(e => e.NumeroTelefono, "UQ__Usuario__0DC3DBF5C101F8A2").IsUnique();
 
-            entity.HasIndex(e => e.Ci, "UQ__Usuario__32149A7A63B9DC5A").IsUnique();
+            entity.HasIndex(e => e.Ci, "UQ__Usuario__32149A7ADFD0B4DB").IsUnique();
 
-            entity.HasIndex(e => e.Correo, "UQ__Usuario__60695A191AD0A70A").IsUnique();
+            entity.HasIndex(e => e.Correo, "UQ__Usuario__60695A19A6846E8F").IsUnique();
 
             entity.Property(e => e.Ci)
                 .HasMaxLength(20)
@@ -179,7 +183,7 @@ public partial class PostulacionDocenteContext : DbContext
 
         modelBuilder.Entity<Vacante>(entity =>
         {
-            entity.HasKey(e => e.VacanteId).HasName("PK__Vacante__4CFFE26953C94367");
+            entity.HasKey(e => e.VacanteId).HasName("PK__Vacante__4CFFE269F690557F");
 
             entity.ToTable("Vacante");
 
@@ -196,23 +200,6 @@ public partial class PostulacionDocenteContext : DbContext
                 .HasForeignKey(d => d.MateriaId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Materia_Vacante");
-
-            entity.HasMany(d => d.Postulacions).WithMany(p => p.Vacantes)
-                .UsingEntity<Dictionary<string, object>>(
-                    "PostulacionVacante",
-                    r => r.HasOne<Postulacion>().WithMany()
-                        .HasForeignKey("PostulacionId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK_Postulacion_PostulacionVacante"),
-                    l => l.HasOne<Vacante>().WithMany()
-                        .HasForeignKey("VacanteId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK_Vacante_PostulacionVacante"),
-                    j =>
-                    {
-                        j.HasKey("VacanteId", "PostulacionId");
-                        j.ToTable("PostulacionVacante");
-                    });
         });
 
         OnModelCreatingPartial(modelBuilder);

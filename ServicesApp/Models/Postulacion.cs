@@ -11,9 +11,11 @@ public partial class Postulacion
 
     public int DocenteId { get; set; }
 
+    public int VacanteId { get; set; }
+
     public virtual Docente Docente { get; set; } = null!;
 
     public virtual Estado Estado { get; set; } = null!;
 
-    public virtual ICollection<Vacante> Vacantes { get; } = new List<Vacante>();
+    public virtual Vacante Vacante { get; set; } = null!;
 }
