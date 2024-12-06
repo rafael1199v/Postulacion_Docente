@@ -24,6 +24,7 @@ import { RegisterComponent } from './register/register.component';
 import { UsuarioService } from './services/UsuarioService';
 import { VacantesDisponiblesComponent } from './vacantes-disponibles/vacantes-disponibles.component';
 import { PostulacionesPostulanteComponent } from './postulaciones-postulante/postulaciones-postulante.component';
+import { EstadoPostulacionComponent } from './estado-postulacion/estado-postulacion.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { PostulacionesPostulanteComponent } from './postulaciones-postulante/pos
     ProfileComponent,
     RegisterComponent,
     VacantesDisponiblesComponent,
-    PostulacionesPostulanteComponent
+    PostulacionesPostulanteComponent,
+    EstadoPostulacionComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -60,8 +62,9 @@ import { PostulacionesPostulanteComponent } from './postulaciones-postulante/pos
       { path: 'reglamento', component: ReglamentoComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'VacantesDisponibles', component: VacantesDisponiblesComponent},
-      { path: 'postulaciones', component: PostulacionesPostulanteComponent}
+      { path: 'vacantes-disponibles', component: VacantesDisponiblesComponent},
+      { path: 'postulaciones', component: PostulacionesPostulanteComponent},
+      { path: 'estado-postulacion', component: EstadoPostulacionComponent}
     ])
   ],
   providers: [vacanteService, LoginService],
