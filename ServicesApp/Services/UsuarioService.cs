@@ -2,23 +2,6 @@ using PostulacionDocente.ServicesApp.Models;
 
 public class UsuarioService : IUsuarioService
 {
-    // public string RegistrarUsuario(UsuarioDTO usuario)
-    // {
-    //     if (CredencialesSinUso(new List<string> { usuario.CI, usuario.correo, usuario.numero }))
-    //     {
-    //         UsuarioDTO newUsuario = usuario;
-    //         //enviar "newUsuario a la base de datos"
-
-    //         return $"Nuevo usuario creado: {newUsuario.nombre}!";
-    //     }
-    //     else
-    //     {
-    //         //debería haber una forma de conservar la hoja de vida de datos para evitar escribir todo de nuevo
-
-    //         return "No se pudo crear el nuevo usuario... Credenciales ya en uso";
-    //     }
-    // }
-
     // public bool ModificarUsuario(UsuarioDTO antiguo, UsuarioDTO renovado)
     // {
     //     if (CredencialesSinUso(new List<string> { renovado.CI, renovado.correo, renovado.numero }))
@@ -80,27 +63,7 @@ public class UsuarioService : IUsuarioService
     //     //TODO: Rehacer esta búsqueda toda fea
     // }
 
-    // public bool CredencialesSinUso(List<string> datos)
-    // {
-    //     List<UsuarioDTO> lista = new List<UsuarioDTO>{
-    //         new UsuarioDTO{nombre = "Daniel", CI = "10990989", correo = "eldanielitu@gmail.com", numero = "68829531"}
-    //     };
-    //     /*
-    //     lista[0] == CI
-    //     lista[1] == correo
-    //     lista[2] == numero (o sea, telefono)
-    //     */
-    //     for (int i = 0; i < lista.Count; i++)
-    //     {
-    //         if (lista[i].CI == datos[0] || lista[i].correo == datos[1] || lista[i].numero == datos[2])
-    //         {
-    //             return false;
-    //         } //si encuentra similitud, retorna falso, diciendo que las credenciales NO están "sin usar" xd
-    //     } //TODO: Rehacer esta cosa también xd
-    //     return true;
-    // }
-
-
+  
     public bool LoginDocente(LoginUsuarioDTO credenciales, PostulacionDocenteContext context, out string mensaje)
     {
         mensaje = "Usuario autenticado";
