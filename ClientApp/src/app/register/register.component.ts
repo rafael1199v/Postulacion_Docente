@@ -9,16 +9,22 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
     registerForm!: FormGroup;
-    isJefeCarrera: boolean = false; // Variable para alternar los campos de jefe de carrera
-    carrerasInvalid: boolean = false; // Para mostrar error si no selecciona entre 1 y 3 carreras
+    isJefeCarrera: boolean = false;
+    carrerasInvalid: boolean = false;
     listaCarreras: string[] = [
-        'Ingeniería de Software', 'Ingeniería Civil', 'Arquitectura', 'Medicina', 'Derecho', 'Psicología', 'Educación', 'Administración de Empresas'
+        'Ingeniería de Software',
+        'Ingeniería Civil',
+        'Arquitectura',
+        'Medicina',
+        'Derecho',
+        'Psicología',
+        'Educación',
+        'Administración de Empresas'
     ];
 
     constructor(private formBuilder: FormBuilder, private router: Router) { }
 
     ngOnInit(): void {
-        // Inicializamos el formulario con los campos básicos
         this.registerForm = this.formBuilder.group({
             nombre: ['', Validators.required],
             telefono: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
@@ -27,15 +33,14 @@ export class RegisterComponent implements OnInit {
             correo: ['', [Validators.required, Validators.email]],
             contrasena: ['', [Validators.required, Validators.minLength(6)]],
             contrasenaRep: ['', [Validators.required, Validators.minLength(6)]],
-            // Campos adicionales para jefe de carrera
-            carreras: [[], [this.carrerasValidator()]], // Validación personalizada
-            grado: [''],
-            anosExperiencia: [''],
-            departamento: ['']
+            materia: ['', Validators.required],
+            grado: ['', Validators.required],
+            anosExperiencia: ['', [Validators.required, Validators.min(1)]],
+            carreras: [[], [this.carrerasValidator()]] // Validación personalizada
         });
     }
 
-    // Validador personalizado para las carreras
+    // Validador personalizado para carreras
     carrerasValidator() {
         return (control: any) => {
             const selectedCarreras = control.value;
@@ -51,22 +56,11 @@ export class RegisterComponent implements OnInit {
 
         if (this.isJefeCarrera) {
             this.registerForm.get('carreras')?.setValidators([Validators.required, this.carrerasValidator()]);
-            this.registerForm.get('grado')?.setValidators(Validators.required);
-            this.registerForm.get('anosExperiencia')?.setValidators([Validators.required, Validators.min(1)]);
-            this.registerForm.get('departamento')?.setValidators(Validators.required);
         } else {
-            // Si se deselecciona, removemos las validaciones
             this.registerForm.get('carreras')?.clearValidators();
-            this.registerForm.get('grado')?.clearValidators();
-            this.registerForm.get('anosExperiencia')?.clearValidators();
-            this.registerForm.get('departamento')?.clearValidators();
         }
 
-        // Actualizamos el estado de los campos adicionales
         this.registerForm.get('carreras')?.updateValueAndValidity();
-        this.registerForm.get('grado')?.updateValueAndValidity();
-        this.registerForm.get('anosExperiencia')?.updateValueAndValidity();
-        this.registerForm.get('departamento')?.updateValueAndValidity();
     }
 
     registrarUsuario(): void {
@@ -80,17 +74,17 @@ export class RegisterComponent implements OnInit {
             return;
         }
 
-        // Validación personalizada para el campo "carreras"
-        if (this.isJefeCarrera && (this.registerForm.value.carreras.length < 1 || this.registerForm.value.carreras.length > 3)) {
+        if (
+            this.isJefeCarrera &&
+            (this.registerForm.value.carreras.length < 1 || this.registerForm.value.carreras.length > 3)
+        ) {
             this.carrerasInvalid = true;
             return;
         } else {
             this.carrerasInvalid = false;
         }
 
-        // Simulación de registro
         console.log('Datos del formulario:', this.registerForm.value);
-
         alert('Registro exitoso');
         this.router.navigate(['/login']);
     }
