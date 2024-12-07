@@ -1,3 +1,5 @@
+using PostulacionDocente.ServicesApp.Models;
+
 public class PostulacionService : IPostulacionService
     {
         private readonly Dictionary<int, PostulacionDTO> _postulaciones = new Dictionary<int, PostulacionDTO>();
@@ -30,4 +32,24 @@ public class PostulacionService : IPostulacionService
             }
             return "Postulación no encontrada";
         }
+
+
+        public PostulacionDetallesDTO? ConseguirDetallesPostulacion(PostulacionDocenteContext context, int postulacionId)
+        {
+            var postulacionDetalle = (from _postulacion in context.Postulacions
+                                     join _vacante in context.Vacantes on _postulacion.VacanteId equals _vacante.VacanteId
+                                     join _materia in context.Materia on _vacante.MateriaId equals _materia.MateriaId
+                                     where _postulacion.PostulacionId == postulacionId
+                                     select new PostulacionDetallesDTO {
+                                        TituloMateria = _materia.NombreMateria,
+                                        Estado = _postulacion.Estado.EstadoId,
+                                        DescripcionEstado = _postulacion.Estado.Mensaje,
+                                        NombreVacante = _vacante.NombreVacante,
+                                        DescripcionVacante = _vacante.Descripcion
+                                     }).FirstOrDefault<PostulacionDetallesDTO>();
+            
+
+            return postulacionDetalle;
+        }
+
     }

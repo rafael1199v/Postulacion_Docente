@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using PostulacionDocente.ServicesApp.Models;
 
 namespace PostulacionDocente.Controllers;
 
@@ -6,12 +7,24 @@ namespace PostulacionDocente.Controllers;
 [Route("[controller]")]
 public class MateriaController : ControllerBase
 {
+    private readonly IMateriaService _materiaService;
+    private readonly PostulacionDocenteContext _context;
 
-   [HttpGet("conseguirMaterias")]
+    public MateriaController(IMateriaService materiaService, PostulacionDocenteContext context)
+    {
+        _materiaService = materiaService;
+        _context = context;
+    }
+
+    [HttpGet("conseguirMaterias")]
     public IActionResult GetMateria(){
 
-        IMateriaService service = new MateriaService();
+        return Ok(_materiaService.conseguirMaterias(_context));
+    }
 
-        return Ok(service.conseguirMaterias());
+    [HttpGet("conseguirMateriasPorCarrera")]
+    public IActionResult ConseguirMateriasPorCarrera(){
+
+        return Ok(_materiaService.ConseguirMateriasPorCarrera(_context));
     }
 }
