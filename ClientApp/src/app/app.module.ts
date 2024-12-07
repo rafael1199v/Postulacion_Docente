@@ -27,6 +27,8 @@ import { PostulacionesPostulanteComponent } from './postulaciones-postulante/pos
 import { EstadoPostulacionComponent } from './estado-postulacion/estado-postulacion.component';
 import { CambiarDatosPostulanteComponent } from './cambiar-datos-postulante/cambiar-datos-postulante.component';
 import { PostularseComponent } from './postularse/postularse.component';
+import { VacantesCreadasComponent } from './vacantes-creadas/vacantes-creadas.component';
+import { PostulacionesRecibidasComponent } from './postulaciones-recibidas/postulaciones-recibidas.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { PostularseComponent } from './postularse/postularse.component';
     PostulacionesPostulanteComponent,
     EstadoPostulacionComponent,
     CambiarDatosPostulanteComponent,
-    PostularseComponent
+    PostularseComponent,
+    VacantesCreadasComponent,
+    PostulacionesRecibidasComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -71,6 +75,8 @@ import { PostularseComponent } from './postularse/postularse.component';
       { path: 'estado-postulacion', component: EstadoPostulacionComponent},
       { path: 'cambiar-datos-postulante', component: CambiarDatosPostulanteComponent},
       { path: 'postularse', component: PostularseComponent},
+      { path: 'vacantes-creadas', component: VacantesCreadasComponent},
+      { path: 'postulaciones-recibidas', component: PostulacionesRecibidasComponent},
     ])
   ],
   providers: [vacanteService, LoginService],

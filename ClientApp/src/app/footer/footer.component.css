@@ -9,11 +9,21 @@
     display:flex;
     flex-direction: row;
     text-align: center;
+    align-content: space-between;
 }
 
 .row{
-    width:26%;
+    max-width: 35%;
     padding-left:10%;
     padding-right: 10%;
     padding-top: 4%;
+}
+
+.row-img {
+    background-image: url(../../assets/images/cropped-logo-UCB.png);
+    background-size:cover;
+    padding-top: 35px;
+    width: 60%;
+    height: 300px;
+    background-position-y: 5px;
 }
