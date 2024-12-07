@@ -25,3 +25,13 @@ body {
   height: 100%;
   width: 100%;
 }
+
+.spacing-tag {
+  color:white;
+  padding-top: 1%;
+}
+
+.footer-spacing-tag {
+  color:white;
+  padding-top: 6%;
+}

@@ -1,3 +1,47 @@
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 1px;
+}
+
+label {
+    width: 25%;
+    margin: 0;
+    text-align: right;
+    font-weight: medium;
+    font-size: 20px;
+}
+
+input {
+    width: 55%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+}
+
+p {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.registerBackground {
+    background-image: url("../../assets/images/image.jpg");
+    background-size: cover;
+}
+
+select[multiple] {
+    width: 55%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    height: 90px;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}
 .centerer {
     display: flex;
     flex-direction: column;
@@ -130,15 +174,14 @@ h3 {
 .he-tag {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items:start;
     align-self: center;
     align-content: center;
     text-align: left;
     background-color: #f5f5f5;
     width: 63%;
-    padding-top: 3%;
-    /* O ajusta el ancho si lo necesitas */
-    /* Ajusta la altura que desees */
+    padding-top: 1%;
+    font-weight: 600;
 }
 .text-left{
     width: 63%;
@@ -157,3 +200,21 @@ h3 {
     padding-top: 3%;
 }
 
+.ButtonA {
+    background-color: #2D5784;
+    color: white;
+    border-radius: 10px;
+    border-color: #00000000;
+    height: 35px;
+    width: 200px;
+
+}
+
+.ButtonB {
+    background-color: #AEB5BC;
+    color: black;
+    border-radius: 10px;
+    border-color: #00000000;
+    height: 35px;
+    width: 200px;
+}

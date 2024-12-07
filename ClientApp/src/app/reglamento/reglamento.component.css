@@ -140,11 +140,6 @@ h3 {
     /* Ajusta la altura que desees */
 }
 
-.spacing-tag {
-    color:white;
-    min-height: 15px;
-}
-
 .he-tag2 {
     display: flex;
     flex-direction: column;

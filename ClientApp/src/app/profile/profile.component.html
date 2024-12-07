@@ -24,8 +24,17 @@
         Correo:<br>
       </p>
     </div>
-    <div style="padding-top: 15%;">
-      <button (click)="getPdf()" class="loginButtonA">Generar PDF</button>
+
+    <div style="padding-top: 15%; display:flex; flex-direction: row; flex-wrap: wrap; justify-content: space-evenly; width:30%">
+      <div>
+        <button (click)="getPdf()" class="loginButtonA">Generar PDF</button>
+      </div>
+      <div>
+          <button class="ButtonB">Cambiar datos</button>
+      </div>
+  
     </div>
   </div>
+  <div class="footer-spacing-tag"></div>
+  <app-footer></app-footer>
 </body>
