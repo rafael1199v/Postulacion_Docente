@@ -1,3 +1,5 @@
+using PostulacionDocente.ServicesApp.Models;
+
 public class MateriaService : IMateriaService
 {
     public void anhadirMateria()
@@ -13,14 +15,33 @@ public class MateriaService : IMateriaService
         System.Console.WriteLine("Conseguir materia");
     }
 
-    public List<MateriaDTO> conseguirMaterias(){
+    public List<MateriaDTO> conseguirMaterias(PostulacionDocenteContext context){
 
-        var materias = new List<MateriaDTO>(){
-            new MateriaDTO{nombre = "Materia1", sigla = "M1"},
-            new MateriaDTO{nombre = "Materia2", sigla = "M2"},
-            new MateriaDTO{nombre = "Materia3", sigla = "M3"}
-        };
+        // var materias = new List<MateriaDTO>(){
+        //     new MateriaDTO{nombre = "Materia1", sigla = "M1"},
+        //     new MateriaDTO{nombre = "Materia2", sigla = "M2"},
+        //     new MateriaDTO{nombre = "Materia3", sigla = "M3"}
+        // };
+
+        var materias = (from _materia in context.Materia
+                        select new MateriaDTO{
+                            nombre = _materia.NombreMateria,
+                            sigla = _materia.Sigla
+                        }).ToList();
 
         return materias;
+    }
+
+    public List<CarreraMateriasDTO> ConseguirMateriasPorCarrera(PostulacionDocenteContext context)
+    {
+        var carreraMaterias = (from _carrera in context.Carreras
+                              select new CarreraMateriasDTO{
+                                NombreCarrera = _carrera.NombreCarrera,
+                                SiglaCarrera = _carrera.Sigla,
+                                NombreMaterias = _carrera.Materia.Select(m => m.NombreMateria).ToList()
+                              }).ToList();
+
+        
+        return carreraMaterias;
     }
 }
