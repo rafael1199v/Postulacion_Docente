@@ -2,78 +2,104 @@
     <div class="registro-container">
         <h2>Registro</h2>
         <form [formGroup]="registerForm">
+            <!-- Botón para alternar entre campos generales y jefe de carrera -->
+            <div class="form-group toggle-container">
+                <button type="button" (click)="toggleJefeCarrera()" class="toggle-btn">
+                    {{ isJefeCarrera ? 'Registrarse como Usuario General' : 'Registrarse como Jefe de Carrera' }}
+                </button>
+            </div>
+
             <!-- Campos generales -->
-            <div class="form-group">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" formControlName="nombre" required>
-            </div>
-
-            <div class="form-group">
-                <label for="telefono">Teléfono:</label>
-                <input type="text" id="telefono" formControlName="telefono" required>
-            </div>
-
-            <div class="form-group">
-                <label for="ci">CI:</label>
-                <input type="text" id="ci" formControlName="ci" required>
-            </div>
-
-            <div class="form-group">
-                <label for="fechaNacimiento">Fecha de Nacimiento:</label>
-                <input type="date" id="fechaNacimiento" formControlName="fechaNacimiento" required>
-            </div>
-
-            <div class="form-group">
-                <label for="correo">Correo:</label>
-                <input type="email" id="correo" formControlName="correo" required>
-            </div>
-
-            <div class="form-group">
-                <label for="contrasena">Contraseña:</label>
-                <input type="password" id="contrasena" formControlName="contrasena" required>
-            </div>
-
-            <div class="form-group">
-                <label for="confirmarContrasena">Confirmar Contraseña:</label>
-                <input type="password" id="confirmarContrasena" formControlName="contrasenaRep" required>
-            </div>
-
-            <!-- Campos adicionales generales -->
-            <div class="form-group">
-                <label for="materia">Materia:</label>
-                <input type="text" id="materia" formControlName="materia" required>
-            </div>
-
-            <div class="form-group">
-                <label for="grado">Grado:</label>
-                <input type="text" id="grado" formControlName="grado" required>
-            </div>
-
-            <div class="form-group">
-                <label for="anosExperiencia">Años de experiencia:</label>
-                <input type="number" id="anosExperiencia" formControlName="anosExperiencia" required>
-            </div>
-
-            <!-- Botón para alternar campos de jefe de carrera -->
-            <div class="form-group">
-                <button type="button" (click)="toggleJefeCarrera()">Registrarse como Jefe de Carrera</button>
-            </div>
-
-            <!-- Campos adicionales para Jefe de Carrera -->
-            <div *ngIf="isJefeCarrera">
+            <div *ngIf="!isJefeCarrera">
                 <div class="form-group">
-                    <label for="carreras">Seleccione las carreras (mínimo 1 y máximo 3):</label>
-                    <select id="carreras" formControlName="carreras" multiple>
-                        <option *ngFor="let carrera of listaCarreras" [value]="carrera">{{ carrera }}</option>
-                    </select>
-                    <div *ngIf="carrerasInvalid" class="error">
-                        Debes seleccionar entre 1 y 3 carreras.
-                    </div>
+                    <label for="nombre">Nombre: <span class="required">*</span></label>
+                    <input type="text" id="nombre" formControlName="nombre" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefono">Teléfono: <span class="required">*</span></label>
+                    <input type="text" id="telefono" formControlName="telefono" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="ci">CI: <span class="required">*</span></label>
+                    <input type="text" id="ci" formControlName="ci" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="fechaNacimiento">Fecha de Nacimiento: <span class="required">*</span></label>
+                    <input type="date" id="fechaNacimiento" formControlName="fechaNacimiento" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="correo">Correo: <span class="required">*</span></label>
+                    <input type="email" id="correo" formControlName="correo" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contrasena">Contraseña: <span class="required">*</span></label>
+                    <input type="password" id="contrasena" formControlName="contrasena" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmarContrasena">Confirmar Contraseña: <span class="required">*</span></label>
+                    <input type="password" id="confirmarContrasena" formControlName="contrasenaRep" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="materia">Materia: <span class="required">*</span></label>
+                    <input type="text" id="materia" formControlName="materia" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="grado">Grado: <span class="required">*</span></label>
+                    <input type="text" id="grado" formControlName="grado" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="anosExperiencia">Años de Experiencia: <span class="required">*</span></label>
+                    <input type="number" id="anosExperiencia" formControlName="anosExperiencia" required>
                 </div>
             </div>
 
+            <!-- Campos específicos para Jefe de Carrera -->
+            <div *ngIf="isJefeCarrera">
+                <div class="form-group">
+                    <label for="nombreJefe">Nombre Completo: <span class="required">*</span></label>
+                    <input type="text" id="nombreJefe" formControlName="nombre" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="correoJefe">Correo: <span class="required">*</span></label>
+                    <input type="email" id="correoJefe" formControlName="correo" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contrasenaJefe">Contraseña: <span class="required">*</span></label>
+                    <input type="password" id="contrasenaJefe" formControlName="contrasena" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmarContrasenaJefe">Confirmar Contraseña: <span class="required">*</span></label>
+                    <input type="password" id="confirmarContrasenaJefe" formControlName="contrasenaRep" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="carreras">Seleccione las carreras (mínimo 1 y máximo 3): <span
+                            class="required">*</span></label>
+                    <select id="carreras" formControlName="carreras" multiple>
+                        <option *ngFor="let carrera of listaCarreras" [value]="carrera">{{ carrera }}</option>
+                    </select>
+                    <small *ngIf="carrerasInvalid" class="error-message">
+                        Debes seleccionar entre 1 y 3 carreras.
+                    </small>
+                </div>
+            </div>
+
+            <!-- Botón de registro -->
             <button type="submit" (click)="registrarUsuario()">Registrarse</button>
         </form>
+
         <p>¿Ya tienes una cuenta? <a [routerLink]="['/login']">Inicia sesión</a></p>
     </div>
 </div>

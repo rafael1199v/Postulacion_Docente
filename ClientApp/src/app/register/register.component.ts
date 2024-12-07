@@ -22,6 +22,10 @@ export class RegisterComponent implements OnInit {
         'Administración de Empresas'
     ];
 
+    listaMaterias: string[] = [
+        'Matemáticas', 'Física', 'Química', 'Historia', 'Geografía', 'Biología'
+    ]; // Lista de materias
+
     constructor(private formBuilder: FormBuilder, private router: Router) { }
 
     ngOnInit(): void {
@@ -33,11 +37,22 @@ export class RegisterComponent implements OnInit {
             correo: ['', [Validators.required, Validators.email]],
             contrasena: ['', [Validators.required, Validators.minLength(6)]],
             contrasenaRep: ['', [Validators.required, Validators.minLength(6)]],
-            materia: ['', Validators.required],
+            materia: [[], [Validators.required, this.materiaValidator()]], // Cambiado a array para permitir múltiples seleccionados
             grado: ['', Validators.required],
             anosExperiencia: ['', [Validators.required, Validators.min(1)]],
-            carreras: [[], [this.carrerasValidator()]] // Validación personalizada
+            carreras: [[], [this.carrerasValidator()]] // Validación personalizada para carreras
         });
+    }
+
+    // Validador personalizado para materias
+    materiaValidator() {
+        return (control: any) => {
+            const selectedMaterias = control.value;
+            if (selectedMaterias.length < 1 || selectedMaterias.length > 3) {
+                return { invalidMaterias: true };
+            }
+            return null;
+        };
     }
 
     // Validador personalizado para carreras
@@ -56,11 +71,14 @@ export class RegisterComponent implements OnInit {
 
         if (this.isJefeCarrera) {
             this.registerForm.get('carreras')?.setValidators([Validators.required, this.carrerasValidator()]);
+            this.registerForm.get('materia')?.setValidators([Validators.required, this.materiaValidator()]);
         } else {
             this.registerForm.get('carreras')?.clearValidators();
+            this.registerForm.get('materia')?.clearValidators();
         }
 
         this.registerForm.get('carreras')?.updateValueAndValidity();
+        this.registerForm.get('materia')?.updateValueAndValidity();
     }
 
     registrarUsuario(): void {
