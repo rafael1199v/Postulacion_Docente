@@ -37,7 +37,7 @@ import { ProfileJefeComponent } from './profile-jefe/profile-jefe.component';
 import { PostulacionService } from './services/PostulacionService';
 import { NavMenuJefeComponent } from './nav-menu-jefe/nav-menu-jefe.component';
 import { HomeJefeComponent } from './home-jefe/home-jefe.component';
-
+import { AyudaJefeComponent } from './ayuda-jefe/ayuda-jefe.component';
 
 
 @NgModule({
@@ -68,6 +68,7 @@ import { HomeJefeComponent } from './home-jefe/home-jefe.component';
     ProfileJefeComponent,
     NavMenuJefeComponent,
     HomeJefeComponent,
+    AyudaJefeComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -93,15 +94,15 @@ import { HomeJefeComponent } from './home-jefe/home-jefe.component';
       { path: 'postularse/:vacanteId', component: PostularseComponent },
 
       //Desde Aqui seran las secciones hechas para el jefe de carrera
-      //Deberiamos hacer 2 homes y dos navbars?
 
+      { path: 'jefe', component: HomeJefeComponent},
       { path: 'vacantes-creadas', component: VacantesCreadasComponent },
       { path: 'postulaciones-recibidas', component: PostulacionesRecibidasComponent },
       { path: 'crear-vacante', component: CrearVacanteComponent },
       { path: 'revisar-postulacion', component: RevisarPostulacionComponent },
       { path: 'cambiar-datos-jefe', component: CambiarDatosJefeComponent },
       { path: 'profile-jefe', component: ProfileJefeComponent },
-      { path: 'jefe', component: HomeJefeComponent},
+      { path: 'ayuda-jefe', component: AyudaJefeComponent},
     ])
   ],
   providers: [vacanteService, LoginService, PerfilService, PostulacionService],
