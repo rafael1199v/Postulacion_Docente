@@ -31,6 +31,8 @@ import { VacantesCreadasComponent } from './vacantes-creadas/vacantes-creadas.co
 import { PostulacionesRecibidasComponent } from './postulaciones-recibidas/postulaciones-recibidas.component';
 import { CrearVacanteComponent } from './crear-vacante/crear-vacante.component';
 import { PerfilService } from './services/PerfilService';
+import { RevisarPostulacionComponent } from './revisar-postulacion/revisar-postulacion.component';
+import { CambiarDatosJefeComponent } from './cambiar-datos-jefe/cambiar-datos-jefe.component';
 
 
 @NgModule({
@@ -55,7 +57,9 @@ import { PerfilService } from './services/PerfilService';
     PostularseComponent,
     VacantesCreadasComponent,
     PostulacionesRecibidasComponent,
-    CrearVacanteComponent
+    CrearVacanteComponent,
+    RevisarPostulacionComponent,
+    CambiarDatosJefeComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -74,14 +78,16 @@ import { PerfilService } from './services/PerfilService';
       { path: 'reglamento', component: ReglamentoComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'vacantes-disponibles', component: VacantesDisponiblesComponent},
-      { path: 'postulaciones', component: PostulacionesPostulanteComponent},
-      { path: 'estado-postulacion', component: EstadoPostulacionComponent},
-      { path: 'cambiar-datos-postulante', component: CambiarDatosPostulanteComponent},
-      { path: 'postularse', component: PostularseComponent},
-      { path: 'vacantes-creadas', component: VacantesCreadasComponent},
-      { path: 'postulaciones-recibidas', component: PostulacionesRecibidasComponent},
-      { path: 'crear-vacante', component: CrearVacanteComponent},
+      { path: 'vacantes-disponibles', component: VacantesDisponiblesComponent },
+      { path: 'postulaciones', component: PostulacionesPostulanteComponent },
+      { path: 'estado-postulacion', component: EstadoPostulacionComponent },
+      { path: 'cambiar-datos-postulante', component: CambiarDatosPostulanteComponent },
+      { path: 'postularse', component: PostularseComponent },
+      { path: 'vacantes-creadas', component: VacantesCreadasComponent },
+      { path: 'postulaciones-recibidas', component: PostulacionesRecibidasComponent },
+      { path: 'crear-vacante', component: CrearVacanteComponent },
+      { path: 'revisar-postulacion', component: RevisarPostulacionComponent },
+      { path: 'cambiar-datos-jefe', component: CambiarDatosJefeComponent },
     ])
   ],
   providers: [vacanteService, LoginService, PerfilService],

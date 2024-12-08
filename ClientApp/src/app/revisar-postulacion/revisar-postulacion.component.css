@@ -17,7 +17,6 @@
     text-align: center;
     background-color: #f5f5f5;
     max-width: 1063px;
-    margin-bottom: 50px;
     /* Espacio debajo de "Universidad Católica" */
 }
 
@@ -62,7 +61,7 @@ h3 {
     align-self: center;
     align-content: center;
     text-align: left;
-    background-color: white;
+    background-color: #f5f5f5;
     width: 63%;
     padding-top: 3%;
     /* O ajusta el ancho si lo necesitas */
@@ -85,43 +84,24 @@ h3 {
     padding-top: 3%;
 }
 
-.state-wrapper {
-    display:flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    width:40%;
-    justify-content: space-between;
+.ButtonA {
+    background-color: #2D5784;
+    color: white;
+    border-radius: 10px;
+    border-color: #00000000;
+    height: 55px;
+    width: 300px;
+    font-size: large;
+    font-weight: 600;
 }
 
-.state-circle {
-    outline-color: black;
-    border-radius: 40px;
-    outline-style: solid;
-    width: 60px;
-    height: 60px;
-    margin: 10px;
-    z-index: 1;
-}
-.state-number {
-    font-size: 37px;
-}
-.state-line-wrapper {
-    width: 35.75%;
-    height: 10px;
-    margin: 10px;
-    position: absolute;
-    padding-top: 24lvh;
-}
-.state-line {
-    font-size: 37px;
-    text-shadow: 5px 0 #000000, -5px 0 #000000;
-    color: 0;
-    z-index: -1;
-    overflow: hidden;
-    text-overflow:clip;
-    white-space: wrap;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
+.ButtonB {
+    background-color: #AEB5BC;
+    color: black;
+    border-radius: 10px;
+    border-color: #00000000;
+    height: 55px;
+    width: 300px;
+    font-size: large;
+    font-weight: 600;
 }
