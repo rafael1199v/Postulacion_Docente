@@ -24,4 +24,10 @@ public class DocenteController : ControllerBase
     {
         return Ok(_docenteService.ConseguirDetallesDocente(_context, usuarioCI));
     }
+
+    [HttpPost("postularse")]
+    public IActionResult Postularse([FromBody] NuevaPostulacionDTO nuevaPostulacion)
+    {
+        return _docenteService.Postularse(_context, nuevaPostulacion, out string mensaje) ? Ok(new {mensaje}) : BadRequest(new{ mensaje });
+    }
 }

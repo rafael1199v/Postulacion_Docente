@@ -22,6 +22,12 @@ export class AppComponent {
     else{
       this.isJefe = false;
     }
+
+    if(sessionStorage.getItem('usuarioCI') == null)
+    {
+      this.router.navigate(['/login']);
+    }
+
     this.router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) {
         switch(e.url)

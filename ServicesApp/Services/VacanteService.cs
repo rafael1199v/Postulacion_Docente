@@ -25,7 +25,7 @@ public class VacanteService : IVacanteService
                         select _docente.DocenteId).FirstOrDefault<int>();
 
         var vacantesDisponibles = (from _vacante in context.Vacantes
-                                  where now < _vacante.FechaFin && now >= _vacante.FechaInicio && (_vacante.Postulacions.Count == 0 || _vacante.Postulacions.Any(p => p.EstadoId != 4 && p.DocenteId != docenteId))
+                                  where now < _vacante.FechaFin && now >= _vacante.FechaInicio && (_vacante.Postulacions.Count == 0 || !_vacante.Postulacions.Any(p => p.EstadoId == 4 || p.DocenteId == docenteId))
                                   select new VacanteDTO{
                                     VacanteId = _vacante.VacanteId,
                                     NombreVacante = _vacante.NombreVacante,
