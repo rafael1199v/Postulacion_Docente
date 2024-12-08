@@ -1,4 +1,5 @@
 CREATE DATABASE PostulacionDocente;
+--USE master
 USE PostulacionDocente;
 
 CREATE TABLE Usuario (
@@ -46,13 +47,10 @@ CREATE TABLE JefeCarrera(
 CREATE TABLE Postulacion(
     PostulacionId INT NOT NULL PRIMARY KEY IDENTITY(1, 1),
     EstadoId INT NOT NULL, -- FOREIGN KEY REFERENCES Estado(EstadoId)
-    DocenteId INT NOT NULL -- FOREIGN KEY REFERENCES Docente(DocenteId)
+    DocenteId INT NOT NULL, -- FOREIGN KEY REFERENCES Docente(DocenteId)
+	VacanteId INT NOT NULL
 );
 
-CREATE TABLE PostulacionVacante(
-    VacanteId INT NOT NULL, -- FOREIGN KEY REFERENCES Vacante(VacanteId)
-    PostulacionId INT NOT NULL -- FOREIGN KEY REFERENCES Postulacion(PostulacionId)
-);
 
 CREATE TABLE Vacante(
     VacanteId INT PRIMARY KEY NOT NULL IDENTITY(1,1),
@@ -102,30 +100,10 @@ ALTER TABLE Postulacion
 ADD CONSTRAINT FK_Docente_Postulacion
 FOREIGN KEY (DocenteId) REFERENCES Docente(DocenteId);
 
-ALTER TABLE PostulacionVacante
-ADD CONSTRAINT FK_Vacante_PostulacionVacante
+ALTER TABLE Postulacion
+ADD CONSTRAINT FK_Vacante_Postulacion
 FOREIGN KEY (VacanteId) REFERENCES Vacante(VacanteId);
-
-ALTER TABLE PostulacionVacante
-ADD CONSTRAINT FK_Postulacion_PostulacionVacante
-FOREIGN KEY (PostulacionId) REFERENCES Postulacion(PostulacionId);
-
-ALTER TABLE PostulacionVacante
-ADD CONSTRAINT  PK_PostulacionVacante
-PRIMARY KEY (VacanteId, PostulacionId);
 
 ALTER TABLE Vacante
 ADD CONSTRAINT FK_Materia_Vacante
 FOREIGN KEY (MateriaId) REFERENCES Materia(MateriaId);
-
-
-DROP TABLE PostulacionVacante;
-DROP TABLE Postulacion;
-DROP TABLE Vacante;
-DROP TABLE Estado;
-DROP TABLE JefeCarrera;
-DROP TABLE MateriaCarrera;
-DROP TABLE Carrera;
-DROP TABLE Materia;
-DROP TABLE Docente;
-DROP TABLE Usuario;
