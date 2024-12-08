@@ -1,24 +1,8 @@
+using Microsoft.EntityFrameworkCore;
 using PostulacionDocente.ServicesApp.Models;
 
 public class UsuarioService : IUsuarioService
 {
-    // public bool ModificarUsuario(UsuarioDTO antiguo, UsuarioDTO renovado)
-    // {
-    //     if (CredencialesSinUso(new List<string> { renovado.CI, renovado.correo, renovado.numero }))
-    //     {
-    //         antiguo.nombre = renovado.nombre;
-    //         antiguo.CI = renovado.CI;
-    //         antiguo.contrasenha = renovado.contrasenha;
-    //         antiguo.correo = renovado.correo;
-    //         //antiguo.fechaNacimiento = renovado.fechaNacimiento;
-    //         antiguo.numero = renovado.numero;
-    //         System.Console.WriteLine("Usuario modificado");
-    //         //enviar antiguo a la base de datos
-    //         return true;
-    //     }
-    //     return false;
-    // }
-
     // public bool EncontrarUsuario(string objetivo, int tipo){
     //identifier funcionará como el tipo de campo que se está buscando
     //0: nombre
@@ -116,6 +100,55 @@ public class UsuarioService : IUsuarioService
         }
 
         usuarioCI= usuario.Ci;
+        return true;
+    }
+
+
+    public bool CambiarDatosDocente(DocenteNuevosDatosDTO nuevosDatosDocente, PostulacionDocenteContext context, out string mensaje)
+    {
+        mensaje = "Datos modificados exitosamente";
+
+        var docente = (from _docente in context.Docentes
+                      join _usuario in context.Usuarios on _docente.UsuarioId equals _usuario.UsuarioId
+                      where _usuario.Ci == nuevosDatosDocente.CI
+                      select _docente).Include(d => d.Usuario).FirstOrDefault<Docente>();
+
+        if(docente == null)
+        {
+            mensaje = "Hubo un error, no pudimos encontrar al usuario";
+            return false;
+        }
+        else if(docente.Usuario.Contrasenha != nuevosDatosDocente.ContrasenhaActual)
+        {
+            mensaje = "La contrasenha actual del usuario es incorrecta";
+            return false;
+        }
+        
+        //Si el docente quiere mantener su numero de telefono o su correo, solo se agarra los numeros y correos diferentes al del docente
+        HashSet<string> telefonos = context.Usuarios.Select(usuario => usuario.NumeroTelefono).Where(telefono => telefono != docente.Usuario.NumeroTelefono).ToHashSet();
+        HashSet<string> correos = context.Usuarios.Select(usuario => usuario.Correo).Where(correo => correo != docente.Usuario.Correo).ToHashSet();
+
+        if(telefonos.Contains(nuevosDatosDocente.NuevoTelefono))
+        {
+            mensaje = "El numero de telefono ya esta siendo ocupado";
+            return false;
+        }
+        else if(correos.Contains(nuevosDatosDocente.NuevoCorreo))
+        {
+            mensaje = "El correo ya esta siendo ocupado por otro usuario";
+            return false;
+        }
+
+        docente.Usuario.Nombre = nuevosDatosDocente.NuevoNombre;
+        docente.Usuario.NumeroTelefono = nuevosDatosDocente.NuevoTelefono;
+        docente.Usuario.FechaNacimiento = nuevosDatosDocente.NuevaFechaNacimiento;
+        docente.Usuario.Correo = nuevosDatosDocente.NuevoCorreo;
+        docente.Especialidad = nuevosDatosDocente.NuevaMateria;
+        docente.Grado = nuevosDatosDocente.NuevoGrado;
+        docente.Experiencia = nuevosDatosDocente.NuevoAnhosExperiencia;
+        docente.Usuario.Contrasenha = nuevosDatosDocente.NuevaContrasena;
+
+        context.SaveChanges();
         return true;
     }
 }

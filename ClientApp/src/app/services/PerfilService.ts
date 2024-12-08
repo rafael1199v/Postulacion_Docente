@@ -2,6 +2,8 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Docente } from '../models/interfaces/docente.interface';
+import { FormGroup } from '@angular/forms';
+import { DocenteNuevosDatos } from '../models/interfaces/docenteNuevosDatos.enum';
 
 @Injectable()
 export class PerfilService {
@@ -15,5 +17,24 @@ export class PerfilService {
     obtenerDatosJefeCarrera()
     {
 
+    }
+
+
+    cambiarDatosDocente(cambiarDatosDocenteForm: FormGroup, CI: string)
+    {
+        const datosDocenteNuevos: DocenteNuevosDatos = {
+            nuevoNombre: cambiarDatosDocenteForm.value.nombre,
+            nuevoTelefono: cambiarDatosDocenteForm.value.telefono,
+            nuevaFechaNacimiento: cambiarDatosDocenteForm.value.fechaNacimiento,
+            nuevoCorreo: cambiarDatosDocenteForm.value.correo,
+            nuevaMateria: cambiarDatosDocenteForm.value.materia,
+            nuevoGrado: cambiarDatosDocenteForm.value.grado, 
+            nuevoAnhosExperiencia: cambiarDatosDocenteForm.value.anhosExperiencia,
+            nuevaContrasena: cambiarDatosDocenteForm.value.nuevaContrasena,
+            contrasenhaActual: cambiarDatosDocenteForm.value.contrasenaOld,
+            ci: CI
+        };
+        
+        return this.http.post<any>(this.baseUrl + 'usuario/cambiarDatosDocente', datosDocenteNuevos);
     }
 }

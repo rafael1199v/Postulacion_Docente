@@ -25,17 +25,7 @@ public class UsuarioController: ControllerBase{
     //     return service.EncontrarUsuario(field, identifier)? Ok() : BadRequest();
     // }
 
-    // [HttpPut("editar")]
-    // public IActionResult editarDatos((UsuarioDTO, UsuarioDTO) datos){
-    //     //item 1: Datos antiguos del usuario
-    //     //item 2: Datos actualizados del usuario
-
-    //     if(_usuarioService.ModificarUsuario(datos.Item1, datos.Item2)){
-    //         return Ok("Usuario actualizado");
-    //     }
-    //     return BadRequest("Hubo un error actualizando los datos");
-    // }
-
+   
     [HttpGet("getAll")]
     public IActionResult GetAllUsers()
     {
@@ -68,6 +58,12 @@ public class UsuarioController: ControllerBase{
     public IActionResult RegistroJefeCarrera([FromBody] JefeCarreraRegistroDTO nuevoJefe)
     {
         return _registroService.RegistrarJefeCarrera(nuevoJefe, _context, out string mensaje) ? Ok(mensaje) : BadRequest(mensaje);
+    }
+
+    [HttpPost("cambiarDatosDocente")]
+    public IActionResult CambiarDatosDocente([FromBody] DocenteNuevosDatosDTO docenteNuevosDatos)
+    {
+        return _usuarioService.CambiarDatosDocente(docenteNuevosDatos, _context, out string mensaje) ? Ok(new {mensaje}) : BadRequest( new {mensaje});
     }
 
     
