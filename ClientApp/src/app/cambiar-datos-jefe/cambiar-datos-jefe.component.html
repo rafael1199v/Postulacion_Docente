@@ -22,39 +22,8 @@
         </div>
 
         <div class="form-group">
-            <label for="telefono">Teléfono:</label>
-            <input type="text" id="telefono" formControlName="telefono" placeholder="Copiar celu">
-        </div>
-
-        <div class="form-group">
-            <label for="ci">CI:</label>
-            <input type="text" id="ci" formControlName="ci" placeholder="Debería poderse cambiar el CI? xddd">
-        </div>
-
-        <div class="form-group">
-            <label for="fechaNacimiento">Fecha de Nacimiento:</label>
-            <input type="date" id="fechaNacimiento" formControlName="fechaNacimiento" value="2005-05-02">
-            <!-- reemplazar value con el valor anterior del postulante -->
-        </div>
-
-        <div class="form-group">
             <label for="correo">Correo:</label>
             <input type="email" id="correo" formControlName="correo" placeholder="Copiar correo">
-        </div>
-
-        <div class="form-group">
-            <label for="materia">Materia:</label>
-            <input type="text" id="materia" formControlName="materia" placeholder="Copie">
-        </div>
-
-        <div class="form-group">
-            <label for="grado">Grado:</label>
-            <input type="text" id="grado" formControlName="grado" placeholder="Copie">
-        </div>
-
-        <div class="form-group">
-            <label for="anosExperiencia">Años de Experiencia:</label>
-            <input type="number" id="anosExperiencia" formControlName="anosExperiencia" placeholder="Copie">
         </div>
 
         <div class="form-group">
@@ -76,7 +45,7 @@
             <button class="ButtonA">Guardar cambios</button>
         </div>
         <div>
-            <button class="ButtonB">Descartar cambios</button>
+            <button class="ButtonB" [routerLink]="['/profile-jefe']">Descartar cambios</button>
         </div>
     </div>
   </div>

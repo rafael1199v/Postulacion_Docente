@@ -33,6 +33,7 @@ import { CrearVacanteComponent } from './crear-vacante/crear-vacante.component';
 import { PerfilService } from './services/PerfilService';
 import { RevisarPostulacionComponent } from './revisar-postulacion/revisar-postulacion.component';
 import { CambiarDatosJefeComponent } from './cambiar-datos-jefe/cambiar-datos-jefe.component';
+import { ProfileJefeComponent } from './profile-jefe/profile-jefe.component';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { CambiarDatosJefeComponent } from './cambiar-datos-jefe/cambiar-datos-je
     PostulacionesRecibidasComponent,
     CrearVacanteComponent,
     RevisarPostulacionComponent,
-    CambiarDatosJefeComponent
+    CambiarDatosJefeComponent,
+    ProfileJefeComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -88,6 +90,7 @@ import { CambiarDatosJefeComponent } from './cambiar-datos-jefe/cambiar-datos-je
       { path: 'crear-vacante', component: CrearVacanteComponent },
       { path: 'revisar-postulacion', component: RevisarPostulacionComponent },
       { path: 'cambiar-datos-jefe', component: CambiarDatosJefeComponent },
+      { path: 'profile-jefe', component: ProfileJefeComponent },
     ])
   ],
   providers: [vacanteService, LoginService, PerfilService],
