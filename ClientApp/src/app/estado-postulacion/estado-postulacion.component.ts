@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Postulacion } from '../models/interfaces/postulacion.interface';
+import { PostulacionService } from '../services/PostulacionService';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-estado-postulacion',
@@ -6,5 +9,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./estado-postulacion.component.css']
 })
 export class EstadoPostulacionComponent {
+  postulacion: Postulacion | undefined;
+
+  constructor(private postulacionService: PostulacionService, private activatedRoute: ActivatedRoute){
+    this.postulacionService.ConseguirDetallePostulacion(this.activatedRoute.snapshot.paramMap.get('postulacionId') || '-1').subscribe(result => {
+      this.postulacion = result;
+    }, error => console.log(error));
+  }
+
 
 }

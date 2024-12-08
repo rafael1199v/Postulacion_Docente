@@ -1,6 +1,6 @@
 public class PostulacionDetallesDTO
 {
-    
+    public int PostulacionId { get; set; }
     public string TituloMateria { get; set; } = string.Empty;
     public int Estado { get; set; }
     public string DescripcionEstado { get; set; } = string.Empty;

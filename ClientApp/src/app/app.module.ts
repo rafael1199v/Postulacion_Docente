@@ -34,6 +34,7 @@ import { PerfilService } from './services/PerfilService';
 import { RevisarPostulacionComponent } from './revisar-postulacion/revisar-postulacion.component';
 import { CambiarDatosJefeComponent } from './cambiar-datos-jefe/cambiar-datos-jefe.component';
 import { ProfileJefeComponent } from './profile-jefe/profile-jefe.component';
+import { PostulacionService } from './services/PostulacionService';
 
 
 
@@ -83,7 +84,7 @@ import { ProfileJefeComponent } from './profile-jefe/profile-jefe.component';
       { path: 'register', component: RegisterComponent },
       { path: 'vacantes-disponibles', component: VacantesDisponiblesComponent },
       { path: 'postulaciones', component: PostulacionesPostulanteComponent },
-      { path: 'estado-postulacion', component: EstadoPostulacionComponent },
+      { path: 'estado-postulacion/:postulacionId', component: EstadoPostulacionComponent },
       { path: 'cambiar-datos-postulante', component: CambiarDatosPostulanteComponent },
       { path: 'postularse/:vacanteId', component: PostularseComponent },
 
@@ -98,7 +99,7 @@ import { ProfileJefeComponent } from './profile-jefe/profile-jefe.component';
       { path: 'profile-jefe', component: ProfileJefeComponent },
     ])
   ],
-  providers: [vacanteService, LoginService, PerfilService],
+  providers: [vacanteService, LoginService, PerfilService, PostulacionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -41,6 +41,13 @@ public class PostulacionController : ControllerBase
     {
         return Ok(_postulacionService.ConseguirDetallesPostulacion(_context, postulacionId));
     }
+
+
+    [HttpGet("conseguirPostulacionesVigentes/{CI}")]
+    public IActionResult ConseguirPostulacionesVigentes(string CI)
+    {
+        return Ok(_postulacionService.ConseguirPostulacionesVigentes(_context, CI));
+    }
     
 
 }
