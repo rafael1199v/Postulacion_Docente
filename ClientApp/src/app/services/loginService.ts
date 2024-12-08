@@ -18,7 +18,7 @@ export class LoginService{
     }
 
     login(loginData : LoginData){
-        return this.http.post<LoginData>(this.baseUrl + 'usuario/login', loginData);
+        return this.http.post<any>(this.baseUrl + 'usuario/loginDocente', loginData);
     }
 
     loginFormBuilder(){

@@ -1,5 +1,5 @@
 using System.Reflection.Metadata;
-
+using PostulacionDocente.ServicesApp.Models;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
@@ -7,8 +7,22 @@ using QuestPDF.Previewer;
 
 public class PdfService : IPdfService
 {
-    public byte[] GenerarPdfDocente(DocenteDTO docente)
+    public byte[] GenerarPdfDocente(string CI, PostulacionDocenteContext context)
     {
+        var docente = (from _docente in context.Docentes
+                      join _usuario in context.Usuarios on _docente.UsuarioId equals _usuario.UsuarioId
+                      where _usuario.Ci == CI
+                      select new DocentePerfilDTO{
+                        Nombre = _usuario.Nombre,
+                        Telefono = _usuario.NumeroTelefono,
+                        Correo = _usuario.Correo,
+                        CI = _usuario.Ci,
+                        Materia = _docente.Especialidad,
+                        Grado = _docente.Grado,
+                        AnhosExperiencia = _docente.Experiencia
+                      }).FirstOrDefault<DocentePerfilDTO>();
+
+
         var documento = QuestPDF.Fluent.Document.Create(container => {
             container.Page(page =>
             {
@@ -26,13 +40,13 @@ public class PdfService : IPdfService
                     .Background(Colors.Grey.Lighten2)
                     .Text(text => 
                     {
-                        text.Line($"Nombre: {docente.nombre}");
-                        text.Line($"CI: {docente.CI}");
-                        text.Line($"Numero: {docente.numero}");
-                        text.Line($"Correo: {docente.correo}");
-                        text.Line($"Grado: {docente.grado}");
-                        text.Line($"Años de experiencia: {docente.experiencia}");
-                        text.Line($"Especialidad: {docente.materia}");
+                        text.Line($"Nombre: {docente?.Nombre}");
+                        text.Line($"CI: {docente?.CI}");
+                        text.Line($"Numero: {docente?.Telefono}");
+                        text.Line($"Correo: {docente?.Correo}");
+                        text.Line($"Grado: {docente?.Grado}");
+                        text.Line($"Años de experiencia: {docente?.AnhosExperiencia}");
+                        text.Line($"Especialidad: {docente?.Materia}");
                     });
 
                 page.Footer()

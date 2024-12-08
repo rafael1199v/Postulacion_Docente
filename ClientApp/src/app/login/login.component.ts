@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LoginData } from '../models/interfaces/login.interface';
 import { LoginService } from '../services/loginService';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 
@@ -14,7 +15,7 @@ export class LoginComponent {
 
   loginForm: FormGroup;
 
-  constructor(private loginService: LoginService){
+  constructor(private loginService: LoginService, private router: Router){
     this.loginForm = this.loginService.loginFormBuilder();
   }
 
@@ -32,7 +33,9 @@ export class LoginComponent {
   
       console.log("Verificando credenciales");
       this.loginService.login(loginData).subscribe( result => {
-        
+        sessionStorage.setItem('usuarioCI', result.usuarioCI);
+        //console.log(result.usuarioCI)
+        this.router.navigate(['/']);
       }, error => console.log(error));
     }
     

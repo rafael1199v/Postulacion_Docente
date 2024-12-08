@@ -29,6 +29,9 @@ import { CambiarDatosPostulanteComponent } from './cambiar-datos-postulante/camb
 import { PostularseComponent } from './postularse/postularse.component';
 import { VacantesCreadasComponent } from './vacantes-creadas/vacantes-creadas.component';
 import { PostulacionesRecibidasComponent } from './postulaciones-recibidas/postulaciones-recibidas.component';
+import { CrearVacanteComponent } from './crear-vacante/crear-vacante.component';
+import { PerfilService } from './services/PerfilService';
+
 
 @NgModule({
   declarations: [
@@ -51,7 +54,8 @@ import { PostulacionesRecibidasComponent } from './postulaciones-recibidas/postu
     CambiarDatosPostulanteComponent,
     PostularseComponent,
     VacantesCreadasComponent,
-    PostulacionesRecibidasComponent
+    PostulacionesRecibidasComponent,
+    CrearVacanteComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -77,9 +81,10 @@ import { PostulacionesRecibidasComponent } from './postulaciones-recibidas/postu
       { path: 'postularse', component: PostularseComponent},
       { path: 'vacantes-creadas', component: VacantesCreadasComponent},
       { path: 'postulaciones-recibidas', component: PostulacionesRecibidasComponent},
+      { path: 'crear-vacante', component: CrearVacanteComponent},
     ])
   ],
-  providers: [vacanteService, LoginService],
+  providers: [vacanteService, LoginService, PerfilService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

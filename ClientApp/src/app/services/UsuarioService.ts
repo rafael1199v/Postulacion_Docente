@@ -1,14 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Docente } from '../models/interfaces/docente.interface';
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class UsuarioService {
     private apiUrl = ''; // AQUI HAY QUE REEMPLAZAR CON LA URL DE NUESTRA API
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl : string) { }
 
     /**
      * Método para registrar un usuario.
@@ -27,4 +26,5 @@ export class UsuarioService {
     obtenerUsuarios(): Observable<any[]> {
         return this.http.get<any[]>(this.apiUrl);
     }
+
 }

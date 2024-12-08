@@ -49,13 +49,13 @@ public class UsuarioController: ControllerBase{
     [HttpPost("loginDocente")]
     public IActionResult LoginDocente([FromBody] LoginUsuarioDTO credenciales)
     {
-        return _usuarioService.LoginDocente(credenciales, _context, out string mensaje) ? Ok(mensaje) : BadRequest(mensaje);
+        return _usuarioService.LoginDocente(credenciales, _context, out string mensaje, out string usuarioCI)  ? Ok(new {mensaje, usuarioCI}) : BadRequest(mensaje);
     }
 
     [HttpPost("loginJefeCarrera")]
     public IActionResult LoginJefeCarrera([FromBody] LoginUsuarioDTO credenciales)
     {
-        return _usuarioService.LoginJefeCarrera(credenciales, _context, out string mensaje) ? Ok(mensaje) : BadRequest(mensaje);
+        return _usuarioService.LoginJefeCarrera(credenciales, _context, out string mensaje, out string usuarioCI) ? Ok(new {mensaje, usuarioCI}) : BadRequest(mensaje);
     }
 
     [HttpPost("registrarDocente")]

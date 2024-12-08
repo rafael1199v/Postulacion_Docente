@@ -1,3 +1,5 @@
+using PostulacionDocente.ServicesApp.Models;
+
 public class DocenteService : IDocenteService{
     public void guardarDatosDocente(DocenteDTO? nuevoDocente){
         //appDbContext.Docente.Add(nuevoDocente);
@@ -32,5 +34,22 @@ public class DocenteService : IDocenteService{
         return docente;
     }
 
+    public DocentePerfilDTO? ConseguirDetallesDocente(PostulacionDocenteContext context,string usuarioCI)
+    {
+        var docente = (from _usuario in context.Usuarios
+                      join _docente in context.Docentes on _usuario.UsuarioId equals _docente.UsuarioId
+                      where _usuario.Ci == usuarioCI
+                      select new DocentePerfilDTO {
+                        Nombre = _usuario.Nombre,
+                        Telefono = _usuario.NumeroTelefono,
+                        CI = _usuario.Ci,
+                        Materia = _docente.Especialidad,
+                        Grado = _docente.Grado,
+                        Correo = _usuario.Correo,
+                        AnhosExperiencia = _docente.Experiencia
+                      }).FirstOrDefault<DocentePerfilDTO>();
 
+
+        return docente;
+    }
 }

@@ -7,4 +7,5 @@ public interface IMateriaService
     public void conseguirMateria();
     public List<MateriaDTO> conseguirMaterias(PostulacionDocenteContext context);
     public List<CarreraMateriasDTO> ConseguirMateriasPorCarrera(PostulacionDocenteContext context);
+    public List<MateriaDTO> ConseguirMateriasJefeCarrera(PostulacionDocenteContext context, string CI);
 }

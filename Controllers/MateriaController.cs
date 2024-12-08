@@ -27,4 +27,10 @@ public class MateriaController : ControllerBase
 
         return Ok(_materiaService.ConseguirMateriasPorCarrera(_context));
     }
+
+    [HttpGet("conseguirMateriasJefeCarrera/{CI}")]
+    public IActionResult ConseguirMateriasJefeCarrera(string CI)
+    {
+        return Ok(_materiaService.ConseguirMateriasJefeCarrera(_context, CI));
+    }
 }

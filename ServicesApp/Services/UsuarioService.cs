@@ -64,9 +64,10 @@ public class UsuarioService : IUsuarioService
     // }
 
   
-    public bool LoginDocente(LoginUsuarioDTO credenciales, PostulacionDocenteContext context, out string mensaje)
+    public bool LoginDocente(LoginUsuarioDTO credenciales, PostulacionDocenteContext context, out string mensaje, out string usuarioCI)
     {
         mensaje = "Usuario autenticado";
+        usuarioCI = "-1";
 
         if (credenciales == null)
         {
@@ -86,15 +87,16 @@ public class UsuarioService : IUsuarioService
             return false;
         }
 
+        usuarioCI = usuario.Ci;
         return true;
     }
 
 
 
-    public bool LoginJefeCarrera(LoginUsuarioDTO credenciales, PostulacionDocenteContext context, out string mensaje)
+    public bool LoginJefeCarrera(LoginUsuarioDTO credenciales, PostulacionDocenteContext context, out string mensaje, out string usuarioCI)
     {
         mensaje = "Usuario autenticado";
-
+        usuarioCI= "-1";
         if (credenciales == null)
         {
             mensaje = "Hubo un error, las credenciales son nulas";
@@ -113,7 +115,7 @@ public class UsuarioService : IUsuarioService
             return false;
         }
 
-
+        usuarioCI= usuario.Ci;
         return true;
     }
 }
