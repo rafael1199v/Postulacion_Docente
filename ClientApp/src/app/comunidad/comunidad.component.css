@@ -77,7 +77,7 @@ h3 {
     align-self: center;
     align-content: center;
     text-align: center;
-    background-image: url('./cartel2.png');
+    background-image: url('../../assets/images/comunidad.png');
     background-size: cover;
     background-position-y: -40px;
     width: 100%;

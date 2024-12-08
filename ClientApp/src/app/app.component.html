@@ -1,5 +1,8 @@
 <header>
-  <app-nav-menu *ngIf="tokenRouter > 1"></app-nav-menu>
+  <div *ngIf="tokenRouter > 1">
+    <app-nav-menu *ngIf="!isJefe"></app-nav-menu>
+    <app-nav-menu-jefe *ngIf="isJefe"></app-nav-menu-jefe>
+  </div>
 </header>
 <body>
   <div class="container" [ngStyle]="tokenRouter == 0 && {'background-image': 'url(../assets/images/Santa-Cruz-min.jpg)'} || null">

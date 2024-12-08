@@ -35,6 +35,8 @@ import { RevisarPostulacionComponent } from './revisar-postulacion/revisar-postu
 import { CambiarDatosJefeComponent } from './cambiar-datos-jefe/cambiar-datos-jefe.component';
 import { ProfileJefeComponent } from './profile-jefe/profile-jefe.component';
 import { PostulacionService } from './services/PostulacionService';
+import { NavMenuJefeComponent } from './nav-menu-jefe/nav-menu-jefe.component';
+import { HomeJefeComponent } from './home-jefe/home-jefe.component';
 
 
 
@@ -64,6 +66,8 @@ import { PostulacionService } from './services/PostulacionService';
     RevisarPostulacionComponent,
     CambiarDatosJefeComponent,
     ProfileJefeComponent,
+    NavMenuJefeComponent,
+    HomeJefeComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -97,6 +101,7 @@ import { PostulacionService } from './services/PostulacionService';
       { path: 'revisar-postulacion', component: RevisarPostulacionComponent },
       { path: 'cambiar-datos-jefe', component: CambiarDatosJefeComponent },
       { path: 'profile-jefe', component: ProfileJefeComponent },
+      { path: 'jefe', component: HomeJefeComponent},
     ])
   ],
   providers: [vacanteService, LoginService, PerfilService, PostulacionService],

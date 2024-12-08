@@ -34,6 +34,7 @@ export class LoginComponent {
       console.log("Verificando credenciales");
       this.loginService.loginDocente(loginData).subscribe( result => {
         sessionStorage.setItem('usuarioCI', result.usuarioCI);
+        sessionStorage.setItem('isJefe', 'false');
         //console.log(result.usuarioCI)
         this.router.navigate(['/']);
       }, error => console.log(error));
@@ -58,8 +59,9 @@ export class LoginComponent {
       console.log("Verificando credenciales");
       this.loginService.loginJefeCarrera(loginData).subscribe( result => {
         sessionStorage.setItem('usuarioCI', result.usuarioCI);
+        sessionStorage.setItem('isJefe', 'true');
         //console.log(result.usuarioCI)
-        this.router.navigate(['/']);
+        this.router.navigate(['/jefe']);
       }, error => console.log(error));
     }
 
