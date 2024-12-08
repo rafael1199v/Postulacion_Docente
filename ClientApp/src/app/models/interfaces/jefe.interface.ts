@@ -1,6 +1,5 @@
-import { Usuario } from "./usuario.interface";
-
 export interface Jefe{
     nombre: string,
-    correo: string
+    correo: string,
+    carreras: string[]
 };

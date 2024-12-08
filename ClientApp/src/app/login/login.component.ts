@@ -19,7 +19,7 @@ export class LoginComponent {
     this.loginForm = this.loginService.loginFormBuilder();
   }
 
-  login(){
+  loginDocente(){
 
     if(!this.loginForm.valid){
       console.log("Datos faltantes o incorrectos");
@@ -32,7 +32,7 @@ export class LoginComponent {
       };
   
       console.log("Verificando credenciales");
-      this.loginService.login(loginData).subscribe( result => {
+      this.loginService.loginDocente(loginData).subscribe( result => {
         sessionStorage.setItem('usuarioCI', result.usuarioCI);
         //console.log(result.usuarioCI)
         this.router.navigate(['/']);
@@ -40,5 +40,28 @@ export class LoginComponent {
     }
     
    
+  }
+
+
+  loginJefeCarrera(){
+
+    if(!this.loginForm.valid){
+      console.log("Datos faltantes o incorrectos");
+    }
+    else{
+
+      let loginData : LoginData = {
+        email : this.loginForm.value.email,
+        password: this.loginForm.value.password
+      };
+  
+      console.log("Verificando credenciales");
+      this.loginService.loginJefeCarrera(loginData).subscribe( result => {
+        sessionStorage.setItem('usuarioCI', result.usuarioCI);
+        //console.log(result.usuarioCI)
+        this.router.navigate(['/']);
+      }, error => console.log(error));
+    }
+
   }
 }

@@ -14,7 +14,7 @@ export class ProfileJefeComponent {
 
   jefeCarrera: Jefe | undefined;
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private perfilService: PerfilService){
-    this.perfilService.obtenerDatosDocente().subscribe(result => {
+    this.perfilService.obtenerDatosJefeCarrera().subscribe(result => {
       this.jefeCarrera = result;
       console.log(this.jefeCarrera);
     }); 

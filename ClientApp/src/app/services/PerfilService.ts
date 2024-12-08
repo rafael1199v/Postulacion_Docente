@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Docente } from '../models/interfaces/docente.interface';
 import { FormGroup } from '@angular/forms';
 import { DocenteNuevosDatos } from '../models/interfaces/docenteNuevosDatos.enum';
+import { Jefe } from '../models/interfaces/jefe.interface';
 
 @Injectable()
 export class PerfilService {
@@ -16,7 +17,7 @@ export class PerfilService {
 
     obtenerDatosJefeCarrera()
     {
-
+        return this.http.get<Jefe>(this.baseUrl + 'jefeCarrera/conseguirDatosJefeCarrera/' + sessionStorage.getItem('usuarioCI'));
     }
 
 
@@ -34,7 +35,7 @@ export class PerfilService {
             contrasenhaActual: cambiarDatosDocenteForm.value.contrasenaOld,
             ci: CI
         };
-        
+
         return this.http.post<any>(this.baseUrl + 'usuario/cambiarDatosDocente', datosDocenteNuevos);
     }
 }

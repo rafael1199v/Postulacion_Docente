@@ -24,12 +24,14 @@
 
 <!-- A partir de aquí, hacer un for loop o algo así para meter cada vacante activa -->
 
-    <div class="vacante-border">
-        <div class="vacante-margin" [routerLink]="['/postularse']">
-            <h5>Título: Materia</h5>
-            <p class="overflow">Descripcion ¿Le gustaría recibir vacantes interesantes directamente en su buzón de correo? ¡Haga clic en registrarse para crear un perfil y configurar una alerta de empleo!. Damos gran importancia a la diversidad y la inclusión. Es por eso que la Universidad Católica Boliviana ​​​​ofrece a todos los empleados y solicitantes las mismas oportunidades, independientemente de su orientación, identidad o procedencia. Esperamos darle la bienvenida a nuestra comunidad.</p>
+    <div class="vacante-border" *ngFor="let vacante of vacantes">
+        <div class="vacante-margin" [routerLink]="['/postularse', vacante.vacanteId]">
+            <h5>{{ vacante.nombreVacante }}: {{ vacante.materia }}</h5>
+            <p class="overflow">{{ vacante.descripcionVacante }}</p>
         </div>
     </div>
+
+
   </div>
   <div class="footer-spacing-tag"></div>
   <app-footer></app-footer>

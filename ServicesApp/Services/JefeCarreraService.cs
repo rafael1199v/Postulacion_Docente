@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using PostulacionDocente.ServicesApp.Models;
 
 public class JefeCarreraService : IJefeCarreraService
 {
@@ -89,4 +90,18 @@ public class JefeCarreraService : IJefeCarreraService
         //TODO
     }
 
+    public JefeCarreraPerfilDTO? ConseguirDatosJefeCarrera(PostulacionDocenteContext context, string CI)
+    {
+        var jefeCarrera = (from _jefeCarrera in context.JefeCarreras
+                          join _usuario in context.Usuarios on _jefeCarrera.UsuarioId equals _usuario.UsuarioId
+                          where _usuario.Ci == CI
+                          select new JefeCarreraPerfilDTO {
+                            Nombre = _usuario.Nombre,
+                            Correo = _usuario.Correo,
+                            Carreras = _jefeCarrera.Carreras.Select(carrera => carrera.NombreCarrera).ToList()
+                          }).FirstOrDefault<JefeCarreraPerfilDTO>();
+
+
+        return jefeCarrera;
+    }
 }

@@ -77,4 +77,21 @@ public class VacanteService : IVacanteService
 
         return true;
     }
+
+
+    public VacanteDTO? ConseguirDetalleVacante(PostulacionDocenteContext context, int vacanteId)
+    {
+        var vacante = (from _vacante in context.Vacantes
+                      where _vacante.VacanteId == vacanteId
+                      select new VacanteDTO{
+                        VacanteId = _vacante.VacanteId,
+                        NombreVacante = _vacante.NombreVacante,
+                        Materia = _vacante.Materia.NombreMateria,
+                        DescripcionVacante = _vacante.Descripcion,
+                        FechaInicio = _vacante.FechaInicio,
+                        FechaFinalizacion = _vacante.FechaFin
+                      }).FirstOrDefault<VacanteDTO>();
+
+        return vacante;
+    }
 }

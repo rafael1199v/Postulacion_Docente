@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Vacante } from '../models/interfaces/vacante.interface';
+import { vacanteService } from '../services/vacanteService';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-vacantes-creadas',
@@ -7,4 +10,4 @@ import { Component } from '@angular/core';
 })
 export class VacantesCreadasComponent {
 
-}
+} 

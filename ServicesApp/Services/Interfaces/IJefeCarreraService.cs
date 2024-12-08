@@ -1,3 +1,5 @@
+using PostulacionDocente.ServicesApp.Models;
+
 public interface IJefeCarreraService
 {
     void CrearReunion(DateTime fecha);
@@ -8,4 +10,5 @@ public interface IJefeCarreraService
     // Nuevos métodos para obtener listas
     List<(string Nombre, string Curso)> ObtenerSolicitudes();
     public void VerDatosPostulante();
+    public JefeCarreraPerfilDTO? ConseguirDatosJefeCarrera(PostulacionDocenteContext context, string CI);
 }

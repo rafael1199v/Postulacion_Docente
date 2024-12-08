@@ -41,4 +41,12 @@ public class VacanteController : ControllerBase
     {
         return _vacanteService.CrearVacante(nuevaVacante, _context) ? Ok("Vacante creada correctamente") : BadRequest("La vacante no se creo correctamente");
     }
+
+
+    [HttpGet("conseguirDetalleVacante/{vacanteId}")]
+    public IActionResult ConseguirDetalleVacante(int vacanteId)
+    {
+        return Ok(_vacanteService.ConseguirDetalleVacante(_context, vacanteId));
+    }
+    
 }

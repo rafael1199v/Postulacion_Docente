@@ -10,15 +10,15 @@
 
     <div class="he-tag2">
         <div class="my-tag">
-            <h1 class="Lora">Título de la vacante</h1>
+            <h1 class="Lora">{{ vacante?.nombreVacante }}</h1>
           </div>
     </div>
     <div class="he-tag">
       <h3>Datos de la vacante:</h3>
-      <h4>Materia: Materia</h4>
-      <p style="width:75%">Descripcion descripcion descripcion descripcion descripcion Descripcion descripcion descripcion descripcion descripcion Descripcion descripcion descripcion descripcion descripcion Descripcion descripcion descripcion descripcion descripcion Descripcion descripcion descripcion descripcion descripcion
+      <h4>Materia: {{ vacante?.materia }}</h4>
+      <p style="width:75%"> {{ vacante?.descripcionVacante }}
       </p>
-      <h6>Fecha límite para postularse: <i>Fecha</i></h6>
+      <h6>Fecha límite para postularse: <i>{{ vacante?.fechaInicio }}</i></h6>
       <div style="padding-top: 8%; padding-bottom: 5%; display:flex; flex-direction: row; flex-wrap: wrap; justify-content: space-evenly; width:30%">
 
         <div>

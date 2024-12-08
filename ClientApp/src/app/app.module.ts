@@ -36,6 +36,7 @@ import { CambiarDatosJefeComponent } from './cambiar-datos-jefe/cambiar-datos-je
 import { ProfileJefeComponent } from './profile-jefe/profile-jefe.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +62,7 @@ import { ProfileJefeComponent } from './profile-jefe/profile-jefe.component';
     CrearVacanteComponent,
     RevisarPostulacionComponent,
     CambiarDatosJefeComponent,
-    ProfileJefeComponent
+    ProfileJefeComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -84,7 +85,11 @@ import { ProfileJefeComponent } from './profile-jefe/profile-jefe.component';
       { path: 'postulaciones', component: PostulacionesPostulanteComponent },
       { path: 'estado-postulacion', component: EstadoPostulacionComponent },
       { path: 'cambiar-datos-postulante', component: CambiarDatosPostulanteComponent },
-      { path: 'postularse', component: PostularseComponent },
+      { path: 'postularse/:vacanteId', component: PostularseComponent },
+
+      //Desde Aqui seran las secciones hechas para el jefe de carrera
+      //Deberiamos hacer 2 homes y dos navbars?
+
       { path: 'vacantes-creadas', component: VacantesCreadasComponent },
       { path: 'postulaciones-recibidas', component: PostulacionesRecibidasComponent },
       { path: 'crear-vacante', component: CrearVacanteComponent },

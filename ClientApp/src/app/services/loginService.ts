@@ -17,8 +17,12 @@ export class LoginService{
         this.formBuilder = formBuilder;
     }
 
-    login(loginData : LoginData){
+    loginDocente(loginData : LoginData){
         return this.http.post<any>(this.baseUrl + 'usuario/loginDocente', loginData);
+    }
+
+    loginJefeCarrera(loginData: LoginData){
+        return this.http.post<any>(this.baseUrl + 'usuario/loginJefeCarrera', loginData);
     }
 
     loginFormBuilder(){
