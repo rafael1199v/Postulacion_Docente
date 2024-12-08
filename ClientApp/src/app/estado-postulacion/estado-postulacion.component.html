@@ -8,11 +8,11 @@
   <div class="centerer">
     <div class="he-tag2">
         <div class="my-tag">
-            <h1 class="Lora">Título: Materia</h1>
+            <h1 class="Lora">{{ postulacion?.tituloMateria }}</h1>
           </div>
     </div>
 
-    <h2>Estado:</h2>
+    <h2>Estado</h2>
     <div class="state-wrapper">
         <div class="state-circle" style="background-color: white;">
             <p class="state-number">1</p>
@@ -34,10 +34,10 @@
 
     <div class="he-tag">
       <h3>Información:</h3>
-      <p>Dar un mensaje adecuado dependiendo del estado de la postulación.
+      <p>{{ postulacion?.descripcionEstado }}
       </p>
       <h3>Detalles de la vacante:</h3>
-      <p>Descripción de la vacante, ya que no puede volver a ver dichos datos xdddddd
+      <p>{{ postulacion?.descripcionVacante }}
       </p>
     </div>
   </div>

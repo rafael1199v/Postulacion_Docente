@@ -10,5 +10,6 @@ public interface IPostulacionService
         string AceptarPostulacion(int id);
 
         public PostulacionDetallesDTO? ConseguirDetallesPostulacion(PostulacionDocenteContext context, int postulacionId);
+        public List<PostulacionDetallesDTO> ConseguirPostulacionesVigentes(PostulacionDocenteContext context, string CI);
 
     }
