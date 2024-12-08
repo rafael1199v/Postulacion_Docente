@@ -47,11 +47,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="materia">Materia: <span class="required">*</span></label>
-                    <input type="text" id="materia" formControlName="materia" required>
-                </div>
-
-                <div class="form-group">
                     <label for="grado">Grado: <span class="required">*</span></label>
                     <input type="text" id="grado" formControlName="grado" required>
                 </div>
@@ -83,21 +78,17 @@
                     <label for="confirmarContrasenaJefe">Confirmar Contraseña: <span class="required">*</span></label>
                     <input type="password" id="confirmarContrasenaJefe" formControlName="contrasenaRep" required>
                 </div>
-
-                <div class="form-group">
-                    <label for="carreras">Seleccione las carreras (mínimo 1 y máximo 3): <span
-                            class="required">*</span></label>
-                    <select id="carreras" formControlName="carreras" multiple>
-                        <option *ngFor="let carrera of listaCarreras" [value]="carrera">{{ carrera }}</option>
-                    </select>
-                    <small *ngIf="carrerasInvalid" class="error-message">
-                        Debes seleccionar entre 1 y 3 carreras.
-                    </small>
-                </div>
+                <fieldset class="career-selection">
+                    <legend>Selecciona 1 a 3 carreras</legend>
+                    <div class="career-option" *ngFor="let carrera of listaCarreras">
+                        <input type="checkbox" [id]="carrera" [value]="carrera" (change)="onCarreraChange($event)"
+                            [checked]="isCarreraSelected(carrera)" />
+                        <label [for]="carrera">{{ carrera }}</label>
+                    </div>
+                </fieldset>
             </div>
-
             <!-- Botón de registro -->
-            <button type="submit" (click)="registrarUsuario()">Registrarse</button>
+            <button type="submit" [disabled]="!registerForm.valid" (click)="registrarUsuario()">Registrarse</button>
         </form>
 
         <p>¿Ya tienes una cuenta? <a [routerLink]="['/login']">Inicia sesión</a></p>

@@ -19,7 +19,7 @@ h2 {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
-    gap: 1px;
+    gap: 10px;
 }
 
 label {
@@ -79,4 +79,41 @@ select[multiple] {
 .error {
     color: red;
     font-size: 12px;
+}
+
+.career-selection {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    /* Ancho del cuadro ajustado */
+    margin: 20px auto;
+}
+
+.career-selection legend {
+    font-size: 24px;
+    /* Tamaño del texto en el legend ajustado */
+    color: #333;
+    padding: 0 10px;
+    font-weight: bold;
+}
+
+.career-option {
+    margin-bottom: 12px;
+}
+
+.career-option input[type="checkbox"] {
+    margin-right: 8px;
+    transform: scale(1.2);
+}
+
+.career-option label {
+    font-size: 18px;
+    /* Tamaño del texto de las etiquetas ajustado */
+    color: #333;
+}
+
+.career-option input[type="checkbox"]:hover {
+    cursor: pointer;
 }

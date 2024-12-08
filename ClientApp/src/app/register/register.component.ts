@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
     registerForm!: FormGroup;
     isJefeCarrera: boolean = false;
-    carrerasInvalid: boolean = false;
     listaCarreras: string[] = [
         'Ingeniería de Software',
         'Ingeniería Civil',
@@ -21,10 +20,6 @@ export class RegisterComponent implements OnInit {
         'Educación',
         'Administración de Empresas'
     ];
-
-    listaMaterias: string[] = [
-        'Matemáticas', 'Física', 'Química', 'Historia', 'Geografía', 'Biología'
-    ]; // Lista de materias
 
     constructor(private formBuilder: FormBuilder, private router: Router) { }
 
@@ -37,25 +32,13 @@ export class RegisterComponent implements OnInit {
             correo: ['', [Validators.required, Validators.email]],
             contrasena: ['', [Validators.required, Validators.minLength(6)]],
             contrasenaRep: ['', [Validators.required, Validators.minLength(6)]],
-            materia: [[], [Validators.required, this.materiaValidator()]], // Cambiado a array para permitir múltiples seleccionados
             grado: ['', Validators.required],
             anosExperiencia: ['', [Validators.required, Validators.min(1)]],
-            carreras: [[], [this.carrerasValidator()]] // Validación personalizada para carreras
+            carreras: [[], [Validators.required, this.carrerasValidator()]] // Campo para las carreras seleccionadas
         });
     }
 
-    // Validador personalizado para materias
-    materiaValidator() {
-        return (control: any) => {
-            const selectedMaterias = control.value;
-            if (selectedMaterias.length < 1 || selectedMaterias.length > 3) {
-                return { invalidMaterias: true };
-            }
-            return null;
-        };
-    }
-
-    // Validador personalizado para carreras
+    // Función para validar las carreras seleccionadas (1 a 3 carreras)
     carrerasValidator() {
         return (control: any) => {
             const selectedCarreras = control.value;
@@ -68,17 +51,44 @@ export class RegisterComponent implements OnInit {
 
     toggleJefeCarrera(): void {
         this.isJefeCarrera = !this.isJefeCarrera;
+        const carrerasControl = this.registerForm.get('carreras');
 
         if (this.isJefeCarrera) {
-            this.registerForm.get('carreras')?.setValidators([Validators.required, this.carrerasValidator()]);
-            this.registerForm.get('materia')?.setValidators([Validators.required, this.materiaValidator()]);
+            carrerasControl?.setValidators([Validators.required, this.carrerasValidator()]);
         } else {
-            this.registerForm.get('carreras')?.clearValidators();
-            this.registerForm.get('materia')?.clearValidators();
+            carrerasControl?.clearValidators();
         }
 
-        this.registerForm.get('carreras')?.updateValueAndValidity();
-        this.registerForm.get('materia')?.updateValueAndValidity();
+        carrerasControl?.updateValueAndValidity();
+    }
+
+    // Método que maneja el cambio de los checkboxes
+    onCarreraChange(event: any): void {
+        const selectedCarreras = this.registerForm.value.carreras || [];
+
+        // Si el checkbox está marcado, lo agregamos a las selecciones
+        if (event.target.checked) {
+            if (selectedCarreras.length < 3) {
+                selectedCarreras.push(event.target.value);
+            } else {
+                event.target.checked = false; // Si ya hay 3 carreras seleccionadas, desmarcamos el checkbox
+            }
+        } else {
+            // Si el checkbox está desmarcado, lo eliminamos de las selecciones
+            const index = selectedCarreras.indexOf(event.target.value);
+            if (index > -1) {
+                selectedCarreras.splice(index, 1);
+            }
+        }
+
+        // Actualizamos el valor en el FormGroup
+        this.registerForm.patchValue({ carreras: selectedCarreras });
+    }
+
+    // Método que determina si una carrera está seleccionada
+    isCarreraSelected(carrera: string): boolean {
+        const selectedCarreras = this.registerForm.value.carreras || [];
+        return selectedCarreras.includes(carrera);
     }
 
     registrarUsuario(): void {
@@ -90,16 +100,6 @@ export class RegisterComponent implements OnInit {
         if (this.registerForm.value.contrasena !== this.registerForm.value.contrasenaRep) {
             alert('Las contraseñas no coinciden.');
             return;
-        }
-
-        if (
-            this.isJefeCarrera &&
-            (this.registerForm.value.carreras.length < 1 || this.registerForm.value.carreras.length > 3)
-        ) {
-            this.carrerasInvalid = true;
-            return;
-        } else {
-            this.carrerasInvalid = false;
         }
 
         console.log('Datos del formulario:', this.registerForm.value);
