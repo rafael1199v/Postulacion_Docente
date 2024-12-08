@@ -12,47 +12,47 @@
             <!-- Campos generales -->
             <div *ngIf="!isJefeCarrera">
                 <div class="form-group">
-                    <label for="nombre">Nombre: <span class="required">*</span></label>
+                    <label for="nombre">Nombre: <span class="required"></span></label>
                     <input type="text" id="nombre" formControlName="nombre" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="telefono">Teléfono: <span class="required">*</span></label>
+                    <label for="telefono">Teléfono: <span class="required"></span></label>
                     <input type="text" id="telefono" formControlName="telefono" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="ci">CI: <span class="required">*</span></label>
+                    <label for="ci">CI: <span class="required"></span></label>
                     <input type="text" id="ci" formControlName="ci" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="fechaNacimiento">Fecha de Nacimiento: <span class="required">*</span></label>
+                    <label for="fechaNacimiento">Fecha de Nacimiento: <span class="required"></span></label><br>
                     <input type="date" id="fechaNacimiento" formControlName="fechaNacimiento" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="correo">Correo: <span class="required">*</span></label>
+                    <label for="correo">Correo: <span class="required"></span></label>
                     <input type="email" id="correo" formControlName="correo" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="contrasena">Contraseña: <span class="required">*</span></label>
+                    <label for="contrasena">Contraseña: <span class="required"></span></label>
                     <input type="password" id="contrasena" formControlName="contrasena" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="confirmarContrasena">Confirmar Contraseña: <span class="required">*</span></label>
+                    <label for="confirmarContrasena">Confirmar Contraseña: <span class="required"></span></label>
                     <input type="password" id="confirmarContrasena" formControlName="contrasenaRep" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="grado">Grado: <span class="required">*</span></label>
+                    <label for="grado">Grado: <span class="required"></span></label>
                     <input type="text" id="grado" formControlName="grado" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="anosExperiencia">Años de Experiencia: <span class="required">*</span></label>
+                    <label for="anosExperiencia">Años de Experiencia: <span class="required"></span></label>
                     <input type="number" id="anosExperiencia" formControlName="anosExperiencia" required>
                 </div>
             </div>
@@ -60,22 +60,22 @@
             <!-- Campos específicos para Jefe de Carrera -->
             <div *ngIf="isJefeCarrera">
                 <div class="form-group">
-                    <label for="nombreJefe">Nombre Completo: <span class="required">*</span></label>
+                    <label for="nombreJefe">Nombre Completo: <span class="required"></span></label>
                     <input type="text" id="nombreJefe" formControlName="nombre" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="correoJefe">Correo: <span class="required">*</span></label>
+                    <label for="correoJefe">Correo: <span class="required"></span></label>
                     <input type="email" id="correoJefe" formControlName="correo" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="contrasenaJefe">Contraseña: <span class="required">*</span></label>
+                    <label for="contrasenaJefe">Contraseña: <span class="required"></span></label>
                     <input type="password" id="contrasenaJefe" formControlName="contrasena" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="confirmarContrasenaJefe">Confirmar Contraseña: <span class="required">*</span></label>
+                    <label for="confirmarContrasenaJefe">Confirmar Contraseña: <span class="required"></span></label>
                     <input type="password" id="confirmarContrasenaJefe" formControlName="contrasenaRep" required>
                 </div>
                 <fieldset class="career-selection">
