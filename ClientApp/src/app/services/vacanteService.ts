@@ -3,6 +3,7 @@ import { Inject, Injectable } from "@angular/core";
 import { Docente } from "../models/interfaces/docente.interface";
 import { Materia } from "../models/interfaces/materia.interface";
 import { Vacante } from "../models/interfaces/vacante.interface";
+import { NuevaPostulacion } from "../models/interfaces/nuevaPostulacion.interface";
 
 @Injectable()
 export class vacanteService{
@@ -30,5 +31,16 @@ export class vacanteService{
 
     GetDetalleVacante(vacanteId: string){
         return this.http.get<Vacante>(this.baseUrl + 'vacante/conseguirDetalleVacante/' + vacanteId);
+    }
+
+
+    Postularse(vacanteId: number, fechaFinalizacionVacanteA: Date){
+        const nuevaPostulacion: NuevaPostulacion = {
+            vacanteId: vacanteId,
+            ci: sessionStorage.getItem('usuarioCI') || '-1',
+            fechaFinalizacionVacante: fechaFinalizacionVacanteA
+        };
+
+        return this.http.post<any>(this.baseUrl + 'docente/postularse', nuevaPostulacion);
     }
 }

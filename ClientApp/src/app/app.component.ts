@@ -12,10 +12,22 @@ import { NavigationEnd } from '@angular/router';
 export class AppComponent {
   tokenRouter: RouteToken = RouteToken.Home;
   title = 'app';
-
+  isJefe: boolean;
 
   constructor(private activadedRoute : ActivatedRoute, private router: Router){
    
+    if(sessionStorage.getItem('isJefe') == 'true'){
+      this.isJefe = true;
+    }
+    else{
+      this.isJefe = false;
+    }
+
+    if(sessionStorage.getItem('usuarioCI') == null)
+    {
+      this.router.navigate(['/login']);
+    }
+
     this.router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) {
         switch(e.url)

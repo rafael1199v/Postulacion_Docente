@@ -45,7 +45,7 @@ h3 {
     width: 100%;
     max-width: 65%;
     height: 400px;
-    background-image: url('./cartel.png');
+    background-image: url('../../assets/images/banner_home.png');
     /* Cambia esto por la ruta de tu imagen */
     background-size: cover;
     background-position: center;

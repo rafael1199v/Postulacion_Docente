@@ -1,7 +1,7 @@
 .footer{
     background-color: #00427A;
     color:white;
-    height: 322px;
+    height: min-content;
     bottom: 0;
 }
 
@@ -20,7 +20,7 @@
 }
 
 .row-img {
-    background-image: url(../../assets/images/cropped-logo-UCB.png);
+    background-image: url('../../assets/images/logo_lowres.png');
     background-size:cover;
     padding-top: 35px;
     width: 60%;
