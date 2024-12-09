@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import * as FileSaver from 'file-saver'; 
 import { PerfilService } from '../services/PerfilService';
 import { Jefe } from '../models/interfaces/jefe.interface';
 
