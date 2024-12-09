@@ -8,7 +8,6 @@ using PostulacionDocente.ServicesApp.Models;
 [Route("[controller]")]
 public class VacanteController : ControllerBase
 {
-    
     public readonly IVacanteService _vacanteService;
     public readonly PostulacionDocenteContext _context;
     public VacanteController(IVacanteService vacanteService, PostulacionDocenteContext context)
@@ -37,9 +36,9 @@ public class VacanteController : ControllerBase
 
     //"0001-01-01T00:00:00"
     [HttpPost("crearVacante")]
-    public IActionResult CrearVacante([FromBody] VacanteDTO nuevaVacante)
+    public IActionResult CrearVacante([FromBody] NuevaVacanteDTO nuevaVacante)
     {
-        return _vacanteService.CrearVacante(nuevaVacante, _context) ? Ok("Vacante creada correctamente") : BadRequest("La vacante no se creo correctamente");
+        return _vacanteService.CrearVacante(nuevaVacante, _context, out string mensaje) ? Ok(new {mensaje}) : BadRequest(new {mensaje});
     }
 
 

@@ -23,7 +23,7 @@
     <div style="display:flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; width:60%">
         
         <div class="item-border" *ngFor="let postulacion of postulaciones">
-            <div class="item-margin" [routerLink]="['/revisar-postulacion', postulacion.postulacionId]">
+            <div class="item-margin" [routerLink]="['/revisar-postulacion', vacanteId, postulacion.postulacionId]">
                 <h5>{{ postulacion?.nombrePostulante }}: {{ postulacion?.grado }}</h5>
                 <h6>Estado: {{ postulacion?.descripcionEstado }}</h6>
                 <p class="overflow"> {{ postulacion?.descripcionDocente }} </p>

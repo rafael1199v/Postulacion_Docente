@@ -39,33 +39,50 @@ public class VacanteService : IVacanteService
         return vacantesDisponibles;
     }
 
-    public bool CrearVacante(VacanteDTO nuevaVacante, PostulacionDocenteContext context)
+    public bool CrearVacante(NuevaVacanteDTO nuevaVacante, PostulacionDocenteContext context, out string mensaje)
     {
-       
+        mensaje = "Vacante creada correctamente";
         if(!this.VacanteValida(nuevaVacante))
         {
+            mensaje = "Los datos de la vacante no son validas. Intentalo otra vez";
             return false;
         }
 
-        System.Console.WriteLine(nuevaVacante.NombreVacante);
-        System.Console.WriteLine(nuevaVacante.DescripcionVacante);
-        System.Console.WriteLine(nuevaVacante.Materia);
-        System.Console.WriteLine(nuevaVacante.FechaInicio);
-        System.Console.WriteLine(nuevaVacante.FechaFinalizacion);
-        //Se guarda en la base de datos
+        Materium? materia = context.Materia.FirstOrDefault(mat => mat.Sigla == nuevaVacante.SiglaMateria);
+        JefeCarrera? jefeCarrera = (from _jefeCarrera in context.JefeCarreras
+                                   join _usuario in context.Usuarios on _jefeCarrera.UsuarioId equals _usuario.UsuarioId
+                                   where _usuario.Ci == nuevaVacante.JefeCI
+                                   select _jefeCarrera).FirstOrDefault<JefeCarrera>();
+    
+        if(materia == null || jefeCarrera == null)
+        {
+            mensaje = "Hubo un error al crear la vacante. Intentalo otra vez";
+            return false;
+        }
 
+        Vacante nuevaVac = new Vacante{
+            NombreVacante = nuevaVacante.NombreVacante,
+            Descripcion = nuevaVacante.DescripcionVacante,
+            FechaInicio = nuevaVacante.FechaInicio,
+            FechaFin = nuevaVacante.FechaFinalizacion,
+            JefeCarrera = jefeCarrera,
+            Materia = materia
+        };
+
+        context.Vacantes.Add(nuevaVac);
+        context.SaveChanges();
         return true;
     }
 
 
-    public bool VacanteValida(VacanteDTO nuevaVacante)
+    public bool VacanteValida(NuevaVacanteDTO nuevaVacante)
     {
          if(nuevaVacante == null)
         {
             return false;
         }
 
-        if(string.IsNullOrEmpty(nuevaVacante.NombreVacante) || string.IsNullOrEmpty(nuevaVacante.Materia)|| string.IsNullOrEmpty(nuevaVacante.DescripcionVacante))
+        if(string.IsNullOrEmpty(nuevaVacante.NombreVacante) || string.IsNullOrEmpty(nuevaVacante.SiglaMateria)|| string.IsNullOrEmpty(nuevaVacante.DescripcionVacante))
         {
             return false;
         }

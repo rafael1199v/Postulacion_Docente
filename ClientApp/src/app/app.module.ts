@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -100,13 +101,13 @@ import { JefeCarreraService } from './services/JefeCarreraService';
       { path: 'vacantes-creadas', component: VacantesCreadasComponent },
       { path: 'postulaciones-recibidas/:vacanteId', component: PostulacionesRecibidasComponent },
       { path: 'crear-vacante', component: CrearVacanteComponent },
-      { path: 'revisar-postulacion/:postulacionId', component: RevisarPostulacionComponent },
+      { path: 'revisar-postulacion/:vacanteId/:postulacionId', component: RevisarPostulacionComponent },
       { path: 'cambiar-datos-jefe', component: CambiarDatosJefeComponent },
       { path: 'profile-jefe', component: ProfileJefeComponent },
       { path: 'ayuda-jefe', component: AyudaJefeComponent},
     ])
   ],
-  providers: [vacanteService, LoginService, PerfilService, PostulacionService, JefeCarreraService],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},vacanteService, LoginService, PerfilService, PostulacionService, JefeCarreraService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

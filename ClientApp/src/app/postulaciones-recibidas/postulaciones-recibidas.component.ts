@@ -12,10 +12,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PostulacionesRecibidasComponent {
   postulaciones: DocenteDatosPostulacion[] = [];
+  vacanteId: number = parseInt(this.activatedRoute.snapshot.paramMap.get('vacanteId') || '9');
 
   constructor(private jefeCarreraSerivce: JefeCarreraService, private activatedRoute: ActivatedRoute){
-    const vacanteId: number = parseInt(this.activatedRoute.snapshot.paramMap.get('vacanteId') || '-1');
-    this.jefeCarreraSerivce.GetSolicitudes(vacanteId).subscribe( result => {
+    this.jefeCarreraSerivce.GetSolicitudes(this.vacanteId).subscribe( result => {
       this.postulaciones = result;
       console.log(this.postulaciones);
     }, error => console.log(error));

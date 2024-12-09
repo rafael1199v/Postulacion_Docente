@@ -5,6 +5,8 @@ import { Materia } from "../models/interfaces/materia.interface";
 import { Vacante } from "../models/interfaces/vacante.interface";
 import { NuevaPostulacion } from "../models/interfaces/nuevaPostulacion.interface";
 import { VacanteJefe } from "../models/interfaces/vacanteJefe.interface";
+import { FormGroup } from "@angular/forms";
+import { NuevaVacante } from "../models/interfaces/nuevaVacante.interface";
 
 @Injectable()
 export class vacanteService{
@@ -48,5 +50,20 @@ export class vacanteService{
 
     GetVacantesDisponiblesJefe(){
         return this.http.get<VacanteJefe[]>(this.baseUrl + 'vacante/conseguirVacantesVigentesJefe/' + sessionStorage.getItem('usuarioCI'));
+    }
+
+
+    CrearVacante(vacanteForm: FormGroup){
+        
+        const nuevaVacante: NuevaVacante = {
+            nombreVacante: vacanteForm.value.nombreVacante,
+            siglaMateria: vacanteForm.value.materia,
+            descripcionVacante: vacanteForm.value.descripcionVacante,
+            fechaInicio: vacanteForm.value.fechaInicio,
+            fechaFinalizacion: vacanteForm.value.fechaFinalizacion,
+            jefeCI: sessionStorage.getItem('usuarioCI') || '-1'
+        }
+
+        return this.http.post<any>(this.baseUrl + 'vacante/crearVacante', nuevaVacante);
     }
 }

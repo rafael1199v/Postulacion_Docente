@@ -17,4 +17,13 @@ export class JefeCarreraService
     RevisarPostulacion(postulacionId: number){
         return this.http.get<DocenteDatosPostulacion>(this.baseUrl + 'jefeCarrera/revisarPostulacion/' + postulacionId);
     }
+
+
+    AscenderPostulacion(postulacionId: number){
+        return this.http.put<any>(this.baseUrl + 'jefeCarrera/ascenderPostulacion/' + postulacionId, postulacionId);
+    }
+
+    RechazarPostulacion(postulacionId: number){
+        return this.http.put<any>(this.baseUrl + 'jefeCarrera/rechazarPostulacion/' + postulacionId, postulacionId);
+    }
 }

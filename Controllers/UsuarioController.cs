@@ -14,18 +14,6 @@ public class UsuarioController: ControllerBase{
         _registroService = registroService;
     }
 
-    // [HttpGet("buscar/{name}")]
-    // public IActionResult busquedaUsuario(string field, int identifier = 1){
-    //     //identifier funcionará como el tipo de campo que se está buscando
-    //     //0: nombre
-    //     //1: CI
-    //     //2: correo
-    //     //3: numero
-
-    //     return service.EncontrarUsuario(field, identifier)? Ok() : BadRequest();
-    // }
-
-   
     [HttpGet("getAll")]
     public IActionResult GetAllUsers()
     {

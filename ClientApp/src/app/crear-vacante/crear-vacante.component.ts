@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Materia } from '../models/interfaces/materia.interface';
 import { vacanteService } from '../services/vacanteService';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-crear-vacante',
@@ -19,9 +21,9 @@ export class CrearVacanteComponent {
   });
   
   materias: Materia[] = [];
-  CI: string = "13772115";
+  CI: string = sessionStorage.getItem('usuarioCI') || '-1';
 
-  constructor(private fb: FormBuilder, private vacanteService: vacanteService)
+  constructor(private fb: FormBuilder, private vacanteService: vacanteService, private router: Router)
   {
     this.vacanteService.GetMateriasJefeCarrera(this.CI).subscribe(result => {
       this.materias = result;
@@ -35,18 +37,21 @@ export class CrearVacanteComponent {
   {
     if(this.vacanteForm.invalid)
     {
-      console.log("Campos invalidos");
+      alert("Campos invalidos");
     }
     else if(new Date(this.vacanteForm.value.fechaInicio).getTime() == new Date(this.vacanteForm.value.fechaFinalizacion).getTime())
     {
-      console.log("No se puede crear una vacante que termine en la misma fecha");
+      alert("No se puede crear una vacante que termine en la misma fecha");
     }
     else if(new Date(this.vacanteForm.value.fechaInicio).getTime() > new Date(this.vacanteForm.value.fechaFinalizacion).getTime() || new Date(this.vacanteForm.value.fechaFinalizacion).getTime() < Date.now()){
-      console.log("Error en las fechas");
+      alert("Error en las fechas");
     }
     else
     {
-      console.log(this.vacanteForm.value);
+      this.vacanteService.CrearVacante(this.vacanteForm).subscribe( result => {
+        alert(result.mensaje);
+        this.router.navigate(['/vacantes-creadas']);
+      }, error => alert(error.error));
     }
     
   }
