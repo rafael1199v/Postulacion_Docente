@@ -70,19 +70,24 @@ public class JefeCarreraService : IJefeCarreraService
     }
 
     // Nuevos métodos implementados para obtener listas
-    public List<(string Nombre, string Curso)> ObtenerSolicitudes()
+    public List<DocenteDatosPostulacionDTO> ObtenerSolicitudes(PostulacionDocenteContext context, int vacanteId)
     {
-                Console.WriteLine("Solicitudes recibidas:");
-        if (solicitudes.Count == 0)
-        {
-            Console.WriteLine("No hay solicitudes disponibles.");
-            return solicitudes;
-        }
+       var solicitudes = (from _postulacion in context.Postulacions
+                         where _postulacion.VacanteId == vacanteId
+                         select new DocenteDatosPostulacionDTO {
+                            PostulacionId = _postulacion.PostulacionId,
+                            NombrePostulante = _postulacion.Docente.Usuario.Nombre,
+                            Telefono = _postulacion.Docente.Usuario.NumeroTelefono,
+                            CI = _postulacion.Docente.Usuario.Ci,
+                            Materia = _postulacion.Docente.Especialidad,
+                            Grado = _postulacion.Docente.Grado,
+                            Correo = _postulacion.Docente.Usuario.Correo,
+                            DescripcionEstado = _postulacion.Estado.Mensaje,
+                            DescripcionDocente = _postulacion.Docente.DescripcionPersonal,
+                            EstadoId = _postulacion.Estado.EstadoId
+                         }).ToList();
 
-        foreach (var solicitud in solicitudes)
-        {
-            Console.WriteLine($"Nombre: {solicitud.Nombre}, Curso: {solicitud.Curso}");
-        }
+
         return solicitudes;
     }
 
@@ -104,4 +109,27 @@ public class JefeCarreraService : IJefeCarreraService
 
         return jefeCarrera;
     }
+
+
+    public DocenteDatosPostulacionDTO? RevisarPostulacion(PostulacionDocenteContext context, int postulacionId)
+    {
+        var postulacionDetalles = (from _postulacion in context.Postulacions
+                                  where _postulacion.PostulacionId == postulacionId
+                                  select new DocenteDatosPostulacionDTO {
+                                    PostulacionId = _postulacion.PostulacionId,
+                                    NombrePostulante = _postulacion.Docente.Usuario.Nombre,
+                                    Telefono = _postulacion.Docente.Usuario.NumeroTelefono,
+                                    CI = _postulacion.Docente.Usuario.Ci,
+                                    Materia = _postulacion.Docente.Especialidad,
+                                    Grado = _postulacion.Docente.Grado,
+                                    Correo = _postulacion.Docente.Usuario.Correo,
+                                    DescripcionEstado = _postulacion.Estado.Mensaje,
+                                    DescripcionDocente = _postulacion.Docente.DescripcionPersonal,
+                                    EstadoId = _postulacion.Estado.EstadoId
+                                  }).FirstOrDefault<DocenteDatosPostulacionDTO>();
+        
+
+        return postulacionDetalles;
+    }
+
 }

@@ -12,4 +12,6 @@ public partial class JefeCarrera
     public virtual ICollection<Carrera> Carreras { get; } = new List<Carrera>();
 
     public virtual Usuario Usuario { get; set; } = null!;
+
+    public virtual ICollection<Vacante> Vacantes { get; } = new List<Vacante>();
 }

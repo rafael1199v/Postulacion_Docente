@@ -7,7 +7,8 @@ export interface Docente{
     materia: string,
     grado: string,
     correo: string,
-    anhosExperiencia: number
+    anhosExperiencia: number,
+    descripcionPersonal: string
 };
 
 // public class DocentePerfilDTO

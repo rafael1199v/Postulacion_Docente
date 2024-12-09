@@ -94,4 +94,32 @@ public class VacanteService : IVacanteService
 
         return vacante;
     }
+
+    public List<VacanteJefeCarreraDTO> ConseguirVacantesVigentesJefe(PostulacionDocenteContext context, string CI)
+    {
+        var jefeCarrera = (from _jefeCarrera in context.JefeCarreras
+                          join _usuario in context.Usuarios on _jefeCarrera.UsuarioId equals _usuario.UsuarioId
+                          where _usuario.Ci == CI
+                          select _jefeCarrera).FirstOrDefault<JefeCarrera>();
+
+        if(jefeCarrera == null)
+        {
+            return new List<VacanteJefeCarreraDTO>();
+        }
+
+        var jefeCarreraId = jefeCarrera.JefeCarreraId;
+
+        var vacantes = (from _vacante in context.Vacantes
+                       where _vacante.JefeCarreraId == jefeCarreraId && _vacante.FechaFin > DateTime.Now && !_vacante.Postulacions.Any(postulacion => postulacion.EstadoId == 4)
+                       select new VacanteJefeCarreraDTO{
+                        VacanteId = _vacante.VacanteId,
+                        NombreVacante = _vacante.NombreVacante,
+                        NombreMateria = _vacante.Materia.NombreMateria,
+                        DescripcionVacante = _vacante.Descripcion,
+                        NumeroPostulantes = _vacante.Postulacions.Count
+                       }).ToList();
+
+
+        return vacantes;
+    }
 }

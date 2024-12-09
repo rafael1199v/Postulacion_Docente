@@ -46,7 +46,8 @@ public class DocenteService : IDocenteService{
                         Materia = _docente.Especialidad,
                         Grado = _docente.Grado,
                         Correo = _usuario.Correo,
-                        AnhosExperiencia = _docente.Experiencia
+                        AnhosExperiencia = _docente.Experiencia,
+                        DescripcionPersonal = _docente.DescripcionPersonal
                       }).FirstOrDefault<DocentePerfilDTO>();
 
 

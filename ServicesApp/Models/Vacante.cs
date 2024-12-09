@@ -17,6 +17,10 @@ public partial class Vacante
 
     public int MateriaId { get; set; }
 
+    public int JefeCarreraId { get; set; }
+
+    public virtual JefeCarrera JefeCarrera { get; set; } = null!;
+
     public virtual Materium Materia { get; set; } = null!;
 
     public virtual ICollection<Postulacion> Postulacions { get; } = new List<Postulacion>();

@@ -10,7 +10,7 @@
 
     <div class="he-tag2">
         <div class="my-tag">
-            <h1 class="Lora">Postulaciones a la vacante: (Insertar título)</h1>
+            <h1 class="Lora">Postulaciones a la vacante:</h1>
           </div>
     </div>
 
@@ -22,46 +22,13 @@
     <div style="margin: 10px;"></div>
     <div style="display:flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; width:60%">
         
-        <div class="item-border">
-            <div class="item-margin" [routerLink]="['/revisar-postulacion']">
-                <h5>Título1: Materia</h5>
-                <h6>Estado: Estado</h6>
-                <p class="overflow">Descripcion ¿Le gustaría recibir vacantes interesantes directamente en su buzón de correo? ¡Haga clic en registrarse para crear un perfil y configurar una alerta de empleo!. Damos gran importancia a la diversidad y la inclusión. Es por eso que la Universidad Católica Boliviana ​​​​ofrece a todos los empleados y solicitantes las mismas oportunidades, independientemente de su orientación, identidad o procedencia. Esperamos darle la bienvenida a nuestra comunidad.</p>
+        <div class="item-border" *ngFor="let postulacion of postulaciones">
+            <div class="item-margin" [routerLink]="['/revisar-postulacion', postulacion.postulacionId]">
+                <h5>{{ postulacion?.nombrePostulante }}: {{ postulacion?.grado }}</h5>
+                <h6>Estado: {{ postulacion?.descripcionEstado }}</h6>
+                <p class="overflow"> {{ postulacion?.descripcionDocente }} </p>
             </div>
         </div>
-
-        <div class="item-border">
-            <div class="item-margin" [routerLink]="['/revisar-postulacion']">
-                <h5>Título:2 Materia</h5>
-                <h6>Estado: Estado</h6>
-                <p class="overflow">Descripcion ¿Le gustaría recibir vacantes interesantes directamente en su buzón de correo? ¡Haga clic en registrarse para crear un perfil y configurar una alerta de empleo!. Damos gran importancia a la diversidad y la inclusión. Es por eso que la Universidad Católica Boliviana ​​​​ofrece a todos los empleados y solicitantes las mismas oportunidades, independientemente de su orientación, identidad o procedencia. Esperamos darle la bienvenida a nuestra comunidad.</p>
-            </div>
-        </div>
-
-        <div class="item-border">
-            <div class="item-margin" [routerLink]="['/revisar-postulacion']">
-                <h5>Título: 3Materia</h5>
-                <h6>Estado: Estado</h6>
-                <p class="overflow">Descripcion ¿Le gustaría recibir vacantes interesantes directamente en su buzón de correo? ¡Haga clic en registrarse para crear un perfil y configurar una alerta de empleo!. Damos gran importancia a la diversidad y la inclusión. Es por eso que la Universidad Católica Boliviana ​​​​ofrece a todos los empleados y solicitantes las mismas oportunidades, independientemente de su orientación, identidad o procedencia. Esperamos darle la bienvenida a nuestra comunidad.</p>
-            </div>
-        </div>
-
-        <div class="item-border">
-            <div class="item-margin" [routerLink]="['/revisar-postulacion']">
-                <h5>Título: M4teria</h5>
-                <h6>Estado: Estado</h6>
-                <p class="overflow">Descripcion ¿Le gustaría recibir vacantes interesantes directamente en su buzón de correo? ¡Haga clic en registrarse para crear un perfil y configurar una alerta de empleo!. Damos gran importancia a la diversidad y la inclusión. Es por eso que la Universidad Católica Boliviana ​​​​ofrece a todos los empleados y solicitantes las mismas oportunidades, independientemente de su orientación, identidad o procedencia. Esperamos darle la bienvenida a nuestra comunidad.</p>
-            </div>
-        </div>
-        
-        <div class="item-border">
-            <div class="item-margin" [routerLink]="['/revisar-postulacion']">
-                <h5>Título: Ma5eria</h5>
-                <h6>Estado: Estado</h6>
-                <p class="overflow">Descripcion ¿Le gustaría recibir vacantes interesantes directamente en su buzón de correo? ¡Haga clic en registrarse para crear un perfil y configurar una alerta de empleo!. Damos gran importancia a la diversidad y la inclusión. Es por eso que la Universidad Católica Boliviana ​​​​ofrece a todos los empleados y solicitantes las mismas oportunidades, independientemente de su orientación, identidad o procedencia. Esperamos darle la bienvenida a nuestra comunidad.</p>
-            </div>
-        </div>
-
 
     </div>
   </div>

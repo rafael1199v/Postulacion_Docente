@@ -16,35 +16,11 @@ public class JefeCarreraController : ControllerBase
         _context = context;
     }
 
-    // [HttpPost("CrearNotificacion")]
-    // public IActionResult CrearReunion([FromBody] DateTime fecha)
-    // {
-    //     try
-    //     {
-    //         service.CrearReunion(fecha);
-    //         return Ok("Reunión creada correctamente.");
-    //     }
-    //     catch (Exception ex)
-    //     {
-    //         return BadRequest($"Error al crear la reunión: {ex.Message}");
-    //     }
-    // }
-
-    [HttpGet("VerSolicitudes")]
-    public IActionResult VerSolicitudes()
+    
+    [HttpGet("verSolitciudes/{vacanteId}")]
+    public IActionResult VerSolicitudes(int vacanteId)
     {
-        try
-        {
-            var solicitudes = _jefeCarreraservice.ObtenerSolicitudes();
-            if (solicitudes.Count == 0)
-                return Ok("No hay solicitudes disponibles.");
-
-            return Ok(solicitudes);
-        }
-        catch (Exception ex)
-        {
-            return BadRequest($"Error al mostrar las solicitudes: {ex.Message}");
-        }
+       return Ok(_jefeCarreraservice.ObtenerSolicitudes(_context, vacanteId)); 
     }
 
     // [HttpPut("AceptarSolicitud/{nombreSolicitud}")]
@@ -65,6 +41,13 @@ public class JefeCarreraController : ControllerBase
     public IActionResult ConseguirDatosJefeCarrera(string CI)
     {
         return Ok(_jefeCarreraservice.ConseguirDatosJefeCarrera(_context, CI));
+    }
+
+
+    [HttpGet("revisarPostulacion/{postulacionId}")]
+    public IActionResult RevisarPostulacion(int postulacionId)
+    {
+        return Ok(_jefeCarreraservice.RevisarPostulacion(_context, postulacionId));
     }
 
 

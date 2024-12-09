@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
 import { Postulacion } from "../models/interfaces/postulacion.interface";
+import { DocenteDatosPostulacion } from "../models/interfaces/docenteDatosPostulacion.interface";
 
 @Injectable()
 export class PostulacionService
@@ -15,4 +16,5 @@ export class PostulacionService
     ConseguirDetallePostulacion(postulacionId: string){
         return this.http.get<Postulacion>(this.baseUrl + 'postulacion/ConseguirDetallesPostulacion/' + postulacionId);
     }
+
 }

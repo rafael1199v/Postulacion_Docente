@@ -36,7 +36,7 @@ export class LoginComponent {
         sessionStorage.setItem('usuarioCI', result.usuarioCI);
         sessionStorage.setItem('isJefe', 'false');
         this.router.navigate(['/']);
-      }, error => console.log(error));
+      }, error => alert(error.error));
     }
     
    
@@ -60,7 +60,7 @@ export class LoginComponent {
         sessionStorage.setItem('usuarioCI', result.usuarioCI);
         sessionStorage.setItem('isJefe', 'true');
         this.router.navigate(['/jefe']);
-      }, error => console.log(error));
+      }, error => alert(error.error));
     }
 
   }

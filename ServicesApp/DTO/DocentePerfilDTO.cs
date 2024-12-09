@@ -7,4 +7,5 @@ public class DocentePerfilDTO
     public string? Grado  { get; set; } = string.Empty;
     public string Correo { get; set; } = string.Empty;
     public int? AnhosExperiencia { get; set; }
+    public string? DescripcionPersonal { get; set; } = string.Empty;
 }

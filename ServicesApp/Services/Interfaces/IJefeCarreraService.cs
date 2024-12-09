@@ -8,7 +8,8 @@ public interface IJefeCarreraService
     void RechazarSolicitud(string nombreSolicitud);
 
     // Nuevos métodos para obtener listas
-    List<(string Nombre, string Curso)> ObtenerSolicitudes();
+    List<DocenteDatosPostulacionDTO> ObtenerSolicitudes(PostulacionDocenteContext context, int vacanteId);
     public void VerDatosPostulante();
     public JefeCarreraPerfilDTO? ConseguirDatosJefeCarrera(PostulacionDocenteContext context, string CI);
+    public DocenteDatosPostulacionDTO? RevisarPostulacion(PostulacionDocenteContext context, int postulacionId);
 }

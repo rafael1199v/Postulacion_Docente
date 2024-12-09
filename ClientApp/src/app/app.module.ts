@@ -38,6 +38,7 @@ import { PostulacionService } from './services/PostulacionService';
 import { NavMenuJefeComponent } from './nav-menu-jefe/nav-menu-jefe.component';
 import { HomeJefeComponent } from './home-jefe/home-jefe.component';
 import { AyudaJefeComponent } from './ayuda-jefe/ayuda-jefe.component';
+import { JefeCarreraService } from './services/JefeCarreraService';
 
 
 @NgModule({
@@ -97,15 +98,15 @@ import { AyudaJefeComponent } from './ayuda-jefe/ayuda-jefe.component';
 
       { path: 'jefe', component: HomeJefeComponent},
       { path: 'vacantes-creadas', component: VacantesCreadasComponent },
-      { path: 'postulaciones-recibidas', component: PostulacionesRecibidasComponent },
+      { path: 'postulaciones-recibidas/:vacanteId', component: PostulacionesRecibidasComponent },
       { path: 'crear-vacante', component: CrearVacanteComponent },
-      { path: 'revisar-postulacion', component: RevisarPostulacionComponent },
+      { path: 'revisar-postulacion/:postulacionId', component: RevisarPostulacionComponent },
       { path: 'cambiar-datos-jefe', component: CambiarDatosJefeComponent },
       { path: 'profile-jefe', component: ProfileJefeComponent },
       { path: 'ayuda-jefe', component: AyudaJefeComponent},
     ])
   ],
-  providers: [vacanteService, LoginService, PerfilService, PostulacionService],
+  providers: [vacanteService, LoginService, PerfilService, PostulacionService, JefeCarreraService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

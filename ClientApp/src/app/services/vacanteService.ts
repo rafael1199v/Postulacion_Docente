@@ -4,6 +4,7 @@ import { Docente } from "../models/interfaces/docente.interface";
 import { Materia } from "../models/interfaces/materia.interface";
 import { Vacante } from "../models/interfaces/vacante.interface";
 import { NuevaPostulacion } from "../models/interfaces/nuevaPostulacion.interface";
+import { VacanteJefe } from "../models/interfaces/vacanteJefe.interface";
 
 @Injectable()
 export class vacanteService{
@@ -42,5 +43,10 @@ export class vacanteService{
         };
 
         return this.http.post<any>(this.baseUrl + 'docente/postularse', nuevaPostulacion);
+    }
+
+
+    GetVacantesDisponiblesJefe(){
+        return this.http.get<VacanteJefe[]>(this.baseUrl + 'vacante/conseguirVacantesVigentesJefe/' + sessionStorage.getItem('usuarioCI'));
     }
 }

@@ -11,22 +11,22 @@
     <div class="he-tag2">
         <div class="my-tag">
             <h1 class="Lora" style="font-size: 3em;">Postulación de</h1>
-            <h1 class="Lora" style="font-size: 3em;">(Nombre completo del postulante)</h1>
+            <h1 class="Lora" style="font-size: 3em;">{{ postulacion?.nombrePostulante }}</h1>
           </div>
     </div>
     <div class="he-tag">
       <h3 style="padding-bottom: 1%;">Datos del postulante:</h3>
 
         <p style="font-weight: 600; text-align: left; min-width: 60%;">
-          Nombre: {{ docente?.nombre }}<br>
-          Teléfono: {{ docente?.telefono }}<br>
-          CI: {{ docente?.ci }}<br>
-          Materia: {{ docente?.materia }}<br>
-          Grado: {{ docente?.grado }}<br>
-          Correo: {{ docente?.correo }}<br>
+          Nombre: {{ postulacion?.nombrePostulante }}<br>
+          Teléfono: {{ postulacion?.telefono }}<br>
+          CI: {{ postulacion?.ci }}<br>
+          Materia: {{ postulacion?.materia }}<br>
+          Grado: {{ postulacion?.grado }}<br>
+          Correo: {{ postulacion?.correo }}<br>
         </p>
 
-        <h3 style="padding-top: 2%;">Estado: (Introducir estado postulacion)</h3>
+        <h3 style="padding-top: 2%;">Estado: {{ postulacion?.descripcionEstado }}</h3>
 
       <div style="padding-top: 6%; padding-bottom: 5%; display:flex; flex-direction: row; flex-wrap: wrap; justify-content: space-evenly; width:65%">
         <div>

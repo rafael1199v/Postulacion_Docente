@@ -19,7 +19,8 @@ public class PdfService : IPdfService
                         CI = _usuario.Ci,
                         Materia = _docente.Especialidad,
                         Grado = _docente.Grado,
-                        AnhosExperiencia = _docente.Experiencia
+                        AnhosExperiencia = _docente.Experiencia,
+                        DescripcionPersonal = _docente.DescripcionPersonal
                       }).FirstOrDefault<DocentePerfilDTO>();
 
 
@@ -47,6 +48,7 @@ public class PdfService : IPdfService
                         text.Line($"Grado: {docente?.Grado}");
                         text.Line($"Años de experiencia: {docente?.AnhosExperiencia}");
                         text.Line($"Especialidad: {docente?.Materia}");
+                        text.Line($"Descripcion personal: {docente?.DescripcionPersonal}");
                     });
 
                 page.Footer()
@@ -58,7 +60,6 @@ public class PdfService : IPdfService
             });
         });
 
-        //documento.ShowInPreviewer();
         using var stream = new MemoryStream();
         documento.GeneratePdf(stream);
 

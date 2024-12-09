@@ -48,5 +48,11 @@ public class VacanteController : ControllerBase
     {
         return Ok(_vacanteService.ConseguirDetalleVacante(_context, vacanteId));
     }
+
+    [HttpGet("conseguirVacantesVigentesJefe/{CI}")]
+    public IActionResult ConseguirVacantesVigentesJefe(string CI)
+    {
+        return Ok(_vacanteService.ConseguirVacantesVigentesJefe(_context, CI));
+    }
     
 }
