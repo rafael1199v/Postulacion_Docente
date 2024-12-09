@@ -12,16 +12,8 @@ import { NavigationEnd } from '@angular/router';
 export class AppComponent {
   tokenRouter: RouteToken = RouteToken.Home;
   title = 'app';
-  isJefe: boolean;
 
   constructor(private activadedRoute : ActivatedRoute, private router: Router){
-   
-    if(sessionStorage.getItem('isJefe') == 'true'){
-      this.isJefe = true;
-    }
-    else{
-      this.isJefe = false;
-    }
 
     if(sessionStorage.getItem('usuarioCI') == null)
     {
@@ -43,12 +35,16 @@ export class AppComponent {
             break;
           default:
             this.tokenRouter = RouteToken.Other;
-           
         }
-        
       }
     });
   }
 
+  getSession(){
+    if(sessionStorage.getItem('isJefe') == 'true'){
+      return true;
+    }
+    return false;
+  }
 
 }
