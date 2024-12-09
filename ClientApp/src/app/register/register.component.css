@@ -1,7 +1,12 @@
+.registerBackground {
+    background-image: url("../../assets/images/image.jpg");
+    align-self:stretch;
+}
+
 .registro-container {
-    width: 100%;
+    width: 98%;
     background: rgba(255, 255, 255, 0.7);
-    padding: 10px;
+    padding-top: 10px;
     border-radius: 0px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     opacity: 0.9;
@@ -63,11 +68,6 @@ p {
     margin-top: 10px;
 }
 
-.registerBackground {
-    background-image: url("../../assets/images/image.jpg");
-    background-size: contain;
-}
-
 select[multiple] {
     width: 55%;
     padding: 10px;
@@ -116,4 +116,8 @@ select[multiple] {
 
 .career-option input[type="checkbox"]:hover {
     cursor: pointer;
+}
+
+input:invalid {
+    outline-color:red;
 }

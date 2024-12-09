@@ -93,17 +93,17 @@ export class RegisterComponent implements OnInit {
 
     registrarUsuario(): void {
         if (!this.registerForm.valid) {
-            alert('Por favor, completa todos los campos requeridos.');
+            window.alert('Por favor, completa todos los campos requeridos.');
             return;
         }
 
         if (this.registerForm.value.contrasena !== this.registerForm.value.contrasenaRep) {
-            alert('Las contraseñas no coinciden.');
+            window.alert('Las contraseñas no coinciden.');
             return;
         }
 
         console.log('Datos del formulario:', this.registerForm.value);
-        alert('Registro exitoso');
+        window.alert('Registro exitoso');
         this.router.navigate(['/login']);
     }
 }

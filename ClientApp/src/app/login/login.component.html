@@ -1,28 +1,33 @@
 <div class="loginBlock">
     <div class="loginFormStyle">
-        <h1>Inicio de sesión</h1>
+        <h1 style="width:100%; text-align: center;">Inicio de sesión</h1>
+        <div style="padding-top: 3vh;"></div>
         <form action="" [formGroup]="loginForm">
-            <div class="login">
-                <p>Email</p>
+            <div>
+                <p style="padding-bottom: 0.5vh;">Email</p>
                 <input type="email" formControlName="email">
             </div>
-            <div>
-                <p>Contraseña</p>
-                <input type="text" formControlName="password">
+            <div style="padding-top: 2vh;">
+                <p style="padding-bottom: 0.5vh;">Contraseña</p>
+                <input type="password" formControlName="password">
             </div>
-            <div style="padding-top: 20px;"></div>
-            <div>
-                <button id="loginB" (click)="loginDocente()" class="loginButtonA">
-                    Iniciar sesión
-                </button>
-            </div>
-            <p>o</p>
-            <div class="loginButton">
-                <button id="loginB" (click)="loginJefeCarrera()" class="loginButtonA">
-                    Iniciar sesión como Jefe de Carrera
-                </button>
+            <div style="padding-top: 3vh;"></div>
+            <div class="buttons">
+                <div>
+                    <button id="loginB" (click)="loginDocente()" class="loginButtonA">
+                        Iniciar sesión
+                    </button>
+                </div>
+                <p>o</p>
+                <div class="loginButton">
+                    <button id="loginB" (click)="loginJefeCarrera()" class="loginButtonA">
+                        Iniciar sesión como Jefe de Carrera
+                    </button>
+                </div>
             </div>
         </form>
-        <p>No tienes cuenta? <a [routerLink]="['/register']">Registrate</a></p>
+        <div style="padding-top: 2vh; justify-items: center;">
+            <p>No tienes cuenta? <a [routerLink]="['/register']">Registrate</a></p>
+        </div>
     </div>
 </div>
