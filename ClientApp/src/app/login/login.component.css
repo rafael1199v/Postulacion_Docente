@@ -1,16 +1,15 @@
-.loginBlock{
-    margin: auto;
-    justify-content: center;
-    align-content: center;
+.loginWrapper {
+    width: 100vw;
+    height: 100vh;
     position:absolute;
-    padding-left: 34.15%;
-    padding-top: 10%;
+    display: grid;
+    align-items: center;
+    justify-content: center;
 }
 
 .loginFormStyle{
     align-items: stretch;
     align-self: center;
-    position: absolute;
     background-color: #FFFFFFAA;
     border-radius: 10px;
     padding: 100px;
@@ -23,7 +22,15 @@
     border-color: #00000000;
     width:20vw;
     height: 4vh;
-    
+    transition-duration: 150ms;
+}
+.loginButtonA:hover {
+    background-color: #00427A;
+    transition-duration: 250ms;
+}
+.loginButtonA:active {
+    background-color: #00274a;
+    transition-duration: 50ms;
 }
 
 p {
@@ -42,3 +49,4 @@ input {
     border-color: #00000088;
     background-color: #FFFFFFAA;
 }
+
