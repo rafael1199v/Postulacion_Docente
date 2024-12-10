@@ -8,4 +8,8 @@ export class GetSessionRole{
         }
         return false;
     }
+
+    static IsLogged(){
+        return sessionStorage.getItem('usuarioCI') != null;
+    }
 }
