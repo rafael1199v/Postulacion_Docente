@@ -51,6 +51,17 @@ input {
 }
 
 
+textarea {
+   
+    width: 55%;
+    padding: 10px;
+    border: 2px solid #0000008a;
+    border-radius: 10px;
+    background-color: #ffffff80;
+    
+}
+
+
 button {
     display: block;
     width: 25%;

@@ -6,5 +6,5 @@ public class JefeCarreraRegistroDTO
     public DateTime FechaNacimiento { get; set; }
     public string Correo { get; set; } = string.Empty;
     public string Contrasenha { get; set; } = string.Empty;
-    public int CarreraId { get; set; }
+    public List<string> Carreras { get; set; } = null!;
 }

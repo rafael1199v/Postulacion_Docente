@@ -47,11 +47,11 @@ public class MateriaService : IMateriaService
 
     public List<MateriaDTO> ConseguirMateriasJefeCarrera(PostulacionDocenteContext context, string CI)
     {
-        var jefeCarreraId = (from _usuario in context.Usuarios
-                            where _usuario.Ci == CI
-                            select _usuario.UsuarioId).FirstOrDefault<int>();
+        var jefeCarreraId = (from _jefeCarrera in context.JefeCarreras
+                             where _jefeCarrera.Usuario.Ci == CI
+                             select _jefeCarrera.JefeCarreraId).FirstOrDefault<int>();
 
-        
+    
         var materias = (from _materia in context.Materia
                         where _materia.Carreras.Any(c => c.JefeCarreraId == jefeCarreraId)
                         select new MateriaDTO {

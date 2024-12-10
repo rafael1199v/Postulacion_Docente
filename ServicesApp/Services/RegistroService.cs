@@ -29,8 +29,9 @@ public class RegistroService : IRegistroService
             return true;
         }
 
+       
        var carreraEnUso = (from _carrera in context.Carreras
-                            where _carrera.CarreraId == jefeCarrera.CarreraId
+                            where jefeCarrera.Carreras.Contains(_carrera.Sigla)
                             select _carrera.JefeCarreraId).FirstOrDefault();
 
 
@@ -97,11 +98,12 @@ public class RegistroService : IRegistroService
             Contrasenha = jefeCarrera.Contrasenha
         };
 
-        Carrera? carrera = context.Carreras.FirstOrDefault(c => c.CarreraId == jefeCarrera.CarreraId);
+        // Carrera? carrera = context.Carreras.FirstOrDefault(c => c.CarreraId == jefeCarrera.CarreraId);
+        List<Carrera> carreras = context.Carreras.Where(carrera => jefeCarrera.Carreras.Contains(carrera.Sigla)).ToList();
 
-        if(carrera == null)
+        if(carreras.Count <= 0)
         {
-            mensaje = "La carrera seleccionada no existe en la base de datos";
+            mensaje = "Hubo un error al selecccionar las carreras. Intentelo otra vez";
             return false;
         }
 
@@ -110,7 +112,10 @@ public class RegistroService : IRegistroService
             Usuario = usuario
         };
 
-        jefeCarreraDB.Carreras.Add(carrera);
+        foreach(var carrera in carreras)
+        {
+            jefeCarreraDB.Carreras.Add(carrera);
+        }
 
         context.JefeCarreras.Add(jefeCarreraDB);
         context.SaveChanges();

@@ -41,6 +41,8 @@ import { HomeJefeComponent } from './home-jefe/home-jefe.component';
 import { AyudaJefeComponent } from './ayuda-jefe/ayuda-jefe.component';
 import { JefeCarreraService } from './services/JefeCarreraService';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { CarreraService } from './services/CarreraService';
+
 
 
 @NgModule({
@@ -112,7 +114,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
       { path: '**', component: NotFoundComponent}
     ])
   ],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},vacanteService, LoginService, PerfilService, PostulacionService, JefeCarreraService],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},vacanteService, LoginService, PerfilService, PostulacionService, JefeCarreraService, UsuarioService, CarreraService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
