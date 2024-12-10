@@ -13,7 +13,7 @@ label {
     font-size: 20px;
 }
 
-.input {
+input {
     width: 55%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -31,11 +31,6 @@ label {
 p {
     text-align: center;
     margin-top: 10px;
-}
-
-.registerBackground {
-    background-image: url("../../assets/images/image.jpg");
-    background-size: cover;
 }
 
 select[multiple] {
@@ -151,4 +146,36 @@ h3 {
     border-color: #00000000;
     height: 35px;
     width: 200px;
+}
+
+span {
+    max-width: 15%;
+}
+
+input:invalid {
+    outline-color: red;
+    border-color: red;
+}
+
+.bigInput:invalid {
+    outline-color: red;
+    border-color: red;
+}
+
+input:invalid + span::before {
+    content: 'El campo no puede estar vacío';
+    color: red;
+  }
+  
+input:valid + span::before {
+    content: none;
+}
+
+.bigInput:invalid + span::before {
+    content: 'El campo no puede estar vacío';
+    color: red;
+  }
+  
+.bigInput:valid + span::before {
+    content: none;
 }

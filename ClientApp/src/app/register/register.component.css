@@ -133,6 +133,35 @@ select[multiple] {
     cursor: pointer;
 }
 
+span {
+    max-width: 15%;
+}
+
 input:invalid {
-    outline-color:red;
+    outline-color: red;
+    border-color: red;
+}
+
+input:invalid + span::before {
+    content: 'El campo no puede estar vacío';
+    color: red;
+}
+
+input:valid + span::before {
+    content: none;
+}
+
+input:invalid + .emailSpan::before {
+    content: 'Usa un correo válido';
+    color: red;
+}
+
+input:invalid + .passSpan::before {
+    content: 'La contraseña necesita 6 caracteres mínimo';
+    color: red;
+}
+
+.confirmInput:invalid {
+    border: 2px solid #0000008a;
+    outline-color: currentColor;
 }

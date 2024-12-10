@@ -19,30 +19,35 @@
         <form [formGroup]="vacanteForm" (ngSubmit)="submitForm()">
             <div class="field">
                 <label class="label">Nombre de la Vacante:</label>
-                <input type="text" class="input" formControlName="nombreVacante" maxlength="50" placeholder="El título no debe tener más de 50 caracteres.">
+                <input type="text" formControlName="nombreVacante" maxlength="50" placeholder="El título no debe tener más de 50 caracteres." required>
+                <span></span>
             </div>
 
             <div class="field">
                 <label class="label">Materia:</label>
-                <select formControlName="materia">
+                <select formControlName="materia" required>
                     <option *ngFor="let materia of materias" [ngValue]="materia.sigla">{{ materia.nombre }}</option>
                 </select>
             </div>
 
             <div class="field">
                 <label class="label">Descripcion de la vacante:</label>
-                <textarea class="bigInput" formControlName="descripcionVacante" maxlength="300" placeholder="Introduce una descirpción (máx. caracteres: 300)."></textarea>
+                <textarea class="bigInput" formControlName="descripcionVacante" maxlength="300" placeholder="Introduce una descirpción (máx. caracteres: 300)." required>
+                </textarea>
+                <span></span>
             </div>
 
             <div class="field">
                 <label class="label">Fecha de inicio:</label>
-                <input type="date" class="input" formControlName="fechaInicio">
+                <input type="date" formControlName="fechaInicio" required>
+                <span></span>
             </div>
 
 
             <div class="field">
                 <label class="label">Fecha de finalizacion:</label>
-                <input type="date" class="input" formControlName="fechaFinalizacion">
+                <input type="date" formControlName="fechaFinalizacion" required>
+                <span></span>
             </div>
             <div style="padding-top: 5%;"></div>
             <button type="submit" class="ButtonA">
