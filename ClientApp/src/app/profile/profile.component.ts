@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import * as FileSaver from 'file-saver'; 
 import { PerfilService } from '../services/PerfilService';
 import { Docente } from '../models/interfaces/docente.interface';
+import { GetSessionRole } from '../services/GetSessionRole';
 
 @Component({
   selector: 'app-profile',
@@ -13,11 +14,13 @@ import { Docente } from '../models/interfaces/docente.interface';
 export class ProfileComponent {
 
   docente: Docente | undefined;
+  public role:any;
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private perfilService: PerfilService){
     this.perfilService.obtenerDatosDocente().subscribe(result => {
       this.docente = result;
       console.log(this.docente);
     }); 
+    this.role = GetSessionRole;
   }
 
 

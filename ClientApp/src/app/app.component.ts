@@ -3,6 +3,7 @@ import { RouteToken } from './models/enums/route.enum';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { NavigationEnd } from '@angular/router';
+import { GetSessionRole } from './services/GetSessionRole';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ import { NavigationEnd } from '@angular/router';
 export class AppComponent {
   tokenRouter: RouteToken = RouteToken.Home;
   title = 'app';
+  public role:any;
 
   constructor(private activadedRoute : ActivatedRoute, private router: Router){
 
@@ -38,13 +40,8 @@ export class AppComponent {
         }
       }
     });
-  }
-
-  getSession(){
-    if(sessionStorage.getItem('isJefe') == 'true'){
-      return true;
-    }
-    return false;
+    
+    this.role = GetSessionRole;
   }
 
 }

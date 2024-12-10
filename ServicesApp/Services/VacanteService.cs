@@ -3,16 +3,16 @@ using PostulacionDocente.ServicesApp.Models;
 
 public class VacanteService : IVacanteService
 {
-    public bool EliminarVacante(int vacanteId, PostulacionDocenteContext context)
-    {
-        System.Console.WriteLine($"La vacante con Id {vacanteId} ha sido eliminada");
-        return true;
-    }
-    public bool ModificarVacante(int vacanteId, VacanteDTO datosNuevosVacante, PostulacionDocenteContext context)
-    {
-        System.Console.WriteLine($"La vacante con el id {vacanteId} ha sido modificada");
-        return true;
-    }
+    // public bool EliminarVacante(int vacanteId, PostulacionDocenteContext context)
+    // {
+    //     System.Console.WriteLine($"La vacante con Id {vacanteId} ha sido eliminada");
+    //     return true;
+    // }
+    // public bool ModificarVacante(int vacanteId, VacanteDTO datosNuevosVacante, PostulacionDocenteContext context)
+    // {
+    //     System.Console.WriteLine($"La vacante con el id {vacanteId} ha sido modificada");
+    //     return true;
+    // }
 
     public List<VacanteDTO> ConseguirVacantesDisponibles(PostulacionDocenteContext context, string CI)
     {
@@ -136,6 +136,32 @@ public class VacanteService : IVacanteService
                         NumeroPostulantes = _vacante.Postulacions.Count
                        }).ToList();
 
+
+        return vacantes;
+    }
+
+    public List<VacanteJefeCarreraDTO> ConseguirVacanteHistorialJefe(PostulacionDocenteContext context, string CI)
+    {
+        var jefeCarrera = (from _jefeCarrera in context.JefeCarreras
+                          where _jefeCarrera.Usuario.Ci == CI
+                          select _jefeCarrera).FirstOrDefault<JefeCarrera>();
+
+        if(jefeCarrera == null)
+        {
+            return new List<VacanteJefeCarreraDTO>();
+        }
+
+
+        var vacantes = (from _vacante in context.Vacantes
+                        where _vacante.JefeCarreraId == jefeCarrera.JefeCarreraId && (_vacante.FechaFin <= DateTime.Now || _vacante.Postulacions.Any(pos => pos.EstadoId == 4))
+                        select new VacanteJefeCarreraDTO {
+                            VacanteId = _vacante.VacanteId,
+                            NombreVacante = _vacante.NombreVacante,
+                            NombreMateria = _vacante.Materia.NombreMateria,
+                            DescripcionVacante = _vacante.Descripcion,
+                            NumeroPostulantes = _vacante.Postulacions.Count
+                        }).ToList<VacanteJefeCarreraDTO>();
+        
 
         return vacantes;
     }

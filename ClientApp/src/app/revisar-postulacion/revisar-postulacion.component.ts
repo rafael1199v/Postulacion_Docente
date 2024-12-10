@@ -7,6 +7,7 @@ import { Docente } from '../models/interfaces/docente.interface';
 import { DocenteDatosPostulacion } from '../models/interfaces/docenteDatosPostulacion.interface';
 import { JefeCarreraService } from '../services/JefeCarreraService';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { GetSessionRole } from '../services/GetSessionRole';
 
 @Component({
   selector: 'app-revisar-postulacion',
@@ -16,6 +17,7 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 export class RevisarPostulacionComponent {
   
   postulacion: DocenteDatosPostulacion | undefined;
+  public role:any;
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private jefeCarreraService: JefeCarreraService, private activatedRoute: ActivatedRoute, private router: Router){
     const postulacionId = parseInt(this.activatedRoute.snapshot.paramMap.get('postulacionId') || '-1');
 
@@ -23,6 +25,7 @@ export class RevisarPostulacionComponent {
       this.postulacion = result;
       console.log(this.postulacion);
     }, error => console.log(error)); 
+    this.role = GetSessionRole;
   }
 
 

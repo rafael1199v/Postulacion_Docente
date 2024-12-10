@@ -1,4 +1,6 @@
 .loginWrapper {
+    background-image: url("../../assets/images/Santa-Cruz-min.jpg");
+    background-size: cover;
     width: 100vw;
     height: 100vh;
     position:absolute;
@@ -11,7 +13,7 @@
     align-items: stretch;
     align-self: center;
     background-color: #FFFFFFAA;
-    border-radius: 10px;
+    border-radius: 20px;
     padding: 100px;
 }
 
@@ -49,4 +51,3 @@ input {
     border-color: #00000088;
     background-color: #FFFFFFAA;
 }
-

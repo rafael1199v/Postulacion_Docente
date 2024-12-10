@@ -39,19 +39,25 @@ public class UsuarioController: ControllerBase{
     [HttpPost("registrarDocente")]
     public IActionResult RegistroDocente([FromBody] DocenteRegistroDTO nuevoDocente)
     {
-        return _registroService.RegistrarDocente(nuevoDocente, _context, out string mensaje) ? Ok(mensaje) : BadRequest(mensaje);
+        return _registroService.RegistrarDocente(nuevoDocente, _context, out string mensaje) ? Ok(new {mensaje}) : BadRequest(new {mensaje});
     }
 
     [HttpPost("registrarJefeCarrera")]
     public IActionResult RegistroJefeCarrera([FromBody] JefeCarreraRegistroDTO nuevoJefe)
     {
-        return _registroService.RegistrarJefeCarrera(nuevoJefe, _context, out string mensaje) ? Ok(mensaje) : BadRequest(mensaje);
+        return _registroService.RegistrarJefeCarrera(nuevoJefe, _context, out string mensaje) ? Ok(new {mensaje}) : BadRequest(new {mensaje});
     }
 
     [HttpPost("cambiarDatosDocente")]
     public IActionResult CambiarDatosDocente([FromBody] DocenteNuevosDatosDTO docenteNuevosDatos)
     {
         return _usuarioService.CambiarDatosDocente(docenteNuevosDatos, _context, out string mensaje) ? Ok(new {mensaje}) : BadRequest( new {mensaje});
+    }
+
+    [HttpPost("cambiarDatosJefe")]
+    public IActionResult CambiarDatosJefe([FromBody] JefeCarreraNuevosDatosDTO jefeNuevosDatos)
+    {
+        return _usuarioService.CambiarDatosJefe(jefeNuevosDatos, _context, out string mensaje) ? Ok(new {mensaje}) : BadRequest(new {mensaje});
     }
 
     

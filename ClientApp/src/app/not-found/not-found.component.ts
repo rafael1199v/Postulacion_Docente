@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { GetSessionRole } from '../services/GetSessionRole';
 
 @Component({
-  selector: 'reglamento',
-  templateUrl: './reglamento.component.html',
-  styleUrls: ['./reglamento.component.css']
+  selector: 'app-not-found',
+  templateUrl: './not-found.component.html',
+  styleUrls: ['./not-found.component.css']
 })
-export class ReglamentoComponent {
-  public role:any;
+
+export class NotFoundComponent {
+  public role: any;
   constructor(){
     this.role = GetSessionRole;
   }

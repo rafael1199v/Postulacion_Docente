@@ -1,7 +1,7 @@
 <header>
   <div *ngIf="tokenRouter > 1">
-    <app-nav-menu *ngIf="!getSession()"></app-nav-menu>
-    <app-nav-menu-jefe *ngIf="getSession()"></app-nav-menu-jefe>
+    <app-nav-menu *ngIf="!role.isJefe()"></app-nav-menu>
+    <app-nav-menu-jefe *ngIf="role.isJefe()"></app-nav-menu-jefe>
   </div>
 </header>
 <body>

@@ -2,7 +2,7 @@
     background-image: url("../../assets/images/image.jpg");
     align-self:stretch;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     position:absolute;
     display: grid;
     align-items: center;
@@ -48,6 +48,17 @@ input {
     border: 2px solid #0000008a;
     border-radius: 10px;
     background-color: #ffffff80;
+}
+
+
+textarea {
+   
+    width: 55%;
+    padding: 10px;
+    border: 2px solid #0000008a;
+    border-radius: 10px;
+    background-color: #ffffff80;
+    
 }
 
 
@@ -133,6 +144,35 @@ select[multiple] {
     cursor: pointer;
 }
 
+span {
+    max-width: 15%;
+}
+
 input:invalid {
-    outline-color:red;
+    outline-color: red;
+    border-color: red;
+}
+
+input:invalid + span::before {
+    content: 'El campo no puede estar vacío';
+    color: red;
+}
+
+input:valid + span::before {
+    content: none;
+}
+
+input:invalid + .emailSpan::before {
+    content: 'Usa un correo válido';
+    color: red;
+}
+
+input:invalid + .passSpan::before {
+    content: 'La contraseña necesita 4 caracteres mínimo';
+    color: red;
+}
+
+.confirmInput:invalid {
+    border: 2px solid #0000008a;
+    outline-color: currentColor;
 }

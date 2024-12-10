@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GetSessionRole } from '../services/GetSessionRole';
 
 @Component({
   selector: 'comunidad',
@@ -6,4 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./comunidad.component.css']
 })
 export class ComunidadComponent {
+  public role: any;
+  constructor(){
+    this.role = GetSessionRole;
+  }
 }

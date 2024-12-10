@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GetSessionRole } from '../services/GetSessionRole';
 
 @Component({
   selector: 'app-home-jefe',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./home-jefe.component.css']
 })
 export class HomeJefeComponent {
-
+  public role: any;
+  constructor(){
+    this.role = GetSessionRole;
+  }
 }

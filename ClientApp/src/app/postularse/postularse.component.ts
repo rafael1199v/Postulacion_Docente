@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Vacante } from '../models/interfaces/vacante.interface';
 import { vacanteService } from '../services/vacanteService';
 import { ActivatedRoute, Router } from '@angular/router';
+import { GetSessionRole } from '../services/GetSessionRole';
 
 @Component({
   selector: 'app-postularse',
@@ -9,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./postularse.component.css']
 })
 export class PostularseComponent {
-
+  public role:any;
   vacante: Vacante | undefined;
 
   constructor(private vacanteService: vacanteService, private activatedRoute: ActivatedRoute, private router: Router){
@@ -17,6 +18,8 @@ export class PostularseComponent {
       this.vacante = result;
       console.log(this.vacante);
     }, error => console.log(error));
+    
+    this.role = GetSessionRole;
   }
 
 

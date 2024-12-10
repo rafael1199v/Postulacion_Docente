@@ -12,13 +12,7 @@ public class DocenteController : ControllerBase
         _docenteService = docenteService;
         _context = context;
     }
-
-
-   [HttpGet("conseguirDocente/{carnetIdentidad}")]
-    public IActionResult conseguirDocente(string carnetIdentidad){
-        return Ok(_docenteService.conseguirDocente(carnetIdentidad));
-    }
-
+    
     [HttpGet("conseguirDatosDocente/{usuarioCI}")]
     public IActionResult ConseguirDetallesDocente(string usuarioCI)
     {

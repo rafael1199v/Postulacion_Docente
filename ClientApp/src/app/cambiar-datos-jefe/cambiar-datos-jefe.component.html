@@ -1,4 +1,6 @@
-<header></header>
+<head>
+    <meta *ngIf="!role.isJefe()" http-equiv='refresh' content='0; /#/not-found'>
+  </head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
@@ -14,40 +16,53 @@
           </div>
     </div>
     <!-- Esta sección debe adquirir todos los elementos del jefe -->
-    <div class="spacing-tag"></div>
-    <div style="align-content: stretch; width:60%;">
-        <div class="form-group">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" formControlName="nombre" placeholder="Copiar el nombre anterior del postulante">
+    <div class="spacing-tag" ></div>
+    <form style="width: 60%;" [formGroup]="nuevosDatosJefeForm">
+        <div style="align-content: stretch; width:100%;">
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" formControlName="nuevoNombre" placeholder="Copiar el nombre anterior del postulante">
+            </div>
+
+            <div class="form-group">
+                <label for="correo">Correo:</label>
+                <input type="email" id="correo" formControlName="nuevoCorreo" placeholder="Copiar correo">
+            </div>
+
+            <div class="form-group">
+                <label for="fechaNacimiento">Fecha de nacimiento: </label>
+                <input type="date" id="fechaNacimiento" formControlName="nuevaFechaNacimiento">
+            </div>
+
+            <div class="form-group">
+                    <label for="telefono">Numero de telefono: </label>
+                    <input type="text" id="numeroTelefono" formControlName="nuevoNumeroTelefono">
+            </div>
+
+            <div class="form-group">
+                <label for="contrasena">Nueva contraseña:</label>
+                <input type="password" id="contrasena" formControlName="nuevaContrasenha">
+            </div>
+            <div class="form-group">
+                <label for="confirmarContrasena">Confirmar nueva contraseña:</label>
+                <input type="password" id="confirmarContrasena" formControlName="nuevaContrasenhaRep">
+            </div>
+
+            <div class="form-group">
+                <label for="confirmarCambios">Confirmar cambios:<span class="required">*</span></label>
+                <input type="password" id="confirmarCambios" formControlName="contrasenhaActual" required placeholder="Introduzca su contraseña anterior para guardar los cambios.">
+            </div>
+        </div>
+        <div style="padding-top: 1%; display:flex; flex-direction: row; flex-wrap: wrap; justify-content: space-evenly; width:100%">
+            <div>
+                <button class="ButtonA" (click)="CambiarDatosJefe()">Guardar cambios</button>
+            </div>
+            <div>
+                <button class="ButtonB" [routerLink]="['/profile-jefe']">Descartar cambios</button>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label for="correo">Correo:</label>
-            <input type="email" id="correo" formControlName="correo" placeholder="Copiar correo">
-        </div>
-
-        <div class="form-group">
-            <label for="contrasena">Nueva contraseña:</label>
-            <input type="password" id="contrasena" formControlName="contrasena">
-        </div>
-        <div class="form-group">
-            <label for="confirmarContrasena">Confirmar nueva contraseña:</label>
-            <input type="password" id="confirmarContrasena" formControlName="contrasenaRep">
-        </div>
-
-        <div class="form-group">
-            <label for="confirmarCambios">Confirmar cambios:<span class="required">*</span></label>
-            <input type="password" id="confirmarCambios" formControlName="contrasenaOLD" required placeholder="Introduzca su contraseña anterior para guardar los cambios.">
-        </div>
-    </div>
-    <div style="padding-top: 1%; display:flex; flex-direction: row; flex-wrap: wrap; justify-content: space-evenly; width:30%">
-        <div>
-            <button class="ButtonA">Guardar cambios</button>
-        </div>
-        <div>
-            <button class="ButtonB" [routerLink]="['/profile-jefe']">Descartar cambios</button>
-        </div>
-    </div>
+    </form>
   </div>
   <div class="footer-spacing-tag"></div>
   <app-footer></app-footer>

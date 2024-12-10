@@ -1,4 +1,6 @@
-<header></header>
+<head>
+    <meta *ngIf="role.isJefe()" http-equiv='refresh' content='0; /#/not-found'>
+  </head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
@@ -20,12 +22,12 @@
         <div style="align-content: stretch; width:100%;">
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" formControlName="nombre" placeholder="Copiar el nombre anterior del postulante">
+                <input type="text" id="nombre" formControlName="nombre">
             </div>
 
             <div class="form-group">
                 <label for="telefono">Teléfono:</label>
-                <input type="text" id="telefono" formControlName="telefono" placeholder="Copiar celu">
+                <input type="text" id="telefono" formControlName="telefono">
             </div>
 
             <!-- <div class="form-group">
@@ -41,22 +43,22 @@
 
             <div class="form-group">
                 <label for="correo">Correo:</label>
-                <input type="email" id="correo" formControlName="correo" placeholder="Copiar correo">
+                <input type="email" id="correo" formControlName="correo">
             </div>
 
             <div class="form-group">
                 <label for="materia">Materia:</label>
-                <input type="text" id="materia" formControlName="materia" placeholder="Copie">
+                <input type="text" id="materia" formControlName="materia">
             </div>
 
             <div class="form-group">
                 <label for="grado">Grado:</label>
-                <input type="text" id="grado" formControlName="grado" placeholder="Copie">
+                <input type="text" id="grado" formControlName="grado">
             </div>
 
             <div class="form-group">
                 <label for="anosExperiencia">Años de Experiencia:</label>
-                <input type="number" id="anhosExperiencia" formControlName="anhosExperiencia" placeholder="Copie" min="0">
+                <input type="number" id="anhosExperiencia" formControlName="anhosExperiencia" min="0">
             </div>
 
             <div class="form-group">

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { PerfilService } from '../services/PerfilService';
+import { UsuarioService } from '../services/UsuarioService';
+import { CarreraService } from '../services/CarreraService';
 
 @Component({
     selector: 'app-register',
@@ -8,33 +11,43 @@ import { Router } from '@angular/router';
     styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-    registerForm!: FormGroup;
-    isJefeCarrera: boolean = false;
-    listaCarreras: string[] = [
-        'Ingeniería de Software',
-        'Ingeniería Civil',
-        'Arquitectura',
-        'Medicina',
-        'Derecho',
-        'Psicología',
-        'Educación',
-        'Administración de Empresas'
-    ];
+    registerFormDocente!: FormGroup;
+    registerFormJefe!: FormGroup;
 
-    constructor(private formBuilder: FormBuilder, private router: Router) { }
+    isJefeCarrera: boolean = false;
+    listaCarreras: any[] = [];
+
+    constructor(private formBuilder: FormBuilder, private router: Router, private usuarioService: UsuarioService, private carreraService: CarreraService) { 
+        this.carreraService.GetCarrerasDisponibles().subscribe( result => {
+            this.listaCarreras = result;
+            console.log(result);
+        }, error => console.log(error));
+    }
 
     ngOnInit(): void {
-        this.registerForm = this.formBuilder.group({
+        this.registerFormDocente = this.formBuilder.group({
+            nombre: ['', Validators.required],
+            telefono: ['', [Validators.required, Validators.pattern(/^\d+$/), Validators.minLength(8), Validators.maxLength(8)]],
+            ci: ['', Validators.required],
+            fechaNacimiento: ['', Validators.required],
+            descripcionPersonal: ['', Validators.required],
+            especialidad: ['', Validators.required],
+            grado: ['', Validators.required],
+            anhosExperiencia: ['', [Validators.required, Validators.min(1)]],
+            correo: ['', [Validators.required, Validators.email]],
+            contrasenha: ['', [Validators.required, Validators.minLength(4)]],
+            contrasenhaRep: ['', [Validators.required, Validators.minLength(4)]],
+        });
+
+        this.registerFormJefe = this.formBuilder.group({
             nombre: ['', Validators.required],
             telefono: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
             ci: ['', Validators.required],
             fechaNacimiento: ['', Validators.required],
+            carreras: ['', [Validators.required, this.carrerasValidator()]],
             correo: ['', [Validators.required, Validators.email]],
-            contrasena: ['', [Validators.required, Validators.minLength(6)]],
-            contrasenaRep: ['', [Validators.required, Validators.minLength(6)]],
-            grado: ['', Validators.required],
-            anosExperiencia: ['', [Validators.required, Validators.min(1)]],
-            carreras: [[], [Validators.required, this.carrerasValidator()]] // Campo para las carreras seleccionadas
+            contrasenha: ['', [Validators.required, Validators.minLength(4)]],
+            contrasenhaRep: ['', [Validators.required, Validators.minLength(4)]],
         });
     }
 
@@ -51,20 +64,11 @@ export class RegisterComponent implements OnInit {
 
     toggleJefeCarrera(): void {
         this.isJefeCarrera = !this.isJefeCarrera;
-        const carrerasControl = this.registerForm.get('carreras');
-
-        if (this.isJefeCarrera) {
-            carrerasControl?.setValidators([Validators.required, this.carrerasValidator()]);
-        } else {
-            carrerasControl?.clearValidators();
-        }
-
-        carrerasControl?.updateValueAndValidity();
     }
 
     // Método que maneja el cambio de los checkboxes
     onCarreraChange(event: any): void {
-        const selectedCarreras = this.registerForm.value.carreras || [];
+        const selectedCarreras = this.registerFormJefe.value.carreras || [];
 
         // Si el checkbox está marcado, lo agregamos a las selecciones
         if (event.target.checked) {
@@ -82,28 +86,61 @@ export class RegisterComponent implements OnInit {
         }
 
         // Actualizamos el valor en el FormGroup
-        this.registerForm.patchValue({ carreras: selectedCarreras });
+        this.registerFormJefe.patchValue({ carreras: selectedCarreras });
     }
 
     // Método que determina si una carrera está seleccionada
     isCarreraSelected(carrera: string): boolean {
-        const selectedCarreras = this.registerForm.value.carreras || [];
+        const selectedCarreras = this.registerFormJefe.value.carreras || [];
         return selectedCarreras.includes(carrera);
     }
 
     registrarUsuario(): void {
-        if (!this.registerForm.valid) {
-            window.alert('Por favor, completa todos los campos requeridos.');
-            return;
+        if(this.isJefeCarrera){
+            
+            if(this.registerFormJefe.invalid){
+                window.alert('Por favor, completa todos los campos requeridos.');
+                return;
+            }
+            else if(new Date(this.registerFormJefe.value.fechaNacimiento).getTime() > Date.now())
+            {
+                window.alert('La fecha seleccionada es incorrecta');
+                return;
+            }
+            else if (this.registerFormJefe.value.contrasena !== this.registerFormJefe.value.contrasenaRep) {
+                window.alert('Las contraseñas no coinciden.');
+                return;
+            }
+            else{
+                this.usuarioService.registrarJefe(this.registerFormJefe).subscribe(result => {
+                    alert(result.mensaje);
+                    this.router.navigate(['/login']);
+                }, error => alert(error.error.mensaje));
+            }
         }
-
-        if (this.registerForm.value.contrasena !== this.registerForm.value.contrasenaRep) {
-            window.alert('Las contraseñas no coinciden.');
-            return;
+        else{
+            if(this.registerFormDocente.invalid){
+                window.alert('Por favor, completa todos los campos requeridos.');
+                return;
+            }
+            else if(new Date(this.registerFormDocente.value.fechaNacimiento).getTime() > Date.now())
+            {
+                window.alert('La fecha seleccionada es incorrecta');
+                return;
+            }
+            else if (this.registerFormDocente.value.contrasena !== this.registerFormDocente.value.contrasenaRep) {
+                window.alert('Las contraseñas no coinciden.');
+                return;
+            }
+            else{
+                this.usuarioService.registrarDocente(this.registerFormDocente).subscribe(result => {
+                    alert(result.mensaje);
+                    this.router.navigate(['/login']);
+                }, error => alert(error.error.mensaje));
+            }   
         }
-
-        console.log('Datos del formulario:', this.registerForm.value);
-        window.alert('Registro exitoso');
-        this.router.navigate(['/login']);
+       
+        
+        //this.router.navigate(['/login']);
     }
 }

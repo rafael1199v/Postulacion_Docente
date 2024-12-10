@@ -98,6 +98,8 @@ public class JefeCarreraService : IJefeCarreraService
                           select new JefeCarreraPerfilDTO {
                             Nombre = _usuario.Nombre,
                             Correo = _usuario.Correo,
+                            FechaNacimiento = _usuario.FechaNacimiento,
+                            NumeroTelefono = _usuario.NumeroTelefono,
                             Carreras = _jefeCarrera.Carreras.Select(carrera => carrera.NombreCarrera).ToList()
                           }).FirstOrDefault<JefeCarreraPerfilDTO>();
 

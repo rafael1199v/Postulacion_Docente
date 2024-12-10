@@ -1,30 +1,72 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Docente } from '../models/interfaces/docente.interface';
+import { FormGroup } from '@angular/forms';
+
+
 
 @Injectable()
 export class UsuarioService {
-    private apiUrl = ''; // AQUI HAY QUE REEMPLAZAR CON LA URL DE NUESTRA API
-
+    
     constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl : string) { }
 
-    /**
-     * Método para registrar un usuario.
-     * @param usuario Datos del usuario a registrar
-     * @returns Observable con la respuesta del servidor
-     */
-    registrarUsuario(usuario: any): Observable<any> {
-        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-        return this.http.post(this.apiUrl, usuario, { headers });
+    registrarDocente(registroDocenteForm: FormGroup){
+        const docenteDatos = {
+            nombre: registroDocenteForm.value.nombre,
+            telefono: registroDocenteForm.value.telefono,
+            ci: registroDocenteForm.value.ci,
+            fechaNacimiento: registroDocenteForm.value.fechaNacimiento,
+            descripcionPersonal: registroDocenteForm.value.descripcionPersonal,
+            materia: registroDocenteForm.value.especialidad,
+            grado: registroDocenteForm.value.grado,
+            anhosExperiencia: registroDocenteForm.value.anhosExperiencia,
+            correo: registroDocenteForm.value.correo,
+            contrasenha: registroDocenteForm.value.contrasenha
+        };
+
+        return this.http.post<any>(this.baseUrl + 'usuario/registrarDocente', docenteDatos);
     }
 
-    /**
-     * Método para obtener usuarios (opcional).
-     * @returns Observable con la lista de usuarios
-     */
-    obtenerUsuarios(): Observable<any[]> {
-        return this.http.get<any[]>(this.apiUrl);
+    // public string Nombre{get; set;} = string.Empty;
+    // public string Telefono{get; set;} = string.Empty;
+    // public string CI{get; set;} = string.Empty;
+    // public DateTime FechaNacimiento{get; set;}
+    // public string DescripcionPersonal { get; set; } = string.Empty;
+    // public string Materia{get; set;} = string.Empty;
+    // public string Grado{get; set;} = string.Empty;
+    // public int AnhosExperiencia{get; set;}
+    // public string Correo{get; set;} = string.Empty;
+    // public string Contrasenha{get; set;} = string.Empty;
+
+    // nombre: ['', Validators.required],
+    // telefono: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
+    // ci: ['', Validators.required],
+    // fechaNacimiento: ['', Validators.required],
+    // descripcionPersonal: ['', Validators.required],
+    // especialidad: ['', Validators.required],
+    // grado: ['', Validators.required],
+    // anosExperiencia: ['', [Validators.required, Validators.min(1)]],
+    // correo: ['', [Validators.required, Validators.email]],
+    // contrasena: ['', [Validators.required, Validators.minLength(4)]],
+    // contrasenaRep: ['', [Validators.required, Validators.minLength(4)]],
+
+
+    registrarJefe(registroJefeForm: FormGroup){
+        const jefeDatos = {
+            nombre: registroJefeForm.value.nombre,
+            telefono: registroJefeForm.value.telefono,
+            ci: registroJefeForm.value.ci,
+            fechaNacimiento: registroJefeForm.value.fechaNacimiento,
+            correo: registroJefeForm.value.correo,
+            contrasenha: registroJefeForm.value.contrasenha,
+            carreras: registroJefeForm.value.carreras
+        };
+
+        return this.http.post<any>(this.baseUrl + 'usuario/registrarJefeCarrera', jefeDatos);
     }
+
+
+   
+    
+
 
 }
