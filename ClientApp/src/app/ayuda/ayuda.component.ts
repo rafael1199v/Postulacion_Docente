@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GetSessionRole } from '../services/GetSessionRole';
 
 @Component({
   selector: 'ayuda',
@@ -6,4 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./ayuda.component.css']
 })
 export class AyudaComponent {
+  public role: any;
+  constructor(){
+    this.role = GetSessionRole;
+  }
 }

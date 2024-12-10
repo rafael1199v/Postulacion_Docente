@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PerfilService } from '../services/PerfilService';
 import { Router } from '@angular/router';
 import { Docente } from '../models/interfaces/docente.interface';
+import { GetSessionRole } from '../services/GetSessionRole';
 
 @Component({
   selector: 'app-cambiar-datos-postulante',
@@ -11,6 +12,7 @@ import { Docente } from '../models/interfaces/docente.interface';
 })
 export class CambiarDatosPostulanteComponent {
 
+  public role: any;
   cambiarDatosForm: FormGroup = this.fb.group({
     nombre: ['', [Validators.required]],
     telefono: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]],
@@ -40,11 +42,9 @@ export class CambiarDatosPostulanteComponent {
       });
 
     });
-
-
+    this.role = GetSessionRole;
     
   }
-
 
 
   cambiarDatosDocente()

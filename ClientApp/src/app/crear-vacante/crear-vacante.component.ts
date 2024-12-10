@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Materia } from '../models/interfaces/materia.interface';
 import { vacanteService } from '../services/vacanteService';
 import { Router } from '@angular/router';
+import { GetSessionRole } from '../services/GetSessionRole';
 
 
 @Component({
@@ -12,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class CrearVacanteComponent {
 
+  public role: any;
   vacanteForm: FormGroup = this.fb.group({
     nombreVacante: ['', [Validators.required]],
     materia: ['', [Validators.required]],
@@ -29,7 +31,7 @@ export class CrearVacanteComponent {
       this.materias = result;
       console.log(this.materias);
     })
-
+    this.role = GetSessionRole;
     
   }
 

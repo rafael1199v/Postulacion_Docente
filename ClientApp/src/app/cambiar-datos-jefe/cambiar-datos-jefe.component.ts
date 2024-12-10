@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PerfilService } from '../services/PerfilService';
 import { Router } from '@angular/router';
+import { GetSessionRole } from '../services/GetSessionRole';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./cambiar-datos-jefe.component.css']
 })
 export class CambiarDatosJefeComponent {
-
+  public role: any;
   nuevosDatosJefeForm: FormGroup = this.fb.group({
     nuevoNombre: ['', [Validators.required]],
     nuevoCorreo: ['', [Validators.required, Validators.email]],
@@ -28,6 +29,7 @@ export class CambiarDatosJefeComponent {
         nuevoNumeroTelefono: result.numeroTelefono,
       });
     }); 
+    this.role = GetSessionRole;
   }
 
   CambiarDatosJefe(){
@@ -50,4 +52,5 @@ export class CambiarDatosJefeComponent {
       })
     }
   }
+  
 }
