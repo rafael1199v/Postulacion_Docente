@@ -58,7 +58,8 @@ CREATE TABLE Vacante(
     Descripcion VARCHAR(300),
     FechaInicio DATE NOT NULL,
     FechaFin DATE NOT NULL,
-    MateriaId INT NOT NULL --FOREIGN KEY REFERENCES Materia(MateriaId)
+    MateriaId INT NOT NULL, --FOREIGN KEY REFERENCES Materia(MateriaId)
+	JefeCarreraId INT NOT NULL
 );
 
 
@@ -107,3 +108,7 @@ FOREIGN KEY (VacanteId) REFERENCES Vacante(VacanteId);
 ALTER TABLE Vacante
 ADD CONSTRAINT FK_Materia_Vacante
 FOREIGN KEY (MateriaId) REFERENCES Materia(MateriaId);
+
+ALTER TABLE Vacante
+ADD CONSTRAINT FK_JefeCarrera_Vacante
+FOREIGN KEY (JefeCarreraId) REFERENCES JefeCarrera(JefeCarreraId);
