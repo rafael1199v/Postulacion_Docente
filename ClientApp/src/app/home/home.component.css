@@ -163,6 +163,59 @@ h3 {
     margin-bottom: 20px;
 }
 
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 220px);
+    gap: 100px;
+    padding: 10px;
+    justify-items: center;
+    margin-bottom: 70px;
+}
+
+/* Estilado básico para todas las tarjetas */
+.card {
+    position: relative;
+    width: 250px;
+    height: 300px;
+    background-color: #FFD700;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 0 3px #aaa;
+    margin: 1px;
+}
+
+.card:nth-child(1),
+.card:nth-child(6) {
+    width: 300px;
+    /* Ancho más grande */
+    height: 150px;
+    /* Altura ajustada */
+}
+
+/* Estilado del icono en las tarjetas */
+.card__icon {
+    width: 500px;
+    height: 500px;
+    object-fit: contain;
+}
+
+/* Contenido de las tarjetas */
+.card__content {
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.card__description {
+    margin: 1px 0 0;
+    font-size: 12px;
+    color: #777;
+    text-align: center;
+}
+
 .our-careers {
     text-align: center;
     margin: 50px auto;
@@ -175,6 +228,51 @@ h3 {
     display: inline-block;
     margin-bottom: 20px;
 }
+
+.rectangulo {
+    position: relative;
+    width: 1090px;
+    height: 350px;
+    background-image: url('./Carreras.png');
+    /* Cambia esto por la ruta de tu imagen */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Acomoda los elementos a los extremos */
+    color: #2D5784;
+    padding: 0 20px;
+    overflow: hidden;
+
+}
+
+.rectangulo .over {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.4);
+    /* Color blanco con opacidad del 70% */
+    z-index: 1;
+}
+
+.rectangulo_carton {
+    position: relative;
+    width: 320px;
+    height: 170px;
+    background-color: #f9f8f3;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 0 3px #aaa;
+    margin: 85px;
+    opacity: 0.82;
+}
+
 
 .community {
     text-align: center;
@@ -220,57 +318,4 @@ h3 {
     font-size: 1rem;
     margin-bottom: 5px;
     color: #555;
-}
-
-.container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 220px);
-    gap: 100px;
-    padding: 10px;
-    justify-items: center;
-}
-
-/* Estilado básico para todas las tarjetas */
-.card {
-    position: relative;
-    width: 250px;
-    height: 300px;
-    background-color: #FFD700;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    box-shadow: 0 0 3px #aaa;
-    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    margin: 1px;
-}
-
-.card:nth-child(1),
-.card:nth-child(6) {
-    width: 300px;
-    /* Ancho más grande */
-    height: 150px;
-    /* Altura ajustada */
-}
-
-/* Estilado del icono en las tarjetas */
-.card__icon {
-    width: 500px;
-    height: 500px;
-    object-fit: contain;
-}
-
-/* Contenido de las tarjetas */
-.card__content {
-    padding: 10px;
-    box-sizing: border-box;
-}
-
-.card__description {
-    margin: 1px 0 0;
-    font-size: 12px;
-    color: #777;
-    text-align: center;
 }
