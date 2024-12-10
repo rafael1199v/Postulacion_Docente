@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
+import { GetSessionRole } from '../services/GetSessionRole';
 
 @Component({
   selector: 'app-not-found',
   templateUrl: './not-found.component.html',
   styleUrls: ['./not-found.component.css']
 })
+
 export class NotFoundComponent {
-  getSession(){
-    if(sessionStorage.getItem('isJefe') == 'true'){
-      return true;
-    }
-    return false;
+  public role: any;
+  constructor(){
+    this.role = GetSessionRole;
   }
 }

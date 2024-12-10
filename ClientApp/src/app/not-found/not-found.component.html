@@ -21,8 +21,8 @@
       <p>Se sugiere que utilice únicamente los vínculos disponibles al navegar por la interfaz,
         para regresar a una página anterior, puede usar alt+izquierda o el atajo de su navegador actual.
       </p>
-      <a *ngIf="!getSession()" [routerLink]="['/']">Volver a la página principal</a>
-      <a *ngIf="getSession()" [routerLink]="['/jefe']">Volver a la página principal</a>
+      <a *ngIf="!role.isJefe()" [routerLink]="['/']">Volver a la página principal</a>
+      <a *ngIf="role.isJefe()" [routerLink]="['/jefe']">Volver a la página principal</a>
     </div>
   </div>
   <div class="footer-spacing-tag"></div>
