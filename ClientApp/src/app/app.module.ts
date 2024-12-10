@@ -40,6 +40,7 @@ import { NavMenuJefeComponent } from './nav-menu-jefe/nav-menu-jefe.component';
 import { HomeJefeComponent } from './home-jefe/home-jefe.component';
 import { AyudaJefeComponent } from './ayuda-jefe/ayuda-jefe.component';
 import { JefeCarreraService } from './services/JefeCarreraService';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 @NgModule({
@@ -71,6 +72,7 @@ import { JefeCarreraService } from './services/JefeCarreraService';
     NavMenuJefeComponent,
     HomeJefeComponent,
     AyudaJefeComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -105,6 +107,9 @@ import { JefeCarreraService } from './services/JefeCarreraService';
       { path: 'cambiar-datos-jefe', component: CambiarDatosJefeComponent },
       { path: 'profile-jefe', component: ProfileJefeComponent },
       { path: 'ayuda-jefe', component: AyudaJefeComponent},
+
+      //el de abajo debe manejar los 404s, por lo que no se le debe añadir nada más debajo de esta línea
+      { path: '**', component: NotFoundComponent}
     ])
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},vacanteService, LoginService, PerfilService, PostulacionService, JefeCarreraService],
