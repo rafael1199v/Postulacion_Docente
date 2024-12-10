@@ -5,6 +5,7 @@ import { Docente } from '../models/interfaces/docente.interface';
 import { FormGroup } from '@angular/forms';
 import { DocenteNuevosDatos } from '../models/interfaces/docenteNuevosDatos.enum';
 import { Jefe } from '../models/interfaces/jefe.interface';
+import { JefeCarreraNuevosDatos } from '../models/interfaces/jefeCarreraNuevosDatos.interface';
 
 @Injectable()
 export class PerfilService {
@@ -37,5 +38,21 @@ export class PerfilService {
         };
 
         return this.http.post<any>(this.baseUrl + 'usuario/cambiarDatosDocente', datosDocenteNuevos);
+    }
+
+
+    cambiarDatosJefe(cambiarDatosJefeForm: FormGroup){
+      
+        const nuevosDatosJefe: JefeCarreraNuevosDatos = {
+            nuevoNombre: cambiarDatosJefeForm.value.nuevoNombre,
+            nuevoCorreo: cambiarDatosJefeForm.value.nuevoCorreo,
+            nuevoNumeroTelefono: cambiarDatosJefeForm.value.nuevoNumeroTelefono,
+            nuevaFechaNacimiento: cambiarDatosJefeForm.value.nuevaFechaNacimiento,
+            nuevaContrasenha: cambiarDatosJefeForm.value.nuevaContrasenha,
+            contrasenhaActual: cambiarDatosJefeForm.value.contrasenhaActual,
+            ci: sessionStorage.getItem('usuarioCI') || '-1'
+        }
+
+        return this.http.post<any>(this.baseUrl + 'usuario/cambiarDatosJefe', nuevosDatosJefe);
     }
 }

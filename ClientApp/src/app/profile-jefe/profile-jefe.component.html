@@ -18,8 +18,15 @@
       <p>
         Nombre: {{ jefeCarrera?.nombre }}<br>
         Correo: {{ jefeCarrera?.correo }}<br>
-        <!-- foreach materia, show materia -->
+        Numero de telefono: {{ jefeCarrera?.numeroTelefono }}<br>
+        Fecha de Nacimiento: {{ jefeCarrera?.fechaNacimiento }}<br>
+        Carreras de las cual es Jefe:
       </p>
+      <p *ngFor="let carrera of jefeCarrera?.carreras">
+        {{ carrera }}
+      </p>
+
+
     </div>
 
     <div style="padding-top: 15%; display:flex; flex-direction: row; flex-wrap: wrap; justify-content: space-evenly; width:30%">

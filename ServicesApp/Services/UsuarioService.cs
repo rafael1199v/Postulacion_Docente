@@ -1,52 +1,9 @@
+using System.Net.Mime;
 using Microsoft.EntityFrameworkCore;
 using PostulacionDocente.ServicesApp.Models;
 
 public class UsuarioService : IUsuarioService
 {
-    // public bool EncontrarUsuario(string objetivo, int tipo){
-    //identifier funcionará como el tipo de campo que se está buscando
-    //0: nombre
-    //1: CI
-    //2: correo
-    //3: numero
-
-    //     List<UsuarioDTO> lista = new List<UsuarioDTO>{
-    //         new UsuarioDTO{nombre = "Daniel"}
-    //     };
-
-    //     for(int i = 0; i < lista.Count; i++){
-    //         switch (tipo)
-    //         {
-    //             case 0:
-    //                 if(objetivo == lista[i].nombre){
-    //                     return true;
-    //                 }
-    //                 break;
-    //             case 1:
-    //                 if(objetivo == lista[i].CI){
-    //                     return true;
-    //                 }
-    //                 break;
-    //             case 2:
-    //                 if(objetivo == lista[i].correo){
-    //                     return true;
-    //                 }
-    //                 break;
-    //             case 3:
-    //                 if(objetivo == lista[i].numero){
-    //                     return true;
-    //                 }
-    //                 break;
-
-    //             default:
-    //                 System.Console.WriteLine("XD");
-    //                 break;
-    //         }
-    //     }
-    //     return false;
-    //     //TODO: Rehacer esta búsqueda toda fea
-    // }
-
   
     public bool LoginDocente(LoginUsuarioDTO credenciales, PostulacionDocenteContext context, out string mensaje, out string usuarioCI)
     {
@@ -149,6 +106,57 @@ public class UsuarioService : IUsuarioService
         docente.Usuario.Contrasenha = nuevosDatosDocente.NuevaContrasena;
 
         context.SaveChanges();
+        return true;
+    }
+
+
+    public bool CambiarDatosJefe(JefeCarreraNuevosDatosDTO nuevosDatosJefe, PostulacionDocenteContext context, out string mensaje)
+    {
+        mensaje = "Datos cambiados correctamente";
+
+        var jefeCarrera = (from _jefeCarrera in context.JefeCarreras
+                          join _usuario in context.Usuarios on _jefeCarrera.UsuarioId equals _usuario.UsuarioId
+                          where _usuario.Ci == nuevosDatosJefe.CI
+                          select _jefeCarrera).Include(jefe => jefe.Usuario).FirstOrDefault<JefeCarrera>();
+
+        if(jefeCarrera == null)
+        {
+            mensaje = "Hubo un error al cambiar sus datos. Intentelo otra vez";
+            return false;
+        }
+        else if(jefeCarrera.Usuario.Contrasenha != nuevosDatosJefe.ContrasenhaActual)
+        {
+            mensaje = "La contrasenha actual del usuario es incorrecta. No podemos cambiar sus datos";
+            return false;
+        }
+
+
+
+        HashSet<string> correos = context.Usuarios.Select(us => us.Correo).Where(correo => correo != jefeCarrera.Usuario.Correo).ToHashSet();
+        HashSet<string> telefonos = context.Usuarios.Select(us => us.NumeroTelefono).Where(telefono => telefono != jefeCarrera.Usuario.NumeroTelefono).ToHashSet();
+
+
+        if(correos.Contains(nuevosDatosJefe.NuevoCorreo))
+        {
+            mensaje = "Ya existe un usuario con este correo. Intente buscar otra opcion";
+            return false;
+        }
+        else if(telefonos.Contains(nuevosDatosJefe.NuevoNumeroTelefono))
+        {
+            mensaje = "El numero de telefono ya esta siendo usado por otro usuario. Intente otra opcion";
+            return false;
+        }
+
+
+
+        jefeCarrera.Usuario.Nombre = nuevosDatosJefe.NuevoNombre;
+        jefeCarrera.Usuario.Correo = nuevosDatosJefe.NuevoCorreo;
+        jefeCarrera.Usuario.FechaNacimiento = nuevosDatosJefe.NuevaFechaNacimiento;
+        jefeCarrera.Usuario.NumeroTelefono = nuevosDatosJefe.NuevoNumeroTelefono;
+        jefeCarrera.Usuario.Contrasenha = nuevosDatosJefe.NuevaContrasenha;
+
+        context.SaveChanges();
+
         return true;
     }
 }

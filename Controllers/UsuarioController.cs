@@ -54,5 +54,12 @@ public class UsuarioController: ControllerBase{
         return _usuarioService.CambiarDatosDocente(docenteNuevosDatos, _context, out string mensaje) ? Ok(new {mensaje}) : BadRequest( new {mensaje});
     }
 
+
+    [HttpPost("cambiarDatosJefe")]
+    public IActionResult CambiarDatosJefe([FromBody] JefeCarreraNuevosDatosDTO jefeNuevosDatos)
+    {
+        return _usuarioService.CambiarDatosJefe(jefeNuevosDatos, _context, out string mensaje) ? Ok(new {mensaje}) : BadRequest(new {mensaje});
+    }
+
     
 }
