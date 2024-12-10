@@ -42,6 +42,8 @@ import { AyudaJefeComponent } from './ayuda-jefe/ayuda-jefe.component';
 import { JefeCarreraService } from './services/JefeCarreraService';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CarreraService } from './services/CarreraService';
+import { HistorialVacantesComponent } from './historial-vacantes/historial-vacantes.component';
+import { HistorialPostulacionesComponent } from './historial-postulaciones/historial-postulaciones.component';
 
 
 
@@ -75,6 +77,8 @@ import { CarreraService } from './services/CarreraService';
     HomeJefeComponent,
     AyudaJefeComponent,
     NotFoundComponent,
+    HistorialVacantesComponent,
+    HistorialPostulacionesComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -98,6 +102,7 @@ import { CarreraService } from './services/CarreraService';
       { path: 'estado-postulacion/:postulacionId', component: EstadoPostulacionComponent },
       { path: 'cambiar-datos-postulante', component: CambiarDatosPostulanteComponent },
       { path: 'postularse/:vacanteId', component: PostularseComponent },
+      { path: 'historial-postulaciones', component: HistorialPostulacionesComponent },
 
       //Desde Aqui seran las secciones hechas para el jefe de carrera
 
@@ -108,10 +113,11 @@ import { CarreraService } from './services/CarreraService';
       { path: 'revisar-postulacion/:vacanteId/:postulacionId', component: RevisarPostulacionComponent },
       { path: 'cambiar-datos-jefe', component: CambiarDatosJefeComponent },
       { path: 'profile-jefe', component: ProfileJefeComponent },
-      { path: 'ayuda-jefe', component: AyudaJefeComponent},
+      { path: 'ayuda-jefe', component: AyudaJefeComponent },
+      { path: 'historial-vacantes', component: HistorialVacantesComponent },
 
       //el de abajo debe manejar los 404s, por lo que no se le debe añadir nada más debajo de esta línea
-      { path: '**', component: NotFoundComponent}
+      { path: '**', component: NotFoundComponent }
     ])
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},vacanteService, LoginService, PerfilService, PostulacionService, JefeCarreraService, UsuarioService, CarreraService],

@@ -13,6 +13,10 @@ export class PostulacionService
         return this.http.get<Postulacion[]>(this.baseUrl + 'postulacion/conseguirPostulacionesVigentes/' + sessionStorage.getItem('usuarioCI'));
     }
 
+    ConseguirHistorialPostulaciones(){
+        return this.http.get<Postulacion[]>(this.baseUrl + 'postulacion/conseguirPostulacionesHistorial' + sessionStorage.getItem('usuarioCI'));
+    }
+
     ConseguirDetallePostulacion(postulacionId: string){
         return this.http.get<Postulacion>(this.baseUrl + 'postulacion/ConseguirDetallesPostulacion/' + postulacionId);
     }

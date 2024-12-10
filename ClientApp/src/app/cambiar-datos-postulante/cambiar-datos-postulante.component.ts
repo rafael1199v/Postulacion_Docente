@@ -17,6 +17,7 @@ export class CambiarDatosPostulanteComponent {
     nombre: ['', [Validators.required]],
     telefono: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]],
     fechaNacimiento: ['', [Validators.required]],
+    descripcionPersonal: ['', Validators.required],
     correo: ['', [Validators.required, Validators.email]],
     materia: ['', [Validators.required]],
     grado: ['', [Validators.required]],
@@ -35,6 +36,7 @@ export class CambiarDatosPostulanteComponent {
       this.cambiarDatosForm.patchValue({
         nombre: this.docente.nombre,
         telefono: this.docente.telefono,
+        descripcionPersonal: this.docente.descripcionPersonal,
         correo: this.docente.correo,
         materia: this.docente.materia,
         grado: this.docente.grado,

@@ -4,6 +4,7 @@ import { PerfilService } from '../services/PerfilService';
 import { Router } from '@angular/router';
 import { GetSessionRole } from '../services/GetSessionRole';
 
+//TODO: PERMITIR CAMBIAR DE CARRERA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 @Component({
   selector: 'app-cambiar-datos-jefe',

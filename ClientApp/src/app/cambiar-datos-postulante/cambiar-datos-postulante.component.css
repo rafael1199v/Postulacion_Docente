@@ -146,3 +146,31 @@ h3 {
     height: 35px;
     width: 200px;
 }
+
+span {
+    max-width: 15%;
+}
+
+input:invalid {
+    outline-color: red;
+    border-color: red;
+}
+
+input:invalid + span::before {
+    content: 'El campo no puede estar vacío';
+    color: red;
+}
+
+input:valid + span::before {
+    content: none;
+}
+
+input:invalid + .emailSpan::before {
+    content: 'Usa un correo válido';
+    color: red;
+}
+
+input:invalid + .passSpan::before {
+    content: none;
+    color: red;
+}

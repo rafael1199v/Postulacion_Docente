@@ -31,6 +31,9 @@ export class vacanteService{
         return this.http.get<Vacante[]>(this.baseUrl + 'vacante/conseguirVacantesDisponibles/' + sessionStorage.getItem('usuarioCI'));
     }
 
+    GetHistorialVacantes(){
+        return this.http.get<Vacante[]>(this.baseUrl + 'vacante/conseguirVacantesHistorialJefe/' + sessionStorage.getItem('usuarioCI'));
+    }
 
     GetDetalleVacante(vacanteId: string){
         return this.http.get<Vacante>(this.baseUrl + 'vacante/conseguirDetalleVacante/' + vacanteId);

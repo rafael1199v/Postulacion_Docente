@@ -97,7 +97,7 @@ h3 {
     outline-width: 1px;
     box-shadow: 2px 2px 5px #000000;
     transition-duration: 250ms;
-    margin:0.5%;
+    margin:5%;
 }
 .vacante-border:hover {
     background-color: #2D5784;
@@ -123,4 +123,15 @@ h3 {
     -webkit-box-orient: vertical;
     overflow:hidden;
     text-overflow:ellipsis;
+}
+
+.ButtonB {
+    background-color: #2D5784;
+    color: white;
+    border-radius: 10px;
+    border-color: #00000000;
+    height: 55px;
+    width: 350px;
+    font-size: large;
+    font-weight: 600;
 }
