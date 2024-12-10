@@ -168,7 +168,7 @@ input:invalid + .emailSpan::before {
 }
 
 input:invalid + .passSpan::before {
-    content: 'La contraseña necesita 6 caracteres mínimo';
+    content: 'La contraseña necesita 4 caracteres mínimo';
     color: red;
 }
 

@@ -14,28 +14,6 @@ public class PostulacionController : ControllerBase
         _context = context;
     }
 
-    [HttpPost("{id}/rechazar")]
-    public IActionResult RechazarPostulacion(int id, [FromBody] string razon)
-    {
-        var resultado = _postulacionService.RechazarPostulacion(id, razon);
-        if (resultado.Contains("no encontrada"))
-        {
-            return NotFound(resultado);
-        }
-        return Ok(new { Notificacion = resultado });
-    }
-
-    [HttpPost("{id}/aceptar")]
-    public IActionResult AceptarPostulacion(int id)
-    {
-        var resultado = _postulacionService.AceptarPostulacion(id);
-        if (resultado.Contains("no encontrada"))
-        {
-            return NotFound(resultado);
-        }
-        return Ok(new { Notificacion = resultado });
-    }
-
     [HttpGet("ConseguirDetallesPostulacion/{postulacionId}")]
     public IActionResult ConseguirDetallesPostulacion(int postulacionId)
     {
@@ -47,6 +25,12 @@ public class PostulacionController : ControllerBase
     public IActionResult ConseguirPostulacionesVigentes(string CI)
     {
         return Ok(_postulacionService.ConseguirPostulacionesVigentes(_context, CI));
+    }
+
+    [HttpGet("conseguirPostulacionesHistorial/{CI}")]
+    public IActionResult ConseguirPostulacionesHistorial(string CI)
+    {
+        return Ok(_postulacionService.ConseguirPostulacionesHistorial(_context, CI));
     }
     
 
