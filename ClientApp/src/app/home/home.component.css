@@ -87,29 +87,21 @@ h3 {
 
 .ucb-section .text-right {
     align-self: flex-end;
-    /* Alinea el texto a la parte inferior */
     margin-bottom: 50px;
-    /* Ajusta este valor para posicionarlo más abajo */
 }
 
 .ucb-section .text-left h1 {
     font-size: 2.5rem;
-    /* Ajusta el tamaño del texto izquierdo */
     color: #1E3A8A;
-    /* Color azul similar al de la imagen */
     margin: 0;
     text-align: left;
     border-bottom: 5px solid #FFD700;
-    /* Línea amarilla debajo del texto */
     padding-bottom: 5px;
-    /* Espacio entre el texto y la línea */
 }
 
 .ucb-section .text-right h4 {
     font-size: 2rem;
-    /* Ajusta el tamaño del texto derecho */
     color: #333;
-    /* Color negro */
     margin: 0;
     text-align: right;
 }
@@ -131,9 +123,7 @@ h3 {
     text-align: center;
     background-color: #f5f5f5;
     max-width: 1095px;
-    /* O ajusta el ancho si lo necesitas */
-    height: 2500px;
-    /* Ajusta la altura que desees */
+    height: 3000px;
 }
 
 .bigText {
@@ -166,17 +156,17 @@ h3 {
 .container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 220px);
-    gap: 100px;
+    grid-template-rows: repeat(2, 300px);
+    gap: 50px;
     padding: 10px;
     justify-items: center;
-    margin-bottom: 70px;
+    margin-bottom: 50px;
 }
 
 /* Estilado básico para todas las tarjetas */
 .card {
     position: relative;
-    width: 250px;
+    width: 280px;
     height: 300px;
     background-color: #FFD700;
     border-radius: 10px;
@@ -186,14 +176,6 @@ h3 {
     overflow: hidden;
     box-shadow: 0 0 3px #aaa;
     margin: 1px;
-}
-
-.card:nth-child(1),
-.card:nth-child(6) {
-    width: 300px;
-    /* Ancho más grande */
-    height: 150px;
-    /* Altura ajustada */
 }
 
 /* Estilado del icono en las tarjetas */
@@ -234,17 +216,14 @@ h3 {
     width: 1090px;
     height: 350px;
     background-image: url('./Carreras.png');
-    /* Cambia esto por la ruta de tu imagen */
     background-size: cover;
     background-position: center;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    /* Acomoda los elementos a los extremos */
+    justify-content: center;
     color: #2D5784;
     padding: 0 20px;
     overflow: hidden;
-
 }
 
 .rectangulo .over {
@@ -254,25 +233,95 @@ h3 {
     width: 100%;
     height: 100%;
     background-color: rgba(255, 255, 255, 0.4);
-    /* Color blanco con opacidad del 70% */
     z-index: 1;
 }
 
 .rectangulo_carton {
-    position: relative;
-    width: 320px;
-    height: 170px;
+    position: absolute;
+    width: 360px;
+    height: 160px;
     background-color: #f9f8f3;
     border-radius: 10px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
     box-shadow: 0 0 3px #aaa;
-    margin: 85px;
+    top: 50%;
+    left: 10%;
     opacity: 0.82;
+    z-index: 2;
+    padding: 20px;
+    transform: translateY(-50%);
 }
 
+.titulo-rectangulo {
+    font-size: 2.3rem;
+    color: #2D5784;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 100;
+}
+
+.boton-rectangulo {
+    background-color: #ffffff;
+    color: #2D5784;
+    border: 2px solid #FFD700;
+    border-radius: 20px;
+    padding: 5px 100px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border 0.3s ease;
+    margin-top: 10px;
+}
+
+.boton-rectangulo:hover {
+    background-color: #FFC107;
+}
+
+.rectangulos-pequenos {
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+.rectangulo-pequeno {
+    background-color: #f9f8f3;
+    border-radius: 6px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 3px #aaa;
+    height: 28px;
+    width: 240px;
+    /* Ajusta el alto de los rectángulos */
+}
+
+.rectangulo-pequeno::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 28px;
+    border-radius: 15px;
+    background-color: #FFD700;
+    z-index: 1;
+}
+
+.texto-pequeno {
+    color: #2D5784;
+    font-size: 0.9rem;
+    text-align: center;
+    line-height: 1.5;
+}
 
 .community {
     text-align: center;
@@ -285,6 +334,35 @@ h3 {
     border-bottom: 2px solid #FFD700;
     display: inline-block;
     margin-bottom: 20px;
+}
+
+.comunidad-cuadro {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 85px;
+    padding: 10px;
+    justify-items: center;
+}
+
+/* Estilado básico para todas las tarjetas */
+.tarjeta {
+    position: relative;
+    width: 260px;
+    height: 400px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 0 5px #aaa;
+
+
+}
+
+.tarjeta__icon {
+    width: 1000px;
+    height: 1000px;
+    object-fit: contain;
 }
 
 .faculty {
@@ -301,12 +379,16 @@ h3 {
 }
 
 .faculty-grid {
+    text-align: left;
     display: flex;
-    justify-content: center;
     gap: 50px;
     width: 500px;
-    /* Ajusta este valor para cambiar el ancho de cada columna */
-
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 10px;
+    /* Esquinas redondeadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .faculty-grid ul {
@@ -316,6 +398,18 @@ h3 {
 
 .faculty-grid li {
     font-size: 1rem;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
     color: #555;
+    position: relative;
+    padding-left: 20px;
+}
+
+.faculty-grid li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #FFD700;
+    font-size: 2.2rem;
+    line-height: 1;
 }
