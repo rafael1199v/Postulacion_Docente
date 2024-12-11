@@ -14,7 +14,7 @@ export class PostulacionService
     }
 
     ConseguirHistorialPostulaciones(){
-        return this.http.get<Postulacion[]>(this.baseUrl + 'postulacion/conseguirPostulacionesHistorial' + sessionStorage.getItem('usuarioCI'));
+        return this.http.get<Postulacion[]>(this.baseUrl + 'postulacion/conseguirPostulacionesHistorial/' + sessionStorage.getItem('usuarioCI'));
     }
 
     ConseguirDetallePostulacion(postulacionId: string){
