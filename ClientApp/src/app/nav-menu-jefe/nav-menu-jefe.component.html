@@ -10,7 +10,7 @@
         <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end" [ngClass]="{ show: isExpanded }">
           <ul class="navbar-nav flex-grow" style="padding-top: 2%;">
             <li class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }">
-              <a class="nav-link header1-text-fix" [routerLink]="['/profile-jefe']">{{jefeCarrera?.nombre}} &#128100;</a>
+              <a class="nav-link header1-text-fix" [routerLink]="['/profile-jefe']">Perfil</a>
             </li>
             <li class="nav-item">
               <p class="nav-link text-dark" style="cursor: default; padding-top: 0px;">|</p>
@@ -46,14 +46,14 @@
               <a class="nav-link text-dark" [routerLink]="['vacantes-creadas']">Vacantes</a>
             </li>
             <li class="nav-item" [routerLinkActive]="['link-active']">
-              <a class="nav-link text-dark" [routerLink]="['/profile-jefe']">Perfil</a>
+              <a class="nav-link text-dark" [routerLink]="['/historial-vacantes']">Historial</a>
             </li>
           </ul>
         </div>
         <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end" [ngClass]="{ show: isExpanded }">
           <ul class="navbar-nav flex-grow">
             <li class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }">
-              <a class="nav-link text-dark" [routerLink]="['/jefe']">BORRAR</a>
+              <a class="nav-link text-dark" href="https://scz.ucb.edu.bo/">Página oficial de la UCB</a>
             </li>
           </ul>
         </div>

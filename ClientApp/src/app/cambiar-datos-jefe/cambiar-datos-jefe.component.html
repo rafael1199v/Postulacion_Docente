@@ -21,23 +21,36 @@
         <div style="align-content: stretch; width:100%;">
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" formControlName="nuevoNombre" placeholder="Copiar el nombre anterior del postulante">
+                <input type="text" id="nombre" formControlName="nuevoNombre">
+                <span></span>
             </div>
 
             <div class="form-group">
                 <label for="correo">Correo:</label>
-                <input type="email" id="correo" formControlName="nuevoCorreo" placeholder="Copiar correo">
+                <input type="email" id="correo" formControlName="nuevoCorreo">
+                <span class="emailSpan"></span>
             </div>
 
             <div class="form-group">
                 <label for="fechaNacimiento">Fecha de nacimiento: </label>
                 <input type="date" id="fechaNacimiento" formControlName="nuevaFechaNacimiento">
+                <span></span>
             </div>
 
             <div class="form-group">
                     <label for="telefono">Numero de telefono: </label>
                     <input type="text" id="numeroTelefono" formControlName="nuevoNumeroTelefono">
+                    <span></span>
             </div>
+
+            <!-- <fieldset class="career-selection">
+                <legend>Selecciona 1 a 3 carreras</legend>
+                <div class="career-option" *ngFor="let carrera of listaCarreras">
+                    <input type="checkbox" [id]="carrera" [value]="carrera.sigla" (change)="onCarreraChange($event)"
+                        [checked]="isCarreraSelected(carrera)" />
+                    <label [for]="carrera">{{ carrera.nombreCarrera }}</label>
+                </div>
+            </fieldset> -->
 
             <div class="form-group">
                 <label for="contrasena">Nueva contraseña:</label>
@@ -49,8 +62,9 @@
             </div>
 
             <div class="form-group">
-                <label for="confirmarCambios">Confirmar cambios:<span class="required">*</span></label>
+                <label for="confirmarCambios">Confirmar cambios:</label>
                 <input type="password" id="confirmarCambios" formControlName="contrasenhaActual" required placeholder="Introduzca su contraseña anterior para guardar los cambios.">
+                <span class="passSpan"></span>
             </div>
         </div>
         <div style="padding-top: 1%; display:flex; flex-direction: row; flex-wrap: wrap; justify-content: space-evenly; width:100%">

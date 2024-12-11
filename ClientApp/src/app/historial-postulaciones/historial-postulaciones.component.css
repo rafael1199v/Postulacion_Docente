@@ -16,8 +16,7 @@
     align-content: center;
     text-align: center;
     background-color: #f5f5f5;
-    max-width: 1063px;
-    min-width: 35%;
+    width:60%;
     min-height: 75%;
     padding-top: 1.5%;
 }
@@ -64,8 +63,8 @@ h3 {
     align-content: center;
     text-align: center;
     background-color: #f5f5f5;
-    width: 63%;
-    padding-top: 3%;
+    width: 67%;
+    padding-top: 2%;
     /* O ajusta el ancho si lo necesitas */
     /* Ajusta la altura que desees */
 }
@@ -77,7 +76,7 @@ h3 {
     align-self: center;
     align-content: center;
     text-align: center;
-    background-image: url('../../assets/images/hands.jpg');
+    background-image: url('../../assets/images/job_acquired.jpg');
     background-size: cover;
     background-position-y: -40px;
     width: 100%;
@@ -86,9 +85,10 @@ h3 {
     /* z-index: 1; */
 }
 
-.vacante-border {
+.item-border {
+    margin:1%;
     text-align: left;
-    width: 60%;
+    width: 48%;
     padding-top: 1%;
     background-color: #87caf7;
     border-radius: 10px;
@@ -97,21 +97,20 @@ h3 {
     outline-width: 1px;
     box-shadow: 2px 2px 5px #000000;
     transition-duration: 250ms;
-    margin:0.5%;
 }
-.vacante-border:hover {
+.item-border:hover {
     background-color: #2D5784;
     border-radius: 10px;
     color: #f5f5f5;
     transition-duration: 250ms;
     cursor:pointer;
 }
-.vacante-border:active {
+.item-border:active {
     transition-duration: 100ms;
     box-shadow: 1px 1px 5px -1px #000000 inset;
 }
 
-.vacante-margin {
+.item-margin {
     margin-top: 0px;
     margin-left: 2%;
     margin-right: 2%;

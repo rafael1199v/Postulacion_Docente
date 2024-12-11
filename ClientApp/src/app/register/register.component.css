@@ -171,8 +171,3 @@ input:invalid + .passSpan::before {
     content: 'La contraseña necesita 4 caracteres mínimo';
     color: red;
 }
-
-.confirmInput:invalid {
-    border: 2px solid #0000008a;
-    outline-color: currentColor;
-}

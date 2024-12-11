@@ -22,43 +22,49 @@
         <div style="align-content: stretch; width:100%;">
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" formControlName="nombre">
+                <input type="text" id="nombre" formControlName="nombre" required>
+                <span></span>
             </div>
 
             <div class="form-group">
                 <label for="telefono">Teléfono:</label>
-                <input type="text" id="telefono" formControlName="telefono">
+                <input type="text" id="telefono" formControlName="telefono" required>
+                <span></span>
             </div>
-
-            <!-- <div class="form-group">
-                <label for="ci">CI:</label>
-                <input type="text" id="ci" formControlName="ci" placeholder="Debería poderse cambiar el CI? xddd">
-            </div> -->
 
             <div class="form-group">
                 <label for="fechaNacimiento">Fecha de Nacimiento:</label>
-                <input type="date" id="fechaNacimiento" formControlName="fechaNacimiento" value="2005-05-02">
-                <!-- reemplazar value con el valor anterior del postulante -->
+                <input type="date" id="fechaNacimiento" formControlName="fechaNacimiento" required>
+                <span></span>
+            </div>
+
+            <div class="form-group">
+                <label for="descripcionPersonal">Descripcion personal:</label>
+                <textarea name="" id="" cols="10" rows="5" formControlName="descripcionPersonal" style="width: 55%;"></textarea>
             </div>
 
             <div class="form-group">
                 <label for="correo">Correo:</label>
-                <input type="email" id="correo" formControlName="correo">
+                <input type="email" id="correo" formControlName="correo" required>
+                <span class="emailSpan"></span>
             </div>
 
             <div class="form-group">
                 <label for="materia">Materia:</label>
-                <input type="text" id="materia" formControlName="materia">
+                <input type="text" id="materia" formControlName="materia" required>
+                <span></span>
             </div>
 
             <div class="form-group">
                 <label for="grado">Grado:</label>
-                <input type="text" id="grado" formControlName="grado">
+                <input type="text" id="grado" formControlName="grado" required>
+                <span></span>
             </div>
 
             <div class="form-group">
                 <label for="anosExperiencia">Años de Experiencia:</label>
-                <input type="number" id="anhosExperiencia" formControlName="anhosExperiencia" min="0">
+                <input type="number" id="anhosExperiencia" formControlName="anhosExperiencia" min="0" required>
+                <span></span>
             </div>
 
             <div class="form-group">
@@ -73,6 +79,7 @@
             <div class="form-group">
                 <label for="confirmarCambios">Confirmar cambios:<span class="required">*</span></label>
                 <input type="password" id="confirmarCambios" formControlName="contrasenaOld" required placeholder="Introduzca su contraseña anterior para guardar los cambios.">
+                <span class="passSpan"></span>
             </div>
         </div>
 
