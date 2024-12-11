@@ -97,7 +97,7 @@ h3 {
     outline-width: 1px;
     box-shadow: 2px 2px 5px #000000;
     transition-duration: 250ms;
-    margin:5%;
+    margin:1%;
 }
 .vacante-border:hover {
     background-color: #2D5784;

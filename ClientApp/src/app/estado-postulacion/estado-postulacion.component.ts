@@ -20,5 +20,4 @@ export class EstadoPostulacionComponent {
     this.role = GetSessionRole;
   }
 
-
 }
