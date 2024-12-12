@@ -20,6 +20,15 @@ input {
     border-radius: 15px;
 }
 
+textarea{
+
+    width: 55%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    
+}
+
 p {
     text-align: center;
     margin-top: 10px;
