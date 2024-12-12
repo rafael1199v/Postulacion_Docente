@@ -56,7 +56,7 @@ public class PdfService : IPdfService
                     .Background(Colors.Grey.Lighten1)
                     .AlignCenter()
                     .AlignMiddle()
-                    .Text("Plagio?");
+                    .Text("Curriculum generado automaticamente por la app");
             });
         });
 
