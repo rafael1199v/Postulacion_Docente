@@ -15,8 +15,10 @@ public class PostulacionService : IPostulacionService
                                     Estado = _postulacion.Estado.EstadoId,
                                     DescripcionEstado = _postulacion.Estado.Mensaje,
                                     NombreVacante = _vacante.NombreVacante,
-                                    DescripcionVacante = _vacante.Descripcion
-                                    }).FirstOrDefault<PostulacionDetallesDTO>();
+                                    DescripcionVacante = _vacante.Descripcion,
+                                    JefeCorreo = _vacante.JefeCarrera.Usuario.Correo,
+                                    JefeNombre = _vacante.JefeCarrera.Usuario.Nombre
+                                }).FirstOrDefault<PostulacionDetallesDTO>();
         
 
         return postulacionDetalle;
@@ -39,7 +41,9 @@ public class PostulacionService : IPostulacionService
                                 Estado = _postulacion.Estado.EstadoId,
                                 DescripcionEstado = _postulacion.Estado.Mensaje,
                                 NombreVacante = _vacante.NombreVacante,
-                                DescripcionVacante = _vacante.Descripcion
+                                DescripcionVacante = _vacante.Descripcion,
+                                JefeCorreo = _vacante.JefeCarrera.Usuario.Correo,
+                                JefeNombre = _vacante.JefeCarrera.Usuario.Nombre
                             }).ToList();
         
 

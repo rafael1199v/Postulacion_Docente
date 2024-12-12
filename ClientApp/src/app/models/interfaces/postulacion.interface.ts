@@ -6,6 +6,8 @@ export interface Postulacion
     descripcionEstado: string,
     nombreVacante: string,
     descripcionVacante: string,
+    jefeCorreo: string,
+    jefeNombre: string
 };
 
 
