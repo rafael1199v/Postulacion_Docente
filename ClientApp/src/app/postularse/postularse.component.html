@@ -18,10 +18,10 @@
     <div class="he-tag">
       <h3>Datos de la vacante:</h3>
       <h4>Materia: {{ vacante?.materia }}</h4>
-      <p style="width:75%"> {{ vacante?.descripcionVacante }}
+      <p style="width:75%; text-align: center;"> {{ vacante?.descripcionVacante }}
       </p>
       <h6>Fecha límite para postularse: <i>{{ vacante?.fechaFinalizacion }}</i></h6>
-      <div style="padding-top: 8%; padding-bottom: 5%; display:flex; flex-direction: row; flex-wrap: wrap; justify-content: space-evenly; width:30%">
+      <div style="padding-top: 8%; padding-bottom: 5%; display:flex; flex-direction: row; flex-wrap: wrap; justify-content: space-evenly; width:35%">
 
         <div>
             <button class="ButtonB" (click)="Postularse()">Postularse</button>

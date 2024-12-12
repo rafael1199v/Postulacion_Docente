@@ -16,9 +16,9 @@ export class EstadoPostulacionComponent {
   constructor(private postulacionService: PostulacionService, private activatedRoute: ActivatedRoute){
     this.postulacionService.ConseguirDetallePostulacion(this.activatedRoute.snapshot.paramMap.get('postulacionId') || '-1').subscribe(result => {
       this.postulacion = result;
+      console.log(result);
     }, error => console.log(error));
     this.role = GetSessionRole;
   }
-
 
 }

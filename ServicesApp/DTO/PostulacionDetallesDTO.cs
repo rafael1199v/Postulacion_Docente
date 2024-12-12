@@ -6,6 +6,8 @@ public class PostulacionDetallesDTO
     public string DescripcionEstado { get; set; } = string.Empty;
     public string NombreVacante { get; set; } = string.Empty;
     public string? DescripcionVacante { get; set; } = string.Empty;
+    public string? JefeCorreo  { get; set ;} = string.Empty;
+    public string? JefeNombre { get; set ;} = string.Empty;
 
     /*
     Los estados son:

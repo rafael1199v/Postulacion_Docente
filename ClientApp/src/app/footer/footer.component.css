@@ -24,6 +24,8 @@
     background-size:contain;
     padding-top: 14%;
     width: 14%;
+    margin-top: 1em;
+    background-repeat: no-repeat;
 }
 
 a {

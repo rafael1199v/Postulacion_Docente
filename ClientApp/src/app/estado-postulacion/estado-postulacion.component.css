@@ -106,22 +106,3 @@ h3 {
 .state-number {
     font-size: 37px;
 }
-.state-line-wrapper {
-    width: 35.75%;
-    height: 10px;
-    margin: 10px;
-    position: absolute;
-    padding-top: 24lvh;
-}
-.state-line {
-    font-size: 37px;
-    text-shadow: 5px 0 #000000, -5px 0 #000000;
-    color: 0;
-    z-index: -1;
-    overflow: hidden;
-    text-overflow:clip;
-    white-space: wrap;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-}

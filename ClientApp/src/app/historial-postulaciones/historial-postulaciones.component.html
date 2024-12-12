@@ -27,6 +27,7 @@
           <div class="item-border" *ngFor="let postulacion of postulaciones">
               <div class="item-margin">
                   <h5>{{ postulacion?.nombreVacante}}: {{ postulacion?.tituloMateria}}</h5>
+                  <h5> Estado: {{ postulacion?.descripcionEstado }}</h5>
                   <p class="overflow">{{ postulacion?.descripcionVacante }}</p>
               </div>
           </div>

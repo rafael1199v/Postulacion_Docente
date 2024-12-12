@@ -13,25 +13,6 @@
             <h1 class="Lora">{{ postulacion?.tituloMateria }}</h1>
           </div>
     </div>
-
-    <h2>Estado</h2>
-    <div class="state-wrapper">
-        <div class="state-circle" style="background-color: white;">
-            <p class="state-number">1</p>
-        </div>
-        <div class="state-circle" style="background-color: white;">
-            <p class="state-number">2</p>
-        </div>
-        <div class="state-circle" style="background-color: white;">
-            <p class="state-number">3</p>
-        </div>
-        <div class="state-circle" style="background-color: white;">
-            <p class="state-number">4</p>
-        </div>
-    </div>
-    <div class="state-line-wrapper">
-        <p class="state-line">--------------------------------------------------</p>
-    </div>
     <div class="spacing-tag"></div>
 
     <div class="he-tag">
@@ -41,6 +22,9 @@
       <h3>Detalles de la vacante:</h3>
       <p>{{ postulacion?.descripcionVacante }}
       </p>
+      <h3>Contactar a: </h3>
+      <p>{{ postulacion?.jefeNombre }} </p>
+      <p>{{ postulacion?.jefeCorreo }}</p>
     </div>
   </div>
   <div class="footer-spacing-tag"></div>
