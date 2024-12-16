@@ -6,6 +6,8 @@ public interface IJefeCarreraService
     public bool AscenderSolicitud(PostulacionDocenteContext context, int postulacionId, out string mensaje);
     public bool RechazarSolicitud(PostulacionDocenteContext context, int postulacionId, out string mensaje);
     public void RechazarPostulaciones(PostulacionDocenteContext context, int postulacionAceptadaId, Vacante vacante);
+    public bool DescenderSolicitud(PostulacionDocenteContext context, int postulacionId, out string mensaje);
+    public bool RevisarEstadoPostulacion(Postulacion? postulacion, ref string mensaje);
 
     // Nuevos métodos para obtener listas
     List<DocenteDatosPostulacionDTO> ObtenerSolicitudes(PostulacionDocenteContext context, int vacanteId);

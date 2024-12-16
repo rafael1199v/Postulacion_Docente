@@ -37,6 +37,10 @@
         <div>
             <button class="ButtonB" *ngIf="(postulacion?.estadoId ?? 5) <= 3" (click)="RechazarPostulacion()">Rechazar postulación</button>
         </div>
+        <div>
+          <button class="ButtonB" *ngIf="(postulacion?.estadoId ?? 0) >= 2 && (postulacion?.estadoId ?? 0) <= 3" (click)="DescenderPostulacion()">Descender Postulacion</button>
+      </div>
+
       </div>
 
     </div>

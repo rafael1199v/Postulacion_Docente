@@ -22,18 +22,6 @@ public class VacanteController : ControllerBase
         return Ok(_vacanteService.ConseguirVacantesDisponibles(_context, CI));
     }
 
-    // [HttpDelete("eliminarVacante/{vacanteId}")]
-    // public IActionResult EliminarVacante(int vacanteId)
-    // {
-    //     return _vacanteService.EliminarVacante(vacanteId, _context) ? Ok() : BadRequest();
-    // }
-
-    // [HttpPut("modificarVacante/{vacanteId}")]
-    // public IActionResult ModificarVacante(int vacanteId)
-    // {
-    //     return _vacanteService.ModificarVacante(vacanteId, new VacanteDTO(), _context) ? Ok() : BadRequest();
-    // }
-
     //"0001-01-01T00:00:00"
     [HttpPost("crearVacante")]
     public IActionResult CrearVacante([FromBody] NuevaVacanteDTO nuevaVacante)

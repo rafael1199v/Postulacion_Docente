@@ -45,5 +45,11 @@ public class JefeCarreraController : ControllerBase
         return _jefeCarreraservice.RechazarSolicitud(_context, postulacionId, out string mensaje) ? Ok(new {mensaje}) : BadRequest(new {mensaje});
     }
 
+    [HttpPut("descenderPostulacion/{postulacionId}")]
+    public IActionResult DescenderPostulacion(int postulacionId)
+    {
+        return _jefeCarreraservice.DescenderSolicitud(_context, postulacionId, out string mensaje) ? Ok( new { mensaje }) : BadRequest( new { mensaje });
+    }
+
 
 }

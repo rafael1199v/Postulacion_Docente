@@ -129,4 +129,47 @@ public class JefeCarreraService : IJefeCarreraService
         return postulacionDetalles;
     }
 
+    public bool DescenderSolicitud(PostulacionDocenteContext context, int postulacionId, out string mensaje)
+    {
+        mensaje = "Postulacion descendida correctamente";
+
+        var postulacion = context.Postulacions.FirstOrDefault(p => p.PostulacionId == postulacionId);
+
+        if(!this.RevisarEstadoPostulacion(postulacion, ref mensaje))
+        {
+            return false;
+        }
+    
+        int EstadoId =  postulacion.EstadoId;
+
+        postulacion.EstadoId = EstadoId - 1;
+
+        context.SaveChanges();
+
+        return true;
+    }
+
+    public bool RevisarEstadoPostulacion(Postulacion? postulacion, ref string mensaje)
+    {
+        if(postulacion == null)
+        {
+            mensaje = "Hubo un error al descender la postulacion. Intentelo otra vez";
+            return false;
+        }
+
+        if(postulacion.EstadoId <= 1)
+        {
+            mensaje = "No se puede descender mas la postulacion. Espera a que vuelva a ser ascendida";
+            return false;
+        } 
+
+        if(postulacion.EstadoId >= 4)
+        {
+            mensaje = "No se puede modificar el estado de la postulacion";
+            return false;
+        }  
+
+
+        return true;
+    }
 }

@@ -9,6 +9,7 @@ import { JefeCarreraService } from '../services/JefeCarreraService';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { GetSessionRole } from '../services/GetSessionRole';
 
+
 @Component({
   selector: 'app-revisar-postulacion',
   templateUrl: './revisar-postulacion.component.html',
@@ -54,5 +55,14 @@ export class RevisarPostulacionComponent {
       alert(result.mensaje);
       this.router.navigate(['/postulaciones-recibidas', this.activatedRoute.snapshot.paramMap.get('vacanteId')]);
     }, error => alert(error.error));
+  }
+
+
+  DescenderPostulacion(){
+    const postulacionId = parseInt(this.activatedRoute.snapshot.paramMap.get('postulacionId') || '-1');
+    this.jefeCarreraService.DescenderPostulacion(postulacionId).subscribe(result => {
+      alert(result.mensaje);
+      this.router.navigate(['/postulaciones-recibidas', this.activatedRoute.snapshot.paramMap.get('vacanteId')]);
+    }, error => alert(error.error.mensaje))
   }
 }

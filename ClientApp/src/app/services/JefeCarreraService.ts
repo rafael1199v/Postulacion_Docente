@@ -26,4 +26,9 @@ export class JefeCarreraService
     RechazarPostulacion(postulacionId: number){
         return this.http.put<any>(this.baseUrl + 'jefeCarrera/rechazarPostulacion/' + postulacionId, postulacionId);
     }
+
+    DescenderPostulacion(postulacionId: number)
+    {
+        return this.http.put<any>(this.baseUrl + 'jefeCarrera/descenderPostulacion/' + postulacionId, postulacionId);
+    }
 }
