@@ -11,7 +11,7 @@ public interface IVacanteService
     public List<VacanteJefeCarreraDTO> ConseguirVacanteHistorialJefe(PostulacionDocenteContext context, string CI);
     public bool VacanteValida(NuevaVacanteDTO nuevaVacante);
     public bool CrearVacante(NuevaVacanteDTO nuevaVacante, PostulacionDocenteContext context, out string mensaje);
-    public bool ValidarVacanteAdmin(int vacanteId, PostulacionDocenteContext context);
+    public bool ValidarVacanteAdmin(int vacanteId, PostulacionDocenteContext context, out string mensaje);
     public List<VacanteDTO> ConseguirVacantesPendientes(PostulacionDocenteContext context);
     public VacanteDTO? ConseguirDetalleVacanteAdmin(PostulacionDocenteContext context, int vacanteId);
     // public bool EliminarVacante(int vacanteId, PostulacionDocenteContext context);

@@ -22,10 +22,8 @@ export class HabilitarVacanteComponent {
     this.role = GetSessionRole;
   }
 
-
-
   Postularse(){
-    const vacanteId = this.vacante?.vacanteId || -1;
+    const vacanteId = String(this.vacante?.vacanteId) || '-1';
     const fechaFinalizacion = this.vacante?.fechaFinalizacion || new Date(0);
     this.vacanteService.PutHabilitarVacante(vacanteId).subscribe(result => {
       alert(result.mensaje);

@@ -43,7 +43,7 @@ export class vacanteService{
         return this.http.get<VacanteJefe[]>(this.baseUrl + 'vacante/conseguirVacantesPendientes/');
     }
 
-    PutHabilitarVacante(vacanteId: number){
+    PutHabilitarVacante(vacanteId: string){
         return this.http.put<any>(this.baseUrl + 'vacante/HabilitarVacante/' + vacanteId, vacanteId);
     }
 

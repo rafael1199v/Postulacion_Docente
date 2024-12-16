@@ -66,14 +66,15 @@ public class VacanteService : IVacanteService
         return true;
     }
 
-    public bool ValidarVacanteAdmin(int vacanteId, PostulacionDocenteContext context){
-        //WTFFFFFFFFFFFFFFFFF
+    public bool ValidarVacanteAdmin(int vacanteId, PostulacionDocenteContext context, out string mensaje){
+        mensaje = "Validado!";
         var vacante = (from _vacante in context.Vacantes 
                           where _vacante.VacanteId == vacanteId 
                           select _vacante)
                           .FirstOrDefault();
 
         if(vacante == null){
+            mensaje = "Hubo un error durante la validacion";
             return false;
         }
 

@@ -61,7 +61,7 @@ public class VacanteController : ControllerBase
     [HttpPut("HabilitarVacante/{vacanteId}")]
     public IActionResult ValidarVacanteAdmin(int vacanteId)
     {
-        return _vacanteService.ValidarVacanteAdmin(vacanteId, _context) ? Ok() : BadRequest();
+        return _vacanteService.ValidarVacanteAdmin(vacanteId, _context, out string mensaje) ? Ok(new {mensaje}) : BadRequest(new {mensaje});
     }
     
 }

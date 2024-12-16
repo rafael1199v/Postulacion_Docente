@@ -242,6 +242,10 @@ insert into Vacante values
 ('Docente tiempo completo', 'Todos los días, por favor', '2024-01-01','2025-01-01', 45, 4, 1),
 ('Docente tiempo horario', 'Ya no sé lo que hago aaaa', '2024-01-01','2025-01-01', 46,4, 1);
 
+INSERT INTO Vacante VALUES
+('Test 1', 'Esto debe ser una prueba', GETDATE(), '2025-01-01', 1,1, 0),
+('Test 2', 'Uhhhhhh...', GETDATE(), '2025-01-01', 1,1,0);
+
 insert into MateriaCarrera values
 (1,1),
 (2,1),

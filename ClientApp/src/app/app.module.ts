@@ -120,10 +120,10 @@ import { HabilitarVacanteComponent } from './habilitar-vacante/habilitar-vacante
       { path: 'ayuda-jefe', component: AyudaJefeComponent },
       { path: 'historial-vacantes', component: HistorialVacantesComponent },
       { path: 'vacantes-esperando', component: VacantesEsperandoComponent},
-      { path: 'habilitar-vacante', component: HabilitarVacanteComponent},
+      { path: 'habilitar-vacante/:vacanteId', component: HabilitarVacanteComponent},
 
       //el de abajo debe manejar los 404s, por lo que no se le debe añadir nada más debajo de esta línea
-      { path: '**', component: NotFoundComponent }
+      //{ path: '**', component: NotFoundComponent }
     ])
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},vacanteService, LoginService, PerfilService, PostulacionService, JefeCarreraService, UsuarioService, CarreraService],
