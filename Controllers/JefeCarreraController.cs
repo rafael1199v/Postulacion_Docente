@@ -18,7 +18,7 @@ public class JefeCarreraController : ControllerBase
     [HttpGet("verSolitciudes/{vacanteId}")]
     public IActionResult VerSolicitudes(int vacanteId)
     {
-       return Ok(_jefeCarreraservice.ObtenerSolicitudes(_context, vacanteId)); 
+        return Ok(_jefeCarreraservice.ObtenerSolicitudes(_context, vacanteId));
     }
 
     [HttpGet("conseguirDatosJefeCarrera/{CI}")]
@@ -39,10 +39,16 @@ public class JefeCarreraController : ControllerBase
         return _jefeCarreraservice.AscenderSolicitud(_context, postulacionId, out string mensaje) ? Ok(new { mensaje }) : BadRequest(new { mensaje });
     }
 
+    // [HttpPut("descenderPostulacion/{postulacionId}")]
+    // public IActionResult DescenderPostulacion(int postulacionId)
+    // {
+
+    // }
+
     [HttpPut("rechazarPostulacion/{postulacionId}")]
     public IActionResult RechazarPostulacion(int postulacionId)
     {
-        return _jefeCarreraservice.RechazarSolicitud(_context, postulacionId, out string mensaje) ? Ok(new {mensaje}) : BadRequest(new {mensaje});
+        return _jefeCarreraservice.RechazarSolicitud(_context, postulacionId, out string mensaje) ? Ok(new { mensaje }) : BadRequest(new { mensaje });
     }
 
 

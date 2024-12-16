@@ -4,6 +4,7 @@ using PostulacionDocente.ServicesApp.Models;
 public interface IJefeCarreraService
 {
     public bool AscenderSolicitud(PostulacionDocenteContext context, int postulacionId, out string mensaje);
+    // public bool DescenderPostulacion(PostulacionDocenteContext context, int postulacionId, out string mensjae);
     public bool RechazarSolicitud(PostulacionDocenteContext context, int postulacionId, out string mensaje);
     public void RechazarPostulaciones(PostulacionDocenteContext context, int postulacionAceptadaId, Vacante vacante);
 

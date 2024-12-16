@@ -4,26 +4,29 @@ import { DocenteDatosPostulacion } from "../models/interfaces/docenteDatosPostul
 
 
 @Injectable()
-export class JefeCarreraService
-{
-    constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl : string){}
+export class JefeCarreraService {
+    constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
 
-    GetSolicitudes(vacanteId: number){
+    GetSolicitudes(vacanteId: number) {
         return this.http.get<DocenteDatosPostulacion[]>(this.baseUrl + 'jefeCarrera/verSolitciudes/' + vacanteId);
     }
 
-    
-    RevisarPostulacion(postulacionId: number){
+
+    RevisarPostulacion(postulacionId: number) {
         return this.http.get<DocenteDatosPostulacion>(this.baseUrl + 'jefeCarrera/revisarPostulacion/' + postulacionId);
     }
 
 
-    AscenderPostulacion(postulacionId: number){
+    AscenderPostulacion(postulacionId: number) {
         return this.http.put<any>(this.baseUrl + 'jefeCarrera/ascenderPostulacion/' + postulacionId, postulacionId);
     }
 
-    RechazarPostulacion(postulacionId: number){
+    // DescenderPostulacion(postulacionId: number) {
+    //     return this.http.put<any>(this.baseUrl + 'jefeCarrera/descenderPostulacion/' + postulacionId, postulacionId);
+    // }
+
+    RechazarPostulacion(postulacionId: number) {
         return this.http.put<any>(this.baseUrl + 'jefeCarrera/rechazarPostulacion/' + postulacionId, postulacionId);
     }
 }
