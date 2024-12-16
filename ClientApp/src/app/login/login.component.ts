@@ -59,7 +59,12 @@ export class LoginComponent {
       this.loginService.loginJefeCarrera(loginData).subscribe( result => {
         sessionStorage.setItem('usuarioCI', result.usuarioCI);
         sessionStorage.setItem('isJefe', 'true');
-        this.router.navigate(['/jefe']);
+        if(this.loginForm.value.email == 'admin@gmail.com' && this.loginForm.value.password == '99999999'){
+          this.router.navigate(['/vacantes-esperando']);
+        }
+        else{
+          this.router.navigate(['/jefe']);
+        }
       }, error => alert(error.error));
     }
 

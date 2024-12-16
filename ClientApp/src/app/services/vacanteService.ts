@@ -39,6 +39,14 @@ export class vacanteService{
         return this.http.get<Vacante>(this.baseUrl + 'vacante/conseguirDetalleVacante/' + vacanteId);
     }
 
+    GetVacantesPendientes(){
+        return this.http.get<VacanteJefe[]>(this.baseUrl + 'vacante/conseguirVacantesPendientes/');
+    }
+
+    PutHabilitarVacante(vacanteId: number){
+        return this.http.put<any>(this.baseUrl + 'vacante/HabilitarVacante/' + vacanteId, vacanteId);
+    }
+
 
     Postularse(vacanteId: number, fechaFinalizacionVacanteA: Date){
         const nuevaPostulacion: NuevaPostulacion = {

@@ -3,16 +3,6 @@ using PostulacionDocente.ServicesApp.Models;
 
 public class VacanteService : IVacanteService
 {
-    // public bool EliminarVacante(int vacanteId, PostulacionDocenteContext context)
-    // {
-    //     System.Console.WriteLine($"La vacante con Id {vacanteId} ha sido eliminada");
-    //     return true;
-    // }
-    // public bool ModificarVacante(int vacanteId, VacanteDTO datosNuevosVacante, PostulacionDocenteContext context)
-    // {
-    //     System.Console.WriteLine($"La vacante con el id {vacanteId} ha sido modificada");
-    //     return true;
-    // }
 
     public List<VacanteDTO> ConseguirVacantesDisponibles(PostulacionDocenteContext context, string CI)
     {
@@ -32,7 +22,8 @@ public class VacanteService : IVacanteService
                                     Materia = _vacante.Materia.NombreMateria,
                                     DescripcionVacante = _vacante.Descripcion,
                                     FechaInicio = _vacante.FechaInicio,
-                                    FechaFinalizacion = _vacante.FechaFin
+                                    FechaFinalizacion = _vacante.FechaFin,
+                                    Estado = 1
                                   }).ToList();
 
 
@@ -41,7 +32,7 @@ public class VacanteService : IVacanteService
 
     public bool CrearVacante(NuevaVacanteDTO nuevaVacante, PostulacionDocenteContext context, out string mensaje)
     {
-        mensaje = "Vacante creada correctamente";
+        mensaje = "Vacante enviada a revisar...";
         if(!this.VacanteValida(nuevaVacante))
         {
             mensaje = "Los datos de la vacante no son validas. Intentalo otra vez";
@@ -66,12 +57,51 @@ public class VacanteService : IVacanteService
             FechaInicio = nuevaVacante.FechaInicio,
             FechaFin = nuevaVacante.FechaFinalizacion,
             JefeCarrera = jefeCarrera,
-            Materia = materia
+            Materia = materia,
+            Estado = 0
         };
 
         context.Vacantes.Add(nuevaVac);
         context.SaveChanges();
         return true;
+    }
+
+    public bool ValidarVacanteAdmin(int vacanteId, PostulacionDocenteContext context){
+        //WTFFFFFFFFFFFFFFFFF
+        var vacante = (from _vacante in context.Vacantes 
+                          where _vacante.VacanteId == vacanteId 
+                          select _vacante)
+                          .FirstOrDefault();
+
+        if(vacante == null){
+            return false;
+        }
+
+        vacante.Estado = 1;
+
+        context.SaveChanges();
+
+        return true;
+    }
+
+    public List<VacanteDTO> ConseguirVacantesPendientes(PostulacionDocenteContext context)
+    {
+      
+        DateTime now = DateTime.Now;
+
+        var vacantesDisponibles = (from _vacante in context.Vacantes
+                                  where now < _vacante.FechaFin && now >= _vacante.FechaInicio && (_vacante.Postulacions.Count == 0 || !_vacante.Postulacions.Any(p => p.EstadoId == 4))
+                                  select new VacanteDTO{
+                                    VacanteId = _vacante.VacanteId,
+                                    NombreVacante = _vacante.NombreVacante,
+                                    Materia = _vacante.Materia.NombreMateria,
+                                    DescripcionVacante = _vacante.Descripcion,
+                                    FechaInicio = _vacante.FechaInicio,
+                                    FechaFinalizacion = _vacante.FechaFin,
+                                    Estado = 0
+                                  }).ToList();
+
+        return vacantesDisponibles;
     }
 
 
@@ -112,6 +142,22 @@ public class VacanteService : IVacanteService
         return vacante;
     }
 
+        public VacanteDTO? ConseguirDetalleVacanteAdmin(PostulacionDocenteContext context, int vacanteId)
+    {
+        var vacante = (from _vacante in context.Vacantes
+                      where _vacante.VacanteId == vacanteId
+                      select new VacanteDTO{
+                        VacanteId = _vacante.VacanteId,
+                        NombreVacante = _vacante.NombreVacante,
+                        Materia = _vacante.Materia.NombreMateria,
+                        DescripcionVacante = _vacante.Descripcion,
+                        FechaInicio = _vacante.FechaInicio,
+                        FechaFinalizacion = _vacante.FechaFin
+                      }).FirstOrDefault<VacanteDTO>();
+
+        return vacante;
+    }
+
     public List<VacanteJefeCarreraDTO> ConseguirVacantesVigentesJefe(PostulacionDocenteContext context, string CI)
     {
         var jefeCarrera = (from _jefeCarrera in context.JefeCarreras
@@ -133,7 +179,8 @@ public class VacanteService : IVacanteService
                         NombreVacante = _vacante.NombreVacante,
                         NombreMateria = _vacante.Materia.NombreMateria,
                         DescripcionVacante = _vacante.Descripcion,
-                        NumeroPostulantes = _vacante.Postulacions.Count
+                        NumeroPostulantes = _vacante.Postulacions.Count,
+                        Estado = 1
                        }).ToList();
 
 
@@ -159,7 +206,8 @@ public class VacanteService : IVacanteService
                             NombreVacante = _vacante.NombreVacante,
                             NombreMateria = _vacante.Materia.NombreMateria,
                             DescripcionVacante = _vacante.Descripcion,
-                            NumeroPostulantes = _vacante.Postulacions.Count
+                            NumeroPostulantes = _vacante.Postulacions.Count,
+                            Estado = 1
                         }).ToList<VacanteJefeCarreraDTO>();
         
 

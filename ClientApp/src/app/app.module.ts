@@ -44,6 +44,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { CarreraService } from './services/CarreraService';
 import { HistorialVacantesComponent } from './historial-vacantes/historial-vacantes.component';
 import { HistorialPostulacionesComponent } from './historial-postulaciones/historial-postulaciones.component';
+import { VacantesEsperandoComponent } from './vacantes-esperando/vacantes-esperando.component';
+import { HabilitarVacanteComponent } from './habilitar-vacante/habilitar-vacante.component';
 
 
 
@@ -79,6 +81,8 @@ import { HistorialPostulacionesComponent } from './historial-postulaciones/histo
     NotFoundComponent,
     HistorialVacantesComponent,
     HistorialPostulacionesComponent,
+    VacantesEsperandoComponent,
+    HabilitarVacanteComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -115,6 +119,8 @@ import { HistorialPostulacionesComponent } from './historial-postulaciones/histo
       { path: 'profile-jefe', component: ProfileJefeComponent },
       { path: 'ayuda-jefe', component: AyudaJefeComponent },
       { path: 'historial-vacantes', component: HistorialVacantesComponent },
+      { path: 'vacantes-esperando', component: VacantesEsperandoComponent},
+      { path: 'habilitar-vacante', component: HabilitarVacanteComponent},
 
       //el de abajo debe manejar los 404s, por lo que no se le debe añadir nada más debajo de esta línea
       { path: '**', component: NotFoundComponent }

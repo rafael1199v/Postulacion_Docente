@@ -66,7 +66,8 @@ CREATE TABLE Vacante(
     FechaInicio DATE NOT NULL,
     FechaFin DATE NOT NULL,
     MateriaId INT NOT NULL, --FOREIGN KEY REFERENCES Materia(MateriaId)
-	JefeCarreraId INT NOT NULL --FOREIGN KEY REFERENCES JefeCarrera(JefeCarreraId)
+	JefeCarreraId INT NOT NULL, --FOREIGN KEY REFERENCES JefeCarrera(JefeCarreraId)
+    Estado INT NOT NULL
 );
 
 CREATE TABLE MateriaCarrera(
@@ -130,6 +131,14 @@ FOREIGN KEY (VacanteId) REFERENCES Vacante(VacanteId);
 
 GO;
 
+-- CREATE TABLE Admin (
+--     AdminId INT NOT NULL UNIQUE,
+--     UsuarioId INT NOT NULL --FOREIGN KEY REFERENCES Usuario(UsuarioId)
+-- );
+
+-- ALTER TABLE Admin
+-- ADD CONSTRAINT FK_Admin_Usuario
+-- FOREIGN KEY (UsuarioId) REFERENCES Usuario(UsuarioId);
 
 INSERT INTO Usuario VALUES 
 ('Daniel Roland Peñaranda Colque', '10990989', '2005-05-02', '68829531', 'eldanielitu@gmail.com', '0123456789'),
@@ -140,7 +149,8 @@ INSERT INTO Usuario VALUES
 ('Docente Uno', '2345', '2000-01-01', '22222222', 'docente1@gmail.com', '11111111'),
 ('Director Uno', '3456', '2000-01-01', '33333333', 'director1@gmail.com', '11111111'),
 ('Postulante Dos', '4567', '2000-01-01', '44444444', 'postulante2@gmail.com', '11111111'),
-('Director Dos', '5678', '2000-01-01', '55555555', 'director2@gmail.com', '11111111');
+('Director Dos', '5678', '2000-01-01', '55555555', 'director2@gmail.com', '11111111'),
+('Admin', '9999', '2000-01-01', '99999999', 'admin@gmail.com', '99999999');
 
 insert into Materia values
 ('Técnicas de representación I', 'TEC-001'), --desde pertenece a arquitectura (1)
@@ -210,7 +220,8 @@ insert into JefeCarrera values
 (1),
 (3),
 (7),
-(9);
+(9),
+(10);
 
 insert into Carrera values
 ('Arquitectura', 'ARQ', 1),
@@ -220,16 +231,16 @@ insert into Carrera values
 ('Medicina', 'MED', 4);
 
 insert into Vacante values 
-('Docente tiempo completo', 'finjan que esto es una descripción, ya no puedo aaaaaaa', GETDATE(), '2025-01-01', 1, 1),
-('Docente con paciencia', 'Se necesita un docente que enseñe con paciencia la historia del arte', GETDATE(), '2025-01-01', 3,1),
-('Se necesita urgentemente docente', 'Van a iniciar las clases y aún no llega docente, vengan cuando puedan!!!!', GETDATE(), '2025-01-01', 2,1),
-('Docente y ya', 'Rápido por favor', GETDATE(), '2025-01-01', 7,1),
-('...', '...', '2024-01-01','2025-01-01', 24, 1),
-('Aloh?', 'Cómo se hace para obtener un docente que de buena nota?', '2024-01-01','2025-01-01', 39, 3),
-('Docente tiempo horario', 'Qué es tiempo horario?', '2024-01-01','2025-01-01', 40,3),
-('Docente medio tiempo', 'Lunes, martes y miércoles', '2024-01-01','2025-01-01', 41,3),
-('Docente tiempo completo', 'Todos los días, por favor', '2024-01-01','2025-01-01', 45, 4),
-('Docente tiempo horario', 'Ya no sé lo que hago aaaa', '2024-01-01','2025-01-01', 46,4);
+('Docente tiempo completo', 'finjan que esto es una descripción, ya no puedo aaaaaaa', GETDATE(), '2025-01-01', 1, 1, 1),
+('Docente con paciencia', 'Se necesita un docente que enseñe con paciencia la historia del arte', GETDATE(), '2025-01-01', 3,1, 1),
+('Se necesita urgentemente docente', 'Van a iniciar las clases y aún no llega docente, vengan cuando puedan!!!!', GETDATE(), '2025-01-01', 2,1, 1),
+('Docente y ya', 'Rápido por favor', GETDATE(), '2025-01-01', 7,1, 1),
+('...', '...', '2024-01-01','2025-01-01', 24, 1, 1),
+('Aloh?', 'Cómo se hace para obtener un docente que de buena nota?', '2024-01-01','2025-01-01', 39, 3, 1),
+('Docente tiempo horario', 'Qué es tiempo horario?', '2024-01-01','2025-01-01', 40,3, 1),
+('Docente medio tiempo', 'Lunes, martes y miércoles', '2024-01-01','2025-01-01', 41,3, 1),
+('Docente tiempo completo', 'Todos los días, por favor', '2024-01-01','2025-01-01', 45, 4, 1),
+('Docente tiempo horario', 'Ya no sé lo que hago aaaa', '2024-01-01','2025-01-01', 46,4, 1);
 
 insert into MateriaCarrera values
 (1,1),

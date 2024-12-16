@@ -5,5 +5,6 @@ public class VacanteJefeCarreraDTO
     public string NombreMateria { get; set; }= string.Empty;
     public string? DescripcionVacante { get; set; } = string.Empty;
     public int NumeroPostulantes { get; set ;}
+    public int Estado {get;set;}
 
 }
