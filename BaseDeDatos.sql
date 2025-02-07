@@ -194,8 +194,7 @@ insert into Materia values
 
 insert into Estado values
 ('En revisión'),
-('Exposición'),
-('Entrevista'),
+('Exposición/Entrevista'),
 ('Aceptado'),
 ('Rechazado');
 
